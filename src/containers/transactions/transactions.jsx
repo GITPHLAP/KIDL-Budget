@@ -18,7 +18,7 @@ export default function Transactions() {
     const columns = [
         { field: 'id', headerName: 'ID' },
         { field: 'date', headerName: 'Dato' },
-        { field: 'amount', headerName: 'Beløb', },
+        { field: 'amount', headerName: 'Beløb', type: "number", },
         { field: 'description', headerName: 'Beskrivelse', },
         { field: 'category', headerName: 'Kategori', editable: true, type: 'singleSelect', valueOptions: ['Market', 'Finance', 'Development'], },
         { field: 'type', headerName: 'Type', },

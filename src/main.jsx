@@ -4,9 +4,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Administration from "./containers/overview/administration";
+import Administration from "./containers/administration/administration";
 import Overview from "./containers/overview/overview";
-import Transactions from "./containers/overview/transactions";
+import Transactions from "./containers/transactions/transactions";
 import ErrorPage from "./error-page";
 import "./index.css";
 import Root from "./routes/root";
