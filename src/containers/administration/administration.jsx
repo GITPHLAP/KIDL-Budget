@@ -1,16 +1,28 @@
 import { Masonry } from "@mui/lab";
-import { Card, CardContent, Input, Typography } from "@mui/material";
+import { Card, CardContent, CircularProgress, Input, Typography } from "@mui/material";
 import papaparse from "papaparse";
+import { useInsertTransactionsMutation } from "../../redux/api/transactions/transaction";
+import { toast } from "react-toastify";
 
 export default function Administration() {
+
+    const [addTransactions, { isLoading }] = useInsertTransactionsMutation()
+
     const onFileChangeHandler = (event) => {
         const csvFile = event.target.files[0]
         papaparse.parse(csvFile, {
             header: true,
             skipEmptyLines: true,
-            complete: function(results) {
+            complete: function (results) {
                 // TODO: Add api call to upload data
-                console.log("Finished:", results.data);
+                toast.promise(
+                    addTransactions(Array.from(results.data)).unwrap(),
+                    {
+                        pending: 'Waiting ⏳',
+                        success: 'Success 👌',
+                    }
+
+                )
             }
         });
     }
@@ -19,7 +31,8 @@ export default function Administration() {
             <Card elevation={4}>
                 <CardContent>
                     <Typography variant="h5">Import transactions</Typography>
-                    <Input type="file" id="csvFileImporter" accept=".csv" onChange={onFileChangeHandler} inputProps={{accept: ".csv"}} value={""} />
+                    <Input type="file" id="csvFileImporter" accept=".csv" onChange={onFileChangeHandler} inputProps={{ accept: ".csv" }} value={""} />
+                    {isLoading ? <CircularProgress/> : null}
                 </CardContent>
             </Card>
         </Masonry>

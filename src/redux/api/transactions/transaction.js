@@ -7,9 +7,7 @@ const extendedApi = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: '/transaction',
                 method: 'POST',
-                body: {
-                    ...data,
-                }
+                body: data
             }),
             invalidatesTags: ['TransactionList']
         }),
