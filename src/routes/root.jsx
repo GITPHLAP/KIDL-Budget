@@ -2,12 +2,15 @@ import { CalendarMonth, Receipt, Tune } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
 
 export default function Root() {
     const [value, setValue] = useState('overview')
     return (
         <Box sx={{ pb: 7 }}>
-            <Outlet/>
+            <ToastContainer/>
+            <Outlet />
             <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <BottomNavigation
                     showLabels
