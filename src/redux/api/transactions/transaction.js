@@ -12,6 +12,15 @@ const extendedApi = apiSlice.injectEndpoints({
             invalidatesTags: ['TransactionList']
         }),
 
+        getTransactions: builder.query({
+            query: (year) => ({
+                url: `/transaction/${year}`,
+                method: 'GET'
+            }),
+            providesTags: ['TransactionList'],
+            transformResponse: (response, meta, arg) => response.data
+        }),
+
     }),
 
     overrideExisting: false,
@@ -19,4 +28,5 @@ const extendedApi = apiSlice.injectEndpoints({
 
 export const {
     useInsertTransactionsMutation,
+    useGetTransactionsQuery,
 } = extendedApi

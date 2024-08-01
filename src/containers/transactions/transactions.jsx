@@ -1,6 +1,7 @@
-import { Container } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
+import { useGetTransactionsQuery } from "../../redux/api/transactions/transaction";
 
 export default function Transactions() {
     const [rows, setRows] = useState([
@@ -15,9 +16,14 @@ export default function Transactions() {
         { id: 9, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
     ])
 
+    const {
+        data: transactions,
+        isFetching: transactionsFetching
+    } = useGetTransactionsQuery(2024) // TODO: use state to save the selected year from overview 
+
     const columns = [
         { field: 'id', headerName: 'ID' },
-        { field: 'date', headerName: 'Dato' },
+        { field: 'accounting', headerName: 'Dato' },
         { field: 'amount', headerName: 'Beløb', type: "number", },
         { field: 'description', headerName: 'Beskrivelse', },
         { field: 'category', headerName: 'Kategori', editable: true, type: 'singleSelect', valueOptions: ['Market', 'Finance', 'Development'], },
@@ -33,14 +39,16 @@ export default function Transactions() {
 
     return (
         <Container maxWidth="lg">
-            <DataGrid
-                autoHeight
-                rows={rows}
-                columns={columns}
-                disableRowSelectionOnClick
-                editMode="row"
-                processRowUpdate={processRowUpdate}
-            />
+            {transactionsFetching ? <CircularProgress/> : (
+                <DataGrid
+                    autoHeight
+                    rows={transactions}
+                    columns={columns}
+                    disableRowSelectionOnClick
+                    editMode="row"
+                    processRowUpdate={processRowUpdate}
+                />
+            )}
         </Container>
     )
 }

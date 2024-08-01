@@ -14,7 +14,6 @@ export default function Administration() {
             header: true,
             skipEmptyLines: true,
             complete: function (results) {
-                // TODO: Add api call to upload data
                 toast.promise(
                     addTransactions(Array.from(results.data)).unwrap(),
                     {
