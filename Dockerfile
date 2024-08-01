@@ -11,7 +11,7 @@ RUN echo "VITE_VERSION=${VERSION}" > .env
 RUN bun run build
 
 # Run steps
-FROM nginx:1-alpine
+FROM nginx:1.21-alpine
 ARG VERSION
 ENV VERSION=${VERSION:-develop}
 RUN echo ${VERSION} > version
