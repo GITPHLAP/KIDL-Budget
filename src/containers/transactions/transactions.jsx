@@ -1,21 +1,11 @@
 import { CircularProgress, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
-import { useGetTransactionsQuery } from "../../redux/api/transactions/transaction";
+import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
+import { toast } from "react-toastify";
 
 export default function Transactions() {
-    const [rows, setRows] = useState([
-        { id: 1, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 2, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 3, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 4, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 5, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 6, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 7, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 8, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-        { id: 9, date: '2024-12-31 23:59', amount: 200.22, description: "Beskrivelse123", category: "Select", type: "Type" },
-    ])
-
+    const [updateTransaction, {isLoading}] = useUpdateTransactionMutation()
     const {
         data: transactions,
         isFetching: transactionsFetching
@@ -31,15 +21,19 @@ export default function Transactions() {
     ];
 
     const processRowUpdate = (newRow) => {
-        // TODO: Add logic to update db with the new row
-        const updatedRow = { ...newRow, isNew: false };
-        setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
-        return updatedRow;
+        toast.promise(
+            updateTransaction(newRow).unwrap(),
+            {
+                pending: 'Waiting ⏳',
+                success: '👌 Updated transaction',
+            }
+        )
+        return newRow;
     };
 
     return (
         <Container maxWidth="lg">
-            {transactionsFetching ? <CircularProgress/> : (
+            {transactionsFetching || isLoading ? <CircularProgress/> : (
                 <DataGrid
                     autoHeight
                     rows={transactions}

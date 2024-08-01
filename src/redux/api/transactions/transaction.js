@@ -20,6 +20,14 @@ const extendedApi = apiSlice.injectEndpoints({
             providesTags: ['TransactionList'],
             transformResponse: (response, meta, arg) => response.data
         }),
+        updateTransaction: builder.mutation({
+            query: (data) => ({
+                url: '/transaction',
+                method: 'PATCH',
+                body: data
+            }),
+            invalidatesTags: ['TransactionList']
+        }),
 
     }),
 
@@ -29,4 +37,5 @@ const extendedApi = apiSlice.injectEndpoints({
 export const {
     useInsertTransactionsMutation,
     useGetTransactionsQuery,
+    useUpdateTransactionMutation,
 } = extendedApi
