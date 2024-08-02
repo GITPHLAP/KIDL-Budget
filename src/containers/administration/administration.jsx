@@ -4,6 +4,7 @@ import papaparse from "papaparse";
 import { useInsertTransactionsMutation } from "../../redux/api/transactions/transaction";
 import { toast } from "react-toastify";
 import CategoryDataGrid from "./components/categoryDataGrid";
+import CategoryMappingCard from "./components/categoryMappingCard";
 
 export default function Administration() {
 
@@ -27,7 +28,7 @@ export default function Administration() {
         });
     }
     return (
-        <Masonry columns={4} spacing={2}>
+        <Masonry columns={3} spacing={2}>
             <Card elevation={4}>
                 <CardContent>
                     <Typography variant="h5">Import transactions</Typography>
@@ -39,6 +40,11 @@ export default function Administration() {
             <Card elevation={4}>
                 <CardContent>
                     <CategoryDataGrid/>
+                </CardContent>
+            </Card>
+            <Card elevation={4}>
+                <CardContent>
+                    <CategoryMappingCard/>
                 </CardContent>
             </Card>
         </Masonry>
