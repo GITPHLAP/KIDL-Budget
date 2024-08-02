@@ -1,13 +1,14 @@
 
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { ApiBasePort, ApiBaseURL } from '../../utils/envExtractor'
 
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5003/v1',
+        baseUrl: `${ApiBaseURL}:${ApiBasePort}/v1`,
     }),
-    tagTypes: ['TransactionList'],
+    tagTypes: ['TransactionList', 'TransCategoryList'],
     endpoints: (builder) => ({
         getHealth: builder.query({
             query: () => ({
