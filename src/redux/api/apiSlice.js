@@ -8,7 +8,7 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: `${ApiBaseURL}:${ApiBasePort}/v1`,
     }),
-    tagTypes: ['TransactionList', 'TransCategoryList', 'TransCateMappingList'],
+    tagTypes: ['TransactionList', 'TransCategoryList', 'TransCateMappingList', 'ForecastList'],
     endpoints: (builder) => ({
         getHealth: builder.query({
             query: () => ({

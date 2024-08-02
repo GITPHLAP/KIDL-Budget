@@ -12,6 +12,7 @@ import "./index.css";
 import Root from "./routes/root";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import ForecastTable from "./containers/forecasts/forecastTable";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "administration",
         element: <Administration />,
+      },
+      {
+        path: "forecasts",
+        element: <ForecastTable />,
       },
     ],
   },

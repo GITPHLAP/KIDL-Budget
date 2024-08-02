@@ -1,4 +1,4 @@
-import { CalendarMonth, Receipt, Tune } from "@mui/icons-material";
+import { CalendarMonth, Difference, Receipt, Tune } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -22,6 +22,7 @@ export default function Root() {
                     <BottomNavigationAction value={"overview"} LinkComponent={Link} label="Overview" icon={<CalendarMonth />} to={"overview"} />
                     <BottomNavigationAction value={"transactions"} LinkComponent={Link} label="Transactions" icon={<Receipt />} to={"transactions"} />
                     <BottomNavigationAction value={"administration"} LinkComponent={Link} label="Administration" icon={<Tune />} to={"administration"} />
+                    <BottomNavigationAction value={"forecasts"} LinkComponent={Link} label="Forecasts" icon={<Difference />} to={"forecasts"} />
                 </BottomNavigation>
             </Paper>
         </Box>
