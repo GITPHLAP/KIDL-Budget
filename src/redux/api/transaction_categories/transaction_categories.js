@@ -25,17 +25,9 @@ const extendedApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['TransCategoryList']
         }),
-        createCategoryMapping: builder.mutation({
-            query: (data) => ({
-                url: '/transaction_categories/mapping',
-                method: 'POST',
-                body: data
-            }),
-            invalidatesTags: ['TransactionList']
-        }),
         // QUERIES
         getTransactionCategories: builder.query({
-            query: (year) => ({
+            query: () => ({
                 url: '/transaction_categories',
                 method: 'GET'
             }),
@@ -52,6 +44,5 @@ export const {
     useCreateTransactionCategoryMutation,
     useUpdateTransactionCategoryMutation,
     useDeleteTransactionCategoryMutation,
-    useCreateCategoryMappingMutation,
     useGetTransactionCategoriesQuery,
 } = extendedApi
