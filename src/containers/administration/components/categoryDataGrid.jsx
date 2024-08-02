@@ -1,24 +1,47 @@
 import { CircularProgress, Typography } from "@mui/material";
 import { useMemo } from "react";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
-import { useGetTransactionCategoriesQuery } from "../../../redux/api/transaction_categories/transaction_categories";
+import { useCreateTransactionCategoryMutation, useDeleteTransactionCategoryMutation, useGetTransactionCategoriesQuery, useUpdateTransactionCategoryMutation } from "../../../redux/api/transaction_categories/transaction_categories";
+import { toast } from "react-toastify";
 
 export default function CategoryDataGrid() {
+
+    const [createCategory] = useCreateTransactionCategoryMutation()
+    const [updateCategory] = useUpdateTransactionCategoryMutation()
+    const [deleteCategory] = useDeleteTransactionCategoryMutation()
 
     const {
         data: categories,
         isFetching: isFetchingCategories
     } = useGetTransactionCategoriesQuery()
 
-    const deleteCategory = (id) => {
-        //TODO
+    const handleDeleteCategory = (id) => {
+        toast.promise(
+            deleteCategory(id).unwrap(),
+            {
+                pending: '⏳Deleting category',
+                success: '✅Deleted category',
+            }
+        )
     }
     const processRowUpdate = (row) => {
         if (row?.isNew) {
-            // TODO
+            toast.promise(
+                createCategory(row?.description).unwrap(),
+                {
+                    pending: '⏳Creating category',
+                    success: '✅Created category',
+                }
+            )
             return
         }
-        //TODO
+        toast.promise(
+            updateCategory(row).unwrap(),
+            {
+                pending: '⏳Updating category',
+                success: '✅Updated category',
+            }
+        )
         return
     }
 
@@ -35,7 +58,7 @@ export default function CategoryDataGrid() {
                     dataRows={categories}
                     columns={columns}
                     handleUpsertRow={processRowUpdate}
-                    handleDeleteRow={deleteCategory}
+                    handleDeleteRow={handleDeleteCategory}
                 />
             )}
         </>
