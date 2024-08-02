@@ -3,6 +3,7 @@ import { Card, CardContent, CircularProgress, Input, Typography } from "@mui/mat
 import papaparse from "papaparse";
 import { useInsertTransactionsMutation } from "../../redux/api/transactions/transaction";
 import { toast } from "react-toastify";
+import CategoryDataGrid from "./components/categoryDataGrid";
 
 export default function Administration() {
 
@@ -32,6 +33,12 @@ export default function Administration() {
                     <Typography variant="h5">Import transactions</Typography>
                     <Input type="file" id="csvFileImporter" accept=".csv" onChange={onFileChangeHandler} inputProps={{ accept: ".csv" }} value={""} />
                     {isLoading ? <CircularProgress/> : null}
+                </CardContent>
+            </Card>
+
+            <Card elevation={4}>
+                <CardContent>
+                    <CategoryDataGrid/>
                 </CardContent>
             </Card>
         </Masonry>
