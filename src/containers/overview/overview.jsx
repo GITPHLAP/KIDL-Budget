@@ -1,15 +1,17 @@
-import { CircularProgress, Typography } from "@mui/material";
-import { useGetHealthQuery } from "../../redux/api/apiSlice";
+import { CircularProgress, Stack } from "@mui/material";
+import { useGetOverviewsByMonthsQuery } from "../../redux/api/overview/overview";
+import MonthCard from "./components/monthCard";
 
 export default function Overview() {
-    const { data: post, isFetching, isSuccess } = useGetHealthQuery()
+    const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: 2024, months: [1, 2] })
+
     return (
         <>
-        {isFetching ?
-            <CircularProgress /> 
-            : isSuccess ? <Typography> Overview</Typography> : <Typography> ERROR</Typography>
-        }
-        
+            <Stack direction="row">
+                {isFetchingOverviews ? <CircularProgress /> : (
+                    Object.entries(overviews?.months).map?.(([key, m]) => <MonthCard key={key} monthIdx={key} monthObj={m} />)
+                )}
+            </Stack>
         </>
     )
 }
