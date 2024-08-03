@@ -13,7 +13,7 @@ export default function MonthCard(props) {
     console.log('Peek - test on ln: 10 ', monthObj);
     return (
         <>
-            <Card elevation={4}>
+            <Card sx={{minWidth: 500, maxHeight: "50%"}} elevation={4}>
                 <CardContent>
                     <Typography> {monthIdxToName(monthIdx)}</Typography>
                     <Divider sx={{ pt: 2, mb: 2 }} />
