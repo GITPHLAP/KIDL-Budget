@@ -8,8 +8,8 @@ export default function OverviewTransTable(props) {
     } = props
 
     return (
-        <TableContainer component={Paper} >
-            <Table size="small" aria-label="simple table">
+        <TableContainer sx={{maxHeight: "inherit"}} component={Paper} >
+            <Table stickyHeader size="small" aria-label="simple table">
                 <TableHead sx={{ backgroundColor: headerColor }}>
                     <TableRow>
                         <TableCell>Category</TableCell>
