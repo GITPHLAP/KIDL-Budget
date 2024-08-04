@@ -3,7 +3,8 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 export default function OverviewTransTable(props) {
     const {
         transactionData,
-        headerColor // TODO: This should be themed
+        headerColor, // TODO: This should be themed
+        monthIdxAndType, // Needed to create unique key values for table
     } = props
 
     return (
@@ -20,7 +21,7 @@ export default function OverviewTransTable(props) {
                 <TableBody>
                     {transactionData.map((row) => (
                         <TableRow
-                            key={row.name}
+                            key={row.category + monthIdxAndType}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell>{row.category}</TableCell>

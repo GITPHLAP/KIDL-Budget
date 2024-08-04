@@ -4,7 +4,8 @@ import { useMemo } from "react";
 export default function TotalTable(props) {
     const {
         expenses_total,
-        income_total
+        income_total,
+        monthIdx,
     } = props
 
     const rows = useMemo(() => {
@@ -37,7 +38,7 @@ export default function TotalTable(props) {
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow
-                            key={row.name}
+                            key={row.type + "-month-" + monthIdx}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell>{row.type}</TableCell>
