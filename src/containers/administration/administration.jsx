@@ -28,7 +28,7 @@ export default function Administration() {
         });
     }
     return (
-        <Masonry columns={3} spacing={2}>
+        <Masonry columns={{xs: 1, sm: 2, md: 3}} spacing={2}>
             <Card elevation={4}>
                 <CardContent>
                     <Typography variant="h5">Import transactions</Typography>
