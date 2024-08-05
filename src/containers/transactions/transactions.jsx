@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
+import { removeThousandSeperator } from "../../utils/dataGridHelper";
 
 export default function Transactions() {
     const [updateTransaction, { isLoading }] = useUpdateTransactionMutation()
@@ -29,7 +30,7 @@ export default function Transactions() {
         [
             { field: 'id', headerName: 'ID' },
             { field: 'accounting', headerName: 'Dato' },
-            { field: 'amount', headerName: 'Beløb', type: "number", },
+            { field: 'amount', headerName: 'Beløb', type: "number",  valueFormatter: (params) => removeThousandSeperator(params), },
             { field: 'description', headerName: 'Beskrivelse', },
             {
                 field: 'categoryId', headerName: 'Kategori', editable: true, type: 'singleSelect',

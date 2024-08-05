@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import CustomCRUDataGrid from "../../components/customCRUDataGrid/customCRUDataGrid";
 import { useCreateForecastMutation, useGetForecastsQuery, useUpdateForecastMutation } from "../../redux/api/forecast/forecast";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
+import { removeThousandSeperator } from "../../utils/dataGridHelper";
 
 export default function ForecastTable() {
 
@@ -54,19 +55,19 @@ export default function ForecastTable() {
             field: 'categoryId', headerName: 'Kategori', editable: true,
             type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
         },
-        { field: 'year', headerName: 'Year', editable: true, type: 'number', },
-        { field: 'januaryAmount', headerName: 'January', editable: true, type: 'number', },
-        { field: 'februaryAmount', headerName: 'February', editable: true, type: 'number', },
-        { field: 'marchAmount', headerName: 'March', editable: true, type: 'number', },
-        { field: 'aprilAmount', headerName: 'April', editable: true, type: 'number', },
-        { field: 'mayAmount', headerName: 'May', editable: true, type: 'number', },
-        { field: 'juneAmount', headerName: 'June', editable: true, type: 'number', },
-        { field: 'julyAmount', headerName: 'July', editable: true, type: 'number', },
-        { field: 'augustAmount', headerName: 'August', editable: true, type: 'number', },
-        { field: 'septemberAmount', headerName: 'September', editable: true, type: 'number', },
-        { field: 'octoberAmount', headerName: 'October', editable: true, type: 'number', },
-        { field: 'novemberAmount', headerName: 'November', editable: true, type: 'number', },
-        { field: 'decemberAmount', headerName: 'December', editable: true, type: 'number', },
+        { field: 'year', headerName: 'Year', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'januaryAmount', headerName: 'January', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'februaryAmount', headerName: 'February', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'marchAmount', headerName: 'March', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'aprilAmount', headerName: 'April', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'mayAmount', headerName: 'May', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'juneAmount', headerName: 'June', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'julyAmount', headerName: 'July', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'augustAmount', headerName: 'August', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'septemberAmount', headerName: 'September', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'octoberAmount', headerName: 'October', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'novemberAmount', headerName: 'November', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'decemberAmount', headerName: 'December', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
     ], [categoryOptions])
 
     return (

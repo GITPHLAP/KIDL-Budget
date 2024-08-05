@@ -1,0 +1,1 @@
+export const removeThousandSeperator = (value) => value.toLocaleString('en-US', { useGrouping: false });
