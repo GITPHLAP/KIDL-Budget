@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import Administration from "./containers/administration/administration";
@@ -20,10 +21,10 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      {index: true, element: <Navigate to="/overview" />},
       {
         path: "overview",
         element: <Overview />,
-        index: true,
       },
       {
         path: "transactions",
