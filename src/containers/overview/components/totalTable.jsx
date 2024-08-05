@@ -42,9 +42,9 @@ export default function TotalTable(props) {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell>{row.type}</TableCell>
-                            <TableCell>{row.total_forecast}</TableCell>
-                            <TableCell>{row.total_actual}</TableCell>
-                            <TableCell>{row.diff}</TableCell>
+                            <TableCell>{row.total_forecast?.toFixed(2)}</TableCell>
+                            <TableCell>{row.total_actual?.toFixed(2)}</TableCell>
+                            <TableCell>{row.diff?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
