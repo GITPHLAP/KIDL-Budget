@@ -1,12 +1,12 @@
 import { CircularProgress, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useMemo, useState } from "react";
-import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
+import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
+import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
 
 export default function Transactions() {
-    const [updateTransaction, {isLoading}] = useUpdateTransactionMutation()
+    const [updateTransaction, { isLoading }] = useUpdateTransactionMutation()
     const {
         data: transactions,
         isFetching: transactionsFetching
@@ -25,19 +25,22 @@ export default function Transactions() {
         , [categories]
     )
 
-    const columns = useMemo(() => 
+    const columns = useMemo(() =>
         [
             { field: 'id', headerName: 'ID' },
             { field: 'accounting', headerName: 'Dato' },
             { field: 'amount', headerName: 'Beløb', type: "number", },
             { field: 'description', headerName: 'Beskrivelse', },
-            { field: 'categoryId', headerName: 'Kategori', editable: true, type: 'singleSelect', 
-                valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
+            {
+                field: 'categoryId', headerName: 'Kategori', editable: true, type: 'singleSelect',
+                valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId,
+                minWidth: 180,
             },
             { field: 'type', headerName: 'Type', },
         ]
         , [categoryOptions]
     )
+
 
     const processRowUpdate = (newRow) => {
         toast.promise(
@@ -52,7 +55,7 @@ export default function Transactions() {
 
     return (
         <Container maxWidth="lg">
-            {isFetchingCategories || transactionsFetching || isLoading ? <CircularProgress/> : (
+            {isFetchingCategories || transactionsFetching || isLoading ? <CircularProgress /> : (
                 <DataGrid
                     autosizeOnMount
                     autoHeight
@@ -61,6 +64,11 @@ export default function Transactions() {
                     disableRowSelectionOnClick
                     editMode="row"
                     processRowUpdate={processRowUpdate}
+                    initialState={{
+                        sorting: {
+                            sortModel: [{ field: 'accounting', sort: 'desc' }],
+                        },
+                    }}
                 />
             )}
         </Container>
