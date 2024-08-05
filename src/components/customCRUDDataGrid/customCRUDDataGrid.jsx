@@ -135,7 +135,7 @@ function EditToolbar(props) {
 
     const handleClick = () => {
         const id = -1; // Use minus one for new rows
-        setRows((oldRows) => [...oldRows, { id, ...emptyDataRow, isNew: true }]);
+        setRows((oldRows) => [{ id, ...emptyDataRow, isNew: true }, ...oldRows, ]);
         setRowModesModel((oldModel) => ({
             ...oldModel,
             [id]: { mode: GridRowModes.Edit },
