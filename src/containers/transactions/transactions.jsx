@@ -18,19 +18,29 @@ export default function Transactions() {
         isFetching: isFetchingCategories
     } = useGetTransactionCategoriesQuery()
 
-    const categoryOptions = useMemo(() =>
-        categories?.map((c) => ({
+    const categoryOptions = useMemo(() => {
+
+        // If no categories default to empty array
+        const tmpCategories = categories?.map((c) => ({
             categoryId: c.id,
             label: c.description
-        }))
-        , [categories]
-    )
+        })) || []
+
+        // Add default category
+        return [
+            {
+                categoryId: -1,
+                label: "Mangler kategori"
+            },
+            ...tmpCategories,
+        ]
+    }, [categories])
 
     const columns = useMemo(() =>
         [
             { field: 'id', headerName: 'ID' },
             { field: 'accounting', headerName: 'Dato' },
-            { field: 'amount', headerName: 'Beløb', type: "number",  valueFormatter: (params) => removeThousandSeperator(params), },
+            { field: 'amount', headerName: 'Beløb', type: "number", valueFormatter: (params) => removeThousandSeperator(params), },
             { field: 'description', headerName: 'Beskrivelse', },
             {
                 field: 'categoryId', headerName: 'Kategori', editable: true, type: 'singleSelect',
