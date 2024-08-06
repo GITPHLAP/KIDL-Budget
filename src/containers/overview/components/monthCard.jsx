@@ -13,7 +13,7 @@ export default function MonthCard(props) {
     return (
         <Card
             sx={{
-                minWidth: { xs: 0, md: 500 },
+                minWidth: { xs: 0, sm: 500 },
                 overflow: "auto",
             }}
             elevation={4}
