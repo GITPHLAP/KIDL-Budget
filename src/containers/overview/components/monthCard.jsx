@@ -11,7 +11,13 @@ export default function MonthCard(props) {
     } = props
 
     return (
-        <Card sx={{ minWidth: 500, overflow: "auto" }} elevation={4}>
+        <Card
+            sx={{
+                minWidth: { xs: 0, md: 500 },
+                overflow: "auto",
+            }}
+            elevation={4}
+        >
             <CardContent >
                 <Typography> {monthIdxToName(monthIdx)}</Typography>
 
