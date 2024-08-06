@@ -112,6 +112,10 @@ export default function CustomCRUDataGrid(props) {
                     toolbar: { setRows, setRowModesModel, emptyDataRow },
                 }}
                 autosizeOnMount
+                autosizeOptions={{
+                    includeOutliers: true,
+                    includeHeaders: true,
+                  }}
             />
 
         </Box>
