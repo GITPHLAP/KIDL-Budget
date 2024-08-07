@@ -25,9 +25,9 @@ export default function OverviewTransTable(props) {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell>{row.category}</TableCell>
-                            <TableCell>{row.forecast_sum}</TableCell>
-                            <TableCell>{row.actual_sum}</TableCell>
-                            <TableCell>{row.forecast_sum - row.actual_sum}</TableCell>
+                            <TableCell>{row.forecast_sum?.toFixed(2)}</TableCell>
+                            <TableCell>{row.actual_sum?.toFixed(2)}</TableCell>
+                            <TableCell>{(row.forecast_sum - row.actual_sum)?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

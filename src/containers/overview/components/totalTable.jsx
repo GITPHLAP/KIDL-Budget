@@ -16,7 +16,7 @@ export default function TotalTable(props) {
             { type: "income", ...income_total, diff: income_total.total_forecast - income_total.total_actual },
             { type: "expenses", ...expenses_total, diff: expenses_total.total_forecast - expenses_total.total_actual },
             {
-                type: "diff",
+                type: "inc+exp",
                 total_forecast: forecast_calc,
                 total_actual: actual_calc,
                 diff: forecast_calc - actual_calc
