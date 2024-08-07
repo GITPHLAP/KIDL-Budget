@@ -27,7 +27,7 @@ export default function OverviewTransTable(props) {
                             <TableCell>{row.category}</TableCell>
                             <TableCell>{row.forecast_sum?.toFixed(2)}</TableCell>
                             <TableCell>{row.actual_sum?.toFixed(2)}</TableCell>
-                            <TableCell>{(row.forecast_sum - row.actual_sum)?.toFixed(2)}</TableCell>
+                            <TableCell>{(row.actual_sum - row.forecast_sum )?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
