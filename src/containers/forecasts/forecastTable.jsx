@@ -20,6 +20,12 @@ export default function ForecastTable() {
         }))
         , [categories]
     )
+    
+    const typeOptions = useMemo(() => 
+        [
+            {value: 'expenses', label: 'Udgift'},
+            {value: 'income', label: 'Indtægt'},
+        ], [])
 
     const [createForecast] = useCreateForecastMutation()
     const [updateForecast] = useUpdateForecastMutation()
@@ -56,6 +62,7 @@ export default function ForecastTable() {
             type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
         },
         { field: 'year', headerName: 'Year', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'type', headerName: 'type', editable: true, type: 'singleSelect', valueOptions: typeOptions },
         { field: 'januaryAmount', headerName: 'January', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'februaryAmount', headerName: 'February', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'marchAmount', headerName: 'March', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
