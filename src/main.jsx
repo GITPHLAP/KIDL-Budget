@@ -14,6 +14,8 @@ import Root from "./routes/root";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ForecastTable from "./containers/forecasts/forecastTable";
+import './i18n';
+
 
 const router = createBrowserRouter([
   {

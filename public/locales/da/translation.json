@@ -1,0 +1,19 @@
+{
+    "general": {
+
+    }, 
+    "pages": {
+        "overview": {
+            "title": "Overblik"
+        },
+        "transactions": {
+            "title": "Transaktioner"
+        },
+        "administration": {
+            "title": "Administration"
+        },
+        "forecasts": {
+            "title": "Budget opsætning"
+        }
+    }
+}
