@@ -5,8 +5,10 @@ import { useInsertTransactionsMutation } from "../../redux/api/transactions/tran
 import { toast } from "react-toastify";
 import CategoryDataGrid from "./components/categoryDataGrid";
 import CategoryMappingCard from "./components/categoryMappingCard";
+import { useTranslation } from "react-i18next";
 
 export default function Administration() {
+    const {t} = useTranslation()
 
     const [addTransactions, { isLoading }] = useInsertTransactionsMutation()
 
@@ -19,8 +21,8 @@ export default function Administration() {
                 toast.promise(
                     addTransactions(Array.from(results.data)).unwrap(),
                     {
-                        pending: 'Waiting ⏳',
-                        success: 'Success 👌',
+                        pending: t('apiCalls.addTransactions.pending'),
+                        success: t('apiCalls.addTransactions.success'),
                     }
 
                 )
@@ -31,7 +33,7 @@ export default function Administration() {
         <Masonry columns={{xs: 1, sm: 2, md: 3}} spacing={2}>
             <Card elevation={4}>
                 <CardContent>
-                    <Typography variant="h5">Import transactions</Typography>
+                    <Typography variant="h5">{t('pages.administration.importTransactionsTitle')}</Typography>
                     <Input type="file" id="csvFileImporter" accept=".csv" onChange={onFileChangeHandler} inputProps={{ accept: ".csv" }} value={""} />
                     {isLoading ? <CircularProgress/> : null}
                 </CardContent>

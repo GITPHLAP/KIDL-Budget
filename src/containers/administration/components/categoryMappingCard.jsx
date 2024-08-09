@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
 import { useGetTransactionCategoriesQuery } from "../../../redux/api/transaction_categories/transaction_categories";
 import { useCreateCategoryMappingMutation, useDeleteCategoryMappingMutation, useGetCategoryMappingsQuery, useUpdateCategoryMappingMutation } from "../../../redux/api/transaction_categories_mapping/transaction_categories_mapping";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryMappingCard() {
 
+    const {t} = useTranslation()
     const {
         data: categories,
         isFetching: isFetchingCategories
@@ -33,8 +35,8 @@ export default function CategoryMappingCard() {
         toast.promise(
             deleteMapping(id).unwrap(),
             {
-                pending: '⏳Deleting mapping',
-                success: '✅Deleted mapping',
+                pending: t('apiCalls.deleteMapping.pending'),
+                success: t('apiCalls.deleteMapping.success'),
             }
         )
     }
@@ -43,8 +45,8 @@ export default function CategoryMappingCard() {
             toast.promise(
                 createMapping(row).unwrap(),
                 {
-                    pending: '⏳Creating mapping',
-                    success: '✅Created mapping',
+                    pending: t('apiCalls.createMapping.pending'),
+                    success: t('apiCalls.createMapping.success'),
                 }
             )
             return
@@ -52,23 +54,23 @@ export default function CategoryMappingCard() {
         toast.promise(
             updateMapping(row).unwrap(),
             {
-                pending: '⏳Updating mapping',
-                success: '✅Updated mapping',
+                pending: t('apiCalls.updateMapping.pending'),
+                success: t('apiCalls.updateMapping.success'),
             }
         )
         return
     }
 
     const columns = useMemo(() => [
-        { field: 'categoryId', headerName: 'Kategori', editable: true, 
+        { field: 'categoryId', headerName: t('general.category'), editable: true, 
             type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId 
         },
-        { field: 'mappingValue', headerName: 'Mapping value', editable: true, type: 'string', },
+        { field: 'mappingValue', headerName: t('general.mappingValue'), editable: true, type: 'string', },
     ], [categoryOptions])
 
     return (
         <>
-            <Typography variant="h5">Category mapping</Typography>
+            <Typography variant="h5">{t('pages.administration.categoryMappingTitle')}</Typography>
             {isFetchingCategories || isFetchingMappings ? <CircularProgress /> : (
                 <CustomCRUDDataGrid
                     emptyDataRow={{ id: -1, categoryId: null, mappingValue: "" }}

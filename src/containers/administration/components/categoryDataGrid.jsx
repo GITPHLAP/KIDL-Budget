@@ -3,9 +3,11 @@ import { useMemo } from "react";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
 import { useCreateTransactionCategoryMutation, useDeleteTransactionCategoryMutation, useGetTransactionCategoriesQuery, useUpdateTransactionCategoryMutation } from "../../../redux/api/transaction_categories/transaction_categories";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryDataGrid() {
 
+    const {t} = useTranslation()
     const [createCategory] = useCreateTransactionCategoryMutation()
     const [updateCategory] = useUpdateTransactionCategoryMutation()
     const [deleteCategory] = useDeleteTransactionCategoryMutation()
@@ -19,8 +21,8 @@ export default function CategoryDataGrid() {
         toast.promise(
             deleteCategory(id).unwrap(),
             {
-                pending: '⏳Deleting category',
-                success: '✅Deleted category',
+                pending: t('apiCalls.deleteCategory.pending'),
+                success: t('apiCalls.deleteCategory.success'),
             }
         )
     }
@@ -29,8 +31,8 @@ export default function CategoryDataGrid() {
             toast.promise(
                 createCategory(row?.description).unwrap(),
                 {
-                    pending: '⏳Creating category',
-                    success: '✅Created category',
+                    pending: t('apiCalls.createCategory.pending'),
+                    success: t('apiCalls.createCategory.success'),
                 }
             )
             return
@@ -38,20 +40,20 @@ export default function CategoryDataGrid() {
         toast.promise(
             updateCategory(row).unwrap(),
             {
-                pending: '⏳Updating category',
-                success: '✅Updated category',
+                pending: t('apiCalls.updateCategory.pending'),
+                success: t('apiCalls.updateCategory.success'),
             }
         )
         return
     }
 
     const columns = useMemo(() => [
-        { field: 'description', headerName: 'Kategori', editable: true, type: 'string', },
+        { field: 'description', headerName: t('general.category'), editable: true, type: 'string', },
     ], [])
 
     return (
         <>
-            <Typography variant="h5">Transaction category</Typography>
+            <Typography variant="h5">{t('pages.administration.categoryTitle')}</Typography>
             {isFetchingCategories ? <CircularProgress/> : (
                 <CustomCRUDDataGrid
                     emptyDataRow={{id: -1, description: ""}}

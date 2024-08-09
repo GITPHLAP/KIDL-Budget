@@ -1,6 +1,13 @@
 {
     "general": {
-
+        "category": "Kategori",
+        "mappingValue": "Mappnings værdi",
+        "actions": "Funktioner",
+        "mui": {
+            "labelDisplayedRows": "{{from}} - {{to}} af {{count}}",
+            "labelRowsPerPage": "Rækker per side",
+            "addButton": "Tilføj"
+        }
     }, 
     "pages": {
         "overview": {
@@ -10,10 +17,51 @@
             "title": "Transaktioner"
         },
         "administration": {
-            "title": "Administration"
+            "title": "Administration",
+            "importTransactionsTitle": "Importer transaktionerne",
+            "categoryTitle": "Transaktion kategorier",
+            "categoryMappingTitle": "Kategori mappning"
         },
         "forecasts": {
             "title": "Budget opsætning"
+        }
+    },
+    "apiCalls": {
+        "addTransactions": {
+            "pending": "⏳Tilføjer transaktionerne",
+            "success": "✅Transaktionerne blev tilføjet"
+        },
+        "deleteMapping": {
+            "pending": "⏳Sletter mappningen",
+            "success": "✅Slettede mappningen"
+        },
+        "createMapping": {
+            "pending": "⏳Tilføjer mappningen",
+            "success": "✅Mappningen blev tilføjet"
+        },
+        "updateMapping": {
+            "pending": "⏳Opdater mappningen",
+            "success": "✅Mappningen blev opdateret"
+        },
+        "deleteCategory": {
+            "pending": "⏳Sletter kategori",
+            "success": "✅Slettede kategorien"
+        },
+        "createCategory": {
+            "pending": "⏳Tilføjer kategorien",
+            "success": "✅Kategorien blev tilføjet"
+        },
+        "updateCategory": {
+            "pending": "⏳Opdater kategorien",
+            "success": "✅KAtegorien blev opdateret"
+        },
+        "d": {
+            "pending": "⏳Tilføjer transaktionerne",
+            "success": "✅Transaktionerne blev tilføjet"
+        },
+        "dd": {
+            "pending": "⏳Tilføjer transaktionerne",
+            "success": "✅Transaktionerne blev tilføjet"
         }
     }
 }

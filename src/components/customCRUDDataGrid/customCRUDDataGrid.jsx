@@ -2,8 +2,10 @@ import { Add, Cancel, Delete, Edit, Save } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function CustomCRUDDataGrid(props) {
+    const { t } = useTranslation()
     const {
         emptyDataRow, // Used to create new rows
         dataRows,
@@ -31,7 +33,7 @@ export default function CustomCRUDDataGrid(props) {
         {
             field: "actions",
             type: "actions",
-            headerName: 'Actions',
+            headerName: t('general.actions'),
             cellClassName: 'actions',
             getActions: ({ id, row }) => {
                 // console.log('Peek -  on ln: 38 ',  id);
@@ -126,7 +128,14 @@ export default function CustomCRUDDataGrid(props) {
                 autosizeOptions={{
                     includeOutliers: true,
                     includeHeaders: true,
-                  }}
+                }}
+                localeText={{
+                    MuiTablePagination: {
+                        labelDisplayedRows: ({ from, to, count }) =>
+                            t('general.mui.labelDisplayedRows', { from, to, count }),
+                        labelRowsPerPage: t('general.mui.labelRowsPerPage'),
+                    },
+                }}
             />
 
         </Box>
@@ -136,10 +145,11 @@ export default function CustomCRUDDataGrid(props) {
 
 function EditToolbar(props) {
     const { setRows, setRowModesModel, emptyDataRow } = props;
+    const { t } = useTranslation()
 
     const handleClick = () => {
         const id = -1; // Use minus one for new rows
-        setRows((oldRows) => [{ id, ...emptyDataRow, isNew: true }, ...oldRows, ]);
+        setRows((oldRows) => [{ id, ...emptyDataRow, isNew: true }, ...oldRows,]);
         setRowModesModel((oldModel) => ({
             ...oldModel,
             [id]: { mode: GridRowModes.Edit },
@@ -149,7 +159,7 @@ function EditToolbar(props) {
     return (
         <GridToolbarContainer>
             <Button color="primary" startIcon={<Add />} onClick={handleClick}>
-                Add
+                {t('general.mui.addButton')}
             </Button>
         </GridToolbarContainer>
     );
