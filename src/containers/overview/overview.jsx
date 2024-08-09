@@ -1,12 +1,12 @@
 import { AppBar, Box, CircularProgress, Stack, Typography } from "@mui/material";
 import { useMemo, useRef } from "react";
-import { useSelector } from "react-redux";
 import { useGetOverviewsByMonthsQuery } from "../../redux/api/overview/overview";
 import ChipArray from "./components/chipArray";
 import MonthCard from "./components/monthCard";
+import { useTranslation } from "react-i18next";
 
 export default function Overview() {
-    const months = useSelector((state) => state.selectedMonths)
+    const {t} = useTranslation()
     const appBarRef = useRef(null)
 
     const selectedMonths = useMemo(() =>
@@ -25,7 +25,7 @@ export default function Overview() {
                 {isFetchingOverviews ? <CircularProgress /> : (
                     selectedMonths.length > 0 ?
                         Object.entries(overviews?.months).map?.(([key, m]) => <MonthCard key={key} monthIdx={key} monthObj={m} />)
-                        : <Typography>Please select at least one month</Typography>
+                        : <Typography>{t('pages.overview.noMonthSelectText')}</Typography>
                 )}
             </Stack>
         </Box>

@@ -7,11 +7,28 @@
             "labelDisplayedRows": "{{from}} - {{to}} af {{count}}",
             "labelRowsPerPage": "Rækker per side",
             "addButton": "Tilføj"
+        },
+        "months": {
+            "january": "Januar",
+            "february": "Februar",
+            "march": "Marts",
+            "april": "April",
+            "may": "Maj",
+            "june": "Juni",
+            "july": "Juli",
+            "august": "August",
+            "september": "September",
+            "october": "Oktober",
+            "november": "November",
+            "december": "December",
+            "noMonths": "Ugyldig måned"
         }
+
     }, 
     "pages": {
         "overview": {
-            "title": "Overblik"
+            "title": "Overblik",
+            "noMonthSelectText": "Venligst vælg mindst en række"
         },
         "transactions": {
             "title": "Transaktioner"
