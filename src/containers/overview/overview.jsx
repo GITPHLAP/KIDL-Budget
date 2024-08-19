@@ -4,13 +4,14 @@ import { useGetOverviewsByMonthsQuery } from "../../redux/api/overview/overview"
 import ChipArray from "./components/chipArray";
 import MonthCard from "./components/monthCard";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 export default function Overview() {
     const {t} = useTranslation()
     const appBarRef = useRef(null)
+    const months = useSelector((state) => state.selectedMonths)
 
-    const selectedMonths = useMemo(() =>
-        months.filter(m => m.isSelected).map(m => m.id), [months])
+    const selectedMonths = useMemo(() => months.filter(m => m.isSelected).map(m => m.id), [months])
 
     const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: 2024, months: selectedMonths }, {skip: selectedMonths.length === 0})
     // Height 56px = bottom navigation, 16px = top and bottom margin for body
