@@ -52,9 +52,7 @@ export default function Administration() {
             </Card>
             <Card elevation={4}>
                 <CardContent>
-                    <Typography>{ViteVersion}</Typography>
-                    <Typography>{ApiBasePort}</Typography>
-                    <Typography>{ApiBaseURL}</Typography>
+                    <Typography>Vite Version: {ViteVersion}</Typography>
                 </CardContent>
             </Card>
         </Masonry>
