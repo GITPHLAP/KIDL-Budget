@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import CategoryDataGrid from "./components/categoryDataGrid";
 import CategoryMappingCard from "./components/categoryMappingCard";
 import { useTranslation } from "react-i18next";
+import { ApiBasePort, ApiBaseURL, ViteVersion } from "../../utils/envExtractor";
 
 export default function Administration() {
     const {t} = useTranslation()
@@ -47,6 +48,13 @@ export default function Administration() {
             <Card elevation={4}>
                 <CardContent>
                     <CategoryMappingCard/>
+                </CardContent>
+            </Card>
+            <Card elevation={4}>
+                <CardContent>
+                    <Typography>{ViteVersion}</Typography>
+                    <Typography>{ApiBasePort}</Typography>
+                    <Typography>{ApiBaseURL}</Typography>
                 </CardContent>
             </Card>
         </Masonry>
