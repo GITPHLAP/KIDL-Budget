@@ -79,7 +79,7 @@
         },
         "updateCategory": {
             "pending": "⏳Opdater kategorien",
-            "success": "✅KAtegorien blev opdateret"
+            "success": "✅Kategorien blev opdateret"
         },
         "createForecast": {
             "pending": "⏳Tilføjer en planlagt række",

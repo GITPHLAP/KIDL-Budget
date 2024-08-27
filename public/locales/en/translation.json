@@ -1,19 +1,92 @@
 {
     "general": {
-
-    }, 
+        "category": "Category",
+        "type": "Type",
+        "forecast": "Planned",
+        "actual": "Actual",
+        "diff": "Difference",
+        "mappingValue": "Mapping Value",
+        "actions": "Functions",
+        "mui": {
+            "labelDisplayedRows": "{{from}} - {{to}} of {{count}}",
+            "labelRowsPerPage": "Rows per page",
+            "addButton": "Add"
+        },
+        "months": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December",
+            "noMonths": "Invalid month"
+        },
+        "income": "Income",
+        "total": "Total",
+        "expenses": "Expense",
+        "inc+exp": "Inc+Exp",
+        "year": "Year"
+    },
     "pages": {
         "overview": {
-            "title": "Overview"
+            "title": "Overview",
+            "noMonthSelectText": "Please select at least one row"
         },
         "transactions": {
             "title": "Transactions"
         },
         "administration": {
-            "title": "Administration"
+            "title": "Administration",
+            "importTransactionsTitle": "Import Transactions",
+            "categoryTitle": "Transaction Categories",
+            "categoryMappingTitle": "Category Mapping"
         },
         "forecasts": {
-            "title": "Forecasts"
+            "title": "Budget Setup"
+        }
+    },
+    "apiCalls": {
+        "addTransactions": {
+            "pending": "⏳Adding the transactions",
+            "success": "✅Transactions were added"
+        },
+        "deleteMapping": {
+            "pending": "⏳Deleting the mapping",
+            "success": "✅Mapping was deleted"
+        },
+        "createMapping": {
+            "pending": "⏳Adding the mapping",
+            "success": "✅Mapping was added"
+        },
+        "updateMapping": {
+            "pending": "⏳Updating the mapping",
+            "success": "✅Mapping was updated"
+        },
+        "deleteCategory": {
+            "pending": "⏳Deleting the category",
+            "success": "✅Category was deleted"
+        },
+        "createCategory": {
+            "pending": "⏳Adding the category",
+            "success": "✅Category was added"
+        },
+        "updateCategory": {
+            "pending": "⏳Updating the category",
+            "success": "✅Category was updated"
+        },
+        "createForecast": {
+            "pending": "⏳Adding a planned row",
+            "success": "✅The planned row was added"
+        },
+        "updateForecast": {
+            "pending": "⏳Updating the planned row",
+            "success": "✅The planned row was updated"
         }
     }
 }
