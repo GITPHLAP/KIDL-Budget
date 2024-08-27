@@ -1,7 +1,9 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function OverviewTransTable(props) {
+    const {t} = useTranslation()
     const {
         transactionData,
         headerColor, // TODO: This should be themed
@@ -25,10 +27,10 @@ export default function OverviewTransTable(props) {
             <Table stickyHeader size="small" aria-label="simple table">
                 <TableHead sx={{ backgroundColor: headerColor }}>
                     <TableRow>
-                        <TableCell>Category</TableCell>
-                        <TableCell>Forecast</TableCell>
-                        <TableCell>Actual</TableCell>
-                        <TableCell>Diff</TableCell>
+                    <TableCell>{t('general.category')}</TableCell>
+                        <TableCell>{t('general.forecast')}</TableCell>
+                        <TableCell>{t('general.actual')}</TableCell>
+                        <TableCell>{t('general.diff')}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

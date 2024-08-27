@@ -1,6 +1,10 @@
 {
     "general": {
         "category": "Kategori",
+        "type": "Type",
+        "forecast": "Planlagt",
+        "actual": "Faktiske",
+        "diff": "Forskel",
         "mappingValue": "Mappnings værdi",
         "actions": "Funktioner",
         "mui": {
@@ -22,7 +26,11 @@
             "november": "November",
             "december": "December",
             "noMonths": "Ugyldig måned"
-        }
+        },
+        "income": "Indtægt",
+        "total": "Total",
+        "expenses": "Udgift",
+        "inc+exp": "Ind+Ud"
 
     }, 
     "pages": {

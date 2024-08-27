@@ -3,8 +3,10 @@ import { monthIdxToName } from "../../../utils/monthHelper";
 import OverviewTransTable from "./overviewTransTable";
 import TotalTable from "./totalTable";
 import { GridExpandMoreIcon } from "@mui/x-data-grid";
+import { useTranslation } from "react-i18next";
 
 export default function MonthCard(props) {
+    const {t} = useTranslation()
     const {
         monthObj,
         monthIdx,
@@ -27,7 +29,7 @@ export default function MonthCard(props) {
                         expandIcon={<GridExpandMoreIcon />}
                         id={"month-" + monthIdx + "-total-header"}
                     >
-                        Total
+                        {t('general.total')}
                     </AccordionSummary>
                     <AccordionDetails>
                         <TotalTable
@@ -44,7 +46,7 @@ export default function MonthCard(props) {
                         id={"month-" + monthIdx + "-income-header"}
                         sx={{ backgroundColor: "#00f0000f" }}
                     >
-                        Income
+                        {t('general.income')}
                     </AccordionSummary>
                     <AccordionDetails sx={{ overflow: "auto" }}>
                         <OverviewTransTable monthIdxAndType={"-income-month-" + monthIdx} transactionData={monthObj.income} headerColor={"#00f0000f"} />
@@ -57,7 +59,7 @@ export default function MonthCard(props) {
                         id={"month-" + monthIdx + "-expenses-header"}
                         sx={{ backgroundColor: "#f000000f" }}
                     >
-                        Expenses
+                        {t('general.expenses')}
                     </AccordionSummary>
                     <AccordionDetails>
                         <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
