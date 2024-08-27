@@ -1,19 +1,28 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-// Initial months - TODO: current month should be selected
+/**
+ * Check if **monthId** is the current month
+ * @param {int} monthId Should be index e.g January = 0
+ * @returns {bool} Returns true or false
+ */
+const isCurrentMonth = (monthId) => {
+    const d = new Date();
+    return monthId == d.getMonth()
+} 
+
 const initialState = [
-    { id: 1, name: "January", isSelected: true },
-    { id: 2, name: "Febuary", isSelected: false },
-    { id: 3, name: "March", isSelected: false },
-    { id: 4, name: "April", isSelected: false },
-    { id: 5, name: "May", isSelected: false },
-    { id: 6, name: "June", isSelected: false },
-    { id: 7, name: "July", isSelected: false },
-    { id: 8, name: "August", isSelected: false },
-    { id: 9, name: "September", isSelected: false },
-    { id: 10, name: "October", isSelected: false },
-    { id: 11, name: "November", isSelected: false },
-    { id: 12, name: "December", isSelected: false },
+    { id: 1, name: "general.months.january", isSelected: isCurrentMonth(0) },
+    { id: 2, name: "general.months.february", isSelected: isCurrentMonth(1) },
+    { id: 3, name: "general.months.march", isSelected: isCurrentMonth(2) },
+    { id: 4, name: "general.months.april", isSelected: isCurrentMonth(3) },
+    { id: 5, name: "general.months.may", isSelected: isCurrentMonth(4) },
+    { id: 6, name: "general.months.june", isSelected: isCurrentMonth(5) },
+    { id: 7, name: "general.months.july", isSelected: isCurrentMonth(6) },
+    { id: 8, name: "general.months.august", isSelected: isCurrentMonth(7) },
+    { id: 9, name: "general.months.september", isSelected: isCurrentMonth(8) },
+    { id: 10, name: "general.months.october", isSelected: isCurrentMonth(9) },
+    { id: 11, name: "general.months.november", isSelected: isCurrentMonth(10) },
+    { id: 12, name: "general.months.december", isSelected: isCurrentMonth(11) },
 ]
 
 export const monthSlice = createSlice({

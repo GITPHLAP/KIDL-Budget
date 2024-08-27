@@ -30,7 +30,8 @@
         "income": "Indtægt",
         "total": "Total",
         "expenses": "Udgift",
-        "inc+exp": "Ind+Ud"
+        "inc+exp": "Ind+Ud",
+        "year": "År"
 
     }, 
     "pages": {
@@ -80,13 +81,13 @@
             "pending": "⏳Opdater kategorien",
             "success": "✅KAtegorien blev opdateret"
         },
-        "d": {
-            "pending": "⏳Tilføjer transaktionerne",
-            "success": "✅Transaktionerne blev tilføjet"
+        "createForecast": {
+            "pending": "⏳Tilføjer en planlagt række",
+            "success": "✅Den planlagte række blev tilføjet"
         },
-        "dd": {
-            "pending": "⏳Tilføjer transaktionerne",
-            "success": "✅Transaktionerne blev tilføjet"
+        "updateForecast": {
+            "pending": "⏳Opdater den planlagt række",
+            "success": "✅Den planlagt række blev opdateret"
         }
     }
 }

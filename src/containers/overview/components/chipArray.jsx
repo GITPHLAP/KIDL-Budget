@@ -4,12 +4,14 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMonth } from '../../../redux/reducers/monthSlice';
+import { useTranslation } from 'react-i18next';
 
 const ListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
 }));
 
 export default function ChipArray() {
+    const {t} = useTranslation()
     const months = useSelector((state) => state.selectedMonths)
 
     const dispatch = useDispatch()
@@ -42,7 +44,7 @@ export default function ChipArray() {
                     <ListItem key={data.id}>
                         <Chip
                             icon={icon}
-                            label={data.name}
+                            label={t(data.name)}
                             onClick={handleToggle(data.id)}
                             color={data.isSelected ? "primary" : undefined}
                         />

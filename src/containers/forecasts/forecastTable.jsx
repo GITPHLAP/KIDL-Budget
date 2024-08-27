@@ -5,9 +5,12 @@ import CustomCRUDataGrid from "../../components/customCRUDataGrid/customCRUDataG
 import { useCreateForecastMutation, useGetForecastsQuery, useUpdateForecastMutation } from "../../redux/api/forecast/forecast";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
+import { useTranslation } from "react-i18next";
+import { monthIdxToName } from "../../utils/monthHelper";
 
 export default function ForecastTable() {
 
+    const {t} = useTranslation()
     const {
         data: categories,
         isFetching: isFetchingCategories
@@ -23,8 +26,8 @@ export default function ForecastTable() {
     
     const typeOptions = useMemo(() => 
         [
-            {value: 'expenses', label: 'Udgift'},
-            {value: 'income', label: 'Indtægt'},
+            {value: 'expenses', label: t("general.expenses")},
+            {value: 'income', label: t("general.income")},
         ], [])
 
     const [createForecast] = useCreateForecastMutation()
@@ -40,8 +43,8 @@ export default function ForecastTable() {
             toast.promise(
                 createForecast(row).unwrap(),
                 {
-                    pending: '⏳Creating forecast',
-                    success: '✅Created forecast',
+                    pending: t('apiCalls.createForecast.pending'),
+                    success: t('apiCalls.createForecast.success'),
                 }
             )
             return
@@ -49,8 +52,8 @@ export default function ForecastTable() {
         toast.promise(
             updateForecast(row).unwrap(),
             {
-                pending: '⏳Updating forecast',
-                success: '✅Updated forecast',
+                pending: t('apiCalls.updateForecast.pending'),
+                success: t('apiCalls.updateForecast.success'),
             }
         )
         return
@@ -58,23 +61,23 @@ export default function ForecastTable() {
 
     const columns = useMemo(() => [
         {
-            field: 'categoryId', headerName: 'Kategori', editable: true,
+            field: 'categoryId', headerName: t("general.category"), editable: true,
             type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
         },
-        { field: 'year', headerName: 'Year', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'type', headerName: 'type', editable: true, type: 'singleSelect', valueOptions: typeOptions },
-        { field: 'januaryAmount', headerName: 'January', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'februaryAmount', headerName: 'February', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'marchAmount', headerName: 'March', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'aprilAmount', headerName: 'April', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'mayAmount', headerName: 'May', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'juneAmount', headerName: 'June', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'julyAmount', headerName: 'July', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'augustAmount', headerName: 'August', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'septemberAmount', headerName: 'September', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'octoberAmount', headerName: 'October', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'novemberAmount', headerName: 'November', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'decemberAmount', headerName: 'December', editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'year', headerName: t("general.year"), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'type', headerName: t("general.type"), editable: true, type: 'singleSelect', valueOptions: typeOptions },
+        { field: 'januaryAmount', headerName: monthIdxToName('1'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'februaryAmount', headerName: monthIdxToName('2'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'marchAmount', headerName: monthIdxToName('3'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'aprilAmount', headerName: monthIdxToName('4'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'mayAmount', headerName: monthIdxToName('5'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'juneAmount', headerName: monthIdxToName('6'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'julyAmount', headerName: monthIdxToName('7'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'augustAmount', headerName: monthIdxToName('8'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'septemberAmount', headerName: monthIdxToName('9'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'octoberAmount', headerName: monthIdxToName('10'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'novemberAmount', headerName: monthIdxToName('11'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
+        { field: 'decemberAmount', headerName: monthIdxToName('12'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
     ], [categoryOptions])
 
     return (
