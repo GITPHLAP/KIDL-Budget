@@ -1,6 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { getDiffClassname } from "../../../utils/styleHelper";
 
 export default function TotalTable(props) {
     const {t} = useTranslation()
@@ -38,15 +39,15 @@ export default function TotalTable(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row, idx) => (
                         <TableRow
                             key={row.type + "-month-" + monthIdx}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell>{row.type}</TableCell>
-                            <TableCell>{row.total_forecast?.toFixed(2)}</TableCell>
-                            <TableCell>{row.total_actual?.toFixed(2)}</TableCell>
-                            <TableCell>{row.diff?.toFixed(2)}</TableCell>
+                            <TableCell >{row.type}</TableCell>
+                            <TableCell className={idx == 2 ? getDiffClassname(row.diff) : ""}>{row.total_forecast?.toFixed(2)}</TableCell>
+                            <TableCell className={idx == 2 ? getDiffClassname(row.diff) : ""}>{row.total_actual?.toFixed(2)}</TableCell>
+                            <TableCell className={getDiffClassname(row.diff)}>{row.diff?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

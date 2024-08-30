@@ -1,6 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { getDiffClassname } from "../../../utils/styleHelper";
 
 export default function OverviewTransTable(props) {
     const {t} = useTranslation()
@@ -42,7 +43,7 @@ export default function OverviewTransTable(props) {
                             <TableCell>{row.category}</TableCell>
                             <TableCell>{row.forecast_sum?.toFixed(2)}</TableCell>
                             <TableCell>{row.actual_sum?.toFixed(2)}</TableCell>
-                            <TableCell>{(row.actual_sum - row.forecast_sum )?.toFixed(2)}</TableCell>
+                            <TableCell className={getDiffClassname((row.actual_sum - row.forecast_sum ))}>{(row.actual_sum - row.forecast_sum )?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

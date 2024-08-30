@@ -5,6 +5,7 @@ import ChipArray from "./components/chipArray";
 import MonthCard from "./components/monthCard";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import "./overview.css"
 
 export default function Overview() {
     const {t} = useTranslation()

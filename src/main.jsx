@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import ForecastTable from "./containers/forecasts/forecastTable";
 import './i18n';
+import { StyledEngineProvider } from "@mui/material";
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {index: true, element: <Navigate to="/overview" />},
+      { index: true, element: <Navigate to="/overview" /> },
       {
         path: "overview",
         element: <Overview />,
@@ -47,7 +48,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <StyledEngineProvider injectFirst={true}>
+        <RouterProvider router={router} />
+      </StyledEngineProvider>
     </Provider>
   </React.StrictMode>
 );
