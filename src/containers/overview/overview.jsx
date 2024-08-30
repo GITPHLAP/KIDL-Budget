@@ -12,6 +12,7 @@ export default function Overview() {
     const appBarRef = useRef(null)
     const months = useSelector((state) => state.selectedMonths)
 
+    const appBarHeight = useMemo(() => appBarRef?.current?.clientHeight, [appBarRef ? appBarRef?.current?.clientHeight: null])
     const selectedMonths = useMemo(() => months.filter(m => m.isSelected).map(m => m.id), [months])
 
     const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: 2024, months: selectedMonths }, {skip: selectedMonths.length === 0})
@@ -23,7 +24,7 @@ export default function Overview() {
             <AppBar ref={appBarRef} position="static">
                 <ChipArray />
             </AppBar>
-            <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ overflowX: "auto", height: `calc(100% - ${appBarRef?.current?.clientHeight}px - 32px)` }} p={2}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ overflowX: "auto", height: `calc(100% - ${appBarHeight}px - 32px)` }} p={2}>
                 {isFetchingOverviews ? <CircularProgress /> : (
                     selectedMonths.length > 0 ?
                         Object.entries(overviews?.months).map?.(([key, m]) => <MonthCard key={key} monthIdx={key} monthObj={m} />)

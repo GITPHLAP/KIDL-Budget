@@ -24,14 +24,14 @@ export default function MonthCard(props) {
                 <Typography> {monthIdxToName(monthIdx)}</Typography>
 
                 {/* Total table */}
-                <Accordion>
+                <Accordion >
                     <AccordionSummary
                         expandIcon={<GridExpandMoreIcon />}
                         id={"month-" + monthIdx + "-total-header"}
                     >
                         {t('general.total')}
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails sx={{p: 0}}>
                         <TotalTable
                             monthIdx={monthIdx}
                             expenses_total={monthObj.expenses_total}
@@ -48,7 +48,7 @@ export default function MonthCard(props) {
                     >
                         {t('general.income')}
                     </AccordionSummary>
-                    <AccordionDetails sx={{ overflow: "auto" }}>
+                    <AccordionDetails sx={{ overflow: "auto", p: 0}}>
                         <OverviewTransTable monthIdxAndType={"-income-month-" + monthIdx} transactionData={monthObj.income} headerColor={"#00f0000f"} />
                     </AccordionDetails>
                 </Accordion>
@@ -61,7 +61,7 @@ export default function MonthCard(props) {
                     >
                         {t('general.expenses')}
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails sx={{p: 0}}>
                         <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
                     </AccordionDetails>
                 </Accordion>
