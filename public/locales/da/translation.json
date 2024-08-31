@@ -4,6 +4,7 @@
         "type": "Type",
         "plan": "Planlagt",
         "actual": "Faktiske",
+        "forecast": "Prognose",
         "diff": "Forskel",
         "mappingValue": "Mappnings værdi",
         "actions": "Funktioner",
@@ -38,7 +39,8 @@
     "pages": {
         "overview": {
             "title": "Overblik",
-            "noMonthSelectText": "Venligst vælg mindst en række"
+            "noMonthSelectText": "Venligst vælg mindst en række",
+            "showForecastLabel": "Vis prognose"
         },
         "transactions": {
             "title": "Transaktioner"

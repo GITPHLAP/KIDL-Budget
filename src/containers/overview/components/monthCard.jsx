@@ -1,17 +1,24 @@
-import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, Divider, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, Divider, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { monthIdxToName } from "../../../utils/monthHelper";
 import OverviewTransTable from "./overviewTransTable";
 import TotalTable from "./totalTable";
 import { GridExpandMoreIcon } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import ForecastTable from "./forecastTotalTable";
+import ForecastTransTable from "./forecastTransTable";
 
 export default function MonthCard(props) {
-    const {t} = useTranslation()
+    const [showForecast, setShowForecast] = useState(false)
+    const { t } = useTranslation()
     const {
         monthObj,
         monthIdx,
     } = props
 
+    const handleChangeShowForecast = (e) => {
+        setShowForecast(e.target.checked)
+    }
     return (
         <Card
             sx={{
@@ -21,7 +28,22 @@ export default function MonthCard(props) {
             elevation={4}
         >
             <CardContent >
-                <Typography> {monthIdxToName(monthIdx)}</Typography>
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <Typography> {monthIdxToName(monthIdx)}</Typography>
+                    {monthIdx == 13 && (
+                        <FormControlLabel
+                            control={<Switch checked={showForecast} onChange={handleChangeShowForecast} />}
+                            label={t("pages.overview.showForecastLabel")}
+                        />
+                    )}
+                </Stack>
 
                 {/* Total table */}
                 <Accordion >
@@ -31,12 +53,20 @@ export default function MonthCard(props) {
                     >
                         {t('general.total')}
                     </AccordionSummary>
-                    <AccordionDetails sx={{p: 0}}>
-                        <TotalTable
-                            monthIdx={monthIdx}
-                            expenses_total={monthObj.expenses_total}
-                            income_total={monthObj.income_total}
-                        />
+                    <AccordionDetails sx={{ p: 0 }}>
+                        {showForecast ? (
+                            <ForecastTable
+                                monthIdx={monthIdx}
+                                expenses_total={monthObj.expenses_total}
+                                income_total={monthObj.income_total}
+                            />
+                        ) : (
+                            <TotalTable
+                                monthIdx={monthIdx}
+                                expenses_total={monthObj.expenses_total}
+                                income_total={monthObj.income_total}
+                            />
+                        )}
                     </AccordionDetails>
                 </Accordion>
                 {/* Income table */}
@@ -48,8 +78,12 @@ export default function MonthCard(props) {
                     >
                         {t('general.income')}
                     </AccordionSummary>
-                    <AccordionDetails sx={{ overflow: "auto", p: 0}}>
-                        <OverviewTransTable monthIdxAndType={"-income-month-" + monthIdx} transactionData={monthObj.income} headerColor={"#00f0000f"} />
+                    <AccordionDetails sx={{ overflow: "auto", p: 0 }}>
+                        {showForecast ? (
+                            <OverviewTransTable monthIdxAndType={"-income-month-" + monthIdx} transactionData={monthObj.income} headerColor={"#00f0000f"} />
+                        ) : (
+                            <ForecastTransTable monthIdxAndType={"-income-month-" + monthIdx} transactionData={monthObj.income} headerColor={"#00f0000f"} />
+                        )}
                     </AccordionDetails>
                 </Accordion>
                 {/* Expenses table */}
@@ -61,8 +95,12 @@ export default function MonthCard(props) {
                     >
                         {t('general.expenses')}
                     </AccordionSummary>
-                    <AccordionDetails sx={{p: 0}}>
-                        <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
+                    <AccordionDetails sx={{ p: 0 }}>
+                        {showForecast ? (
+                            <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
+                        ) : (
+                            <ForecastTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#00f0000f"} />
+                        )}
                     </AccordionDetails>
                 </Accordion>
             </CardContent>

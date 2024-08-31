@@ -4,6 +4,7 @@
         "type": "Type",
         "plan": "Planned",
         "actual": "Actual",
+        "forecast": "Forecast",
         "diff": "Difference",
         "mappingValue": "Mapping Value",
         "actions": "Functions",
@@ -37,7 +38,8 @@
     "pages": {
         "overview": {
             "title": "Overview",
-            "noMonthSelectText": "Please select at least one row"
+            "noMonthSelectText": "Please select at least one row",
+            "showForecastLabel": "Show forecast"
         },
         "transactions": {
             "title": "Transactions"
