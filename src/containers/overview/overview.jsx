@@ -24,7 +24,7 @@ export default function Overview() {
             <AppBar ref={appBarRef} position="static">
                 <ChipArray />
             </AppBar>
-            <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ overflowX: "auto", height: `calc(100% - ${appBarHeight}px - 32px)` }} p={2}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ overflowX: "auto", height: `calc(100% - ${appBarHeight}px - 32px)` }} p={2} spacing={2}>
                 {isFetchingOverviews ? <CircularProgress /> : (
                     selectedMonths.length > 0 ?
                         Object.entries(overviews?.months).map?.(([key, m]) => <MonthCard key={key} monthIdx={key} monthObj={m} />)
