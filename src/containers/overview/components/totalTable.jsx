@@ -16,7 +16,7 @@ export default function TotalTable(props) {
         const actual_calc = income_total.total_actual + expenses_total.total_actual
 
         return [
-            { type: t('general.income'), ...income_total, diff: income_total.total_forecast - income_total.total_actual },
+            { type: t('general.income'), ...income_total, diff: income_total.total_actual - income_total.total_forecast },
             { type: t('general.expenses'), ...expenses_total, diff: expenses_total.total_actual - expenses_total.total_forecast },
             {
                 type: t('general.inc+exp'),
