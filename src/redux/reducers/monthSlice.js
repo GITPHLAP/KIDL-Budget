@@ -23,6 +23,7 @@ const initialState = [
     { id: 10, name: "general.months.october", isSelected: isCurrentMonth(9) },
     { id: 11, name: "general.months.november", isSelected: isCurrentMonth(10) },
     { id: 12, name: "general.months.december", isSelected: isCurrentMonth(11) },
+    { id: 13, name: "general.months.total", isSelected: false },
 ]
 
 export const monthSlice = createSlice({

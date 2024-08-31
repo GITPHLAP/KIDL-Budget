@@ -14,6 +14,7 @@ export const monthIdxToName = (idx) => {
         case '10': return t('general.months.october');
         case '11': return t('general.months.november');
         case '12': return t('general.months.december');
+        case '13': return t('general.months.total');
         default: return t('general.months.noMonths');
     }
 }

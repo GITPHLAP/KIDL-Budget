@@ -25,7 +25,8 @@
             "october": "Oktober",
             "november": "November",
             "december": "December",
-            "noMonths": "Ugyldig måned"
+            "noMonths": "Ugyldig måned",
+            "total": "Total"
         },
         "income": "Indtægt",
         "total": "Total",

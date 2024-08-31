@@ -25,7 +25,8 @@
             "october": "October",
             "november": "November",
             "december": "December",
-            "noMonths": "Invalid month"
+            "noMonths": "Invalid month",
+            "total": "Total"
         },
         "income": "Income",
         "total": "Total",
