@@ -2,13 +2,13 @@ import { CircularProgress } from "@mui/material";
 import { useMemo } from "react";
 import { toast } from "react-toastify";
 import CustomCRUDataGrid from "../../components/customCRUDataGrid/customCRUDataGrid";
-import { useCreateForecastMutation, useGetForecastsQuery, useUpdateForecastMutation } from "../../redux/api/forecast/forecast";
+import { useCreatePlanMutation, useGetPlansQuery, useUpdatePlanMutation } from "../../redux/api/plan/plan";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
 import { useTranslation } from "react-i18next";
 import { monthIdxToName } from "../../utils/monthHelper";
 
-export default function ForecastTable() {
+export default function PlanTable() {
 
     const {t} = useTranslation()
     const {
@@ -30,30 +30,30 @@ export default function ForecastTable() {
             {value: 'income', label: t("general.income")},
         ], [])
 
-    const [createForecast] = useCreateForecastMutation()
-    const [updateForecast] = useUpdateForecastMutation()
+    const [createPlan] = useCreatePlanMutation()
+    const [updatePlan] = useUpdatePlanMutation()
 
     const {
-        data: forecasts,
-        isFetching: isFetchingForecasts
-    } = useGetForecastsQuery(2024) // TODO: Use redux store
+        data: plans,
+        isFetching: isFetchingPlans
+    } = useGetPlansQuery(2024) // TODO: Use redux store
 
     const processRowUpdate = (row) => {
         if (row?.isNew) {
             toast.promise(
-                createForecast(row).unwrap(),
+                createPlan(row).unwrap(),
                 {
-                    pending: t('apiCalls.createForecast.pending'),
-                    success: t('apiCalls.createForecast.success'),
+                    pending: t('apiCalls.createPlan.pending'),
+                    success: t('apiCalls.createPlan.success'),
                 }
             )
             return
         }
         toast.promise(
-            updateForecast(row).unwrap(),
+            updatePlan(row).unwrap(),
             {
-                pending: t('apiCalls.updateForecast.pending'),
-                success: t('apiCalls.updateForecast.success'),
+                pending: t('apiCalls.updatePlan.pending'),
+                success: t('apiCalls.updatePlan.success'),
             }
         )
         return
@@ -82,7 +82,7 @@ export default function ForecastTable() {
 
     return (
         <>
-            {isFetchingCategories || isFetchingForecasts ? <CircularProgress /> : (
+            {isFetchingCategories || isFetchingPlans ? <CircularProgress /> : (
                 <CustomCRUDataGrid
                     emptyDataRow={{
                         id: -1, categoryId: null, year: 2024, januaryAmount: 0,
@@ -90,7 +90,7 @@ export default function ForecastTable() {
                         juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
                         octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
                     }}
-                    dataRows={forecasts}
+                    dataRows={plans}
                     columns={columns}
                     handleUpsertRow={processRowUpdate}
                 />

@@ -12,17 +12,17 @@ export default function TotalTable(props) {
     } = props
 
     const rows = useMemo(() => {
-        const forecast_calc = income_total.total_forecast + expenses_total.total_forecast
+        const plan_calc = income_total.total_plan + expenses_total.total_plan
         const actual_calc = income_total.total_actual + expenses_total.total_actual
 
         return [
-            { type: t('general.income'), ...income_total, diff: income_total.total_actual - income_total.total_forecast },
-            { type: t('general.expenses'), ...expenses_total, diff: expenses_total.total_actual - expenses_total.total_forecast },
+            { type: t('general.income'), ...income_total, diff: income_total.total_actual - income_total.total_plan },
+            { type: t('general.expenses'), ...expenses_total, diff: expenses_total.total_actual - expenses_total.total_plan },
             {
                 type: t('general.inc+exp'),
-                total_forecast: forecast_calc,
+                total_plan: plan_calc,
                 total_actual: actual_calc,
-                diff: actual_calc - forecast_calc
+                diff: actual_calc - plan_calc
             },
         ]
     }, [expenses_total, income_total])
@@ -33,7 +33,7 @@ export default function TotalTable(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell>{t('general.type')}</TableCell>
-                        <TableCell>{t('general.forecast')}</TableCell>
+                        <TableCell>{t('general.plan')}</TableCell>
                         <TableCell>{t('general.actual')}</TableCell>
                         <TableCell>{t('general.diff')}</TableCell>
                     </TableRow>
@@ -45,7 +45,7 @@ export default function TotalTable(props) {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell >{row.type}</TableCell>
-                            <TableCell className={idx == 2 ? getDiffClassname(row.total_forecast) : ""}>{row.total_forecast?.toFixed(2)}</TableCell>
+                            <TableCell className={idx == 2 ? getDiffClassname(row.total_plan) : ""}>{row.total_plan?.toFixed(2)}</TableCell>
                             <TableCell className={idx == 2 ? getDiffClassname(row.total_actual) : ""}>{row.total_actual?.toFixed(2)}</TableCell>
                             <TableCell className={getDiffClassname(row.diff)}>{row.diff?.toFixed(2)}</TableCell>
                         </TableRow>

@@ -29,7 +29,7 @@ export default function OverviewTransTable(props) {
                 <TableHead sx={{ backgroundColor: headerColor }}>
                     <TableRow>
                     <TableCell>{t('general.category')}</TableCell>
-                        <TableCell>{t('general.forecast')}</TableCell>
+                        <TableCell>{t('general.plan')}</TableCell>
                         <TableCell>{t('general.actual')}</TableCell>
                         <TableCell>{t('general.diff')}</TableCell>
                     </TableRow>
@@ -41,9 +41,9 @@ export default function OverviewTransTable(props) {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell>{row.category}</TableCell>
-                            <TableCell>{row.forecast_sum?.toFixed(2)}</TableCell>
+                            <TableCell>{row.plan_sum?.toFixed(2)}</TableCell>
                             <TableCell>{row.actual_sum?.toFixed(2)}</TableCell>
-                            <TableCell className={getDiffClassname((row.actual_sum - row.forecast_sum ))}>{(row.actual_sum - row.forecast_sum )?.toFixed(2)}</TableCell>
+                            <TableCell className={getDiffClassname((row.actual_sum - row.plan_sum ))}>{(row.actual_sum - row.plan_sum )?.toFixed(2)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

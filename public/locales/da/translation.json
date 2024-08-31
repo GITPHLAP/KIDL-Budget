@@ -2,7 +2,7 @@
     "general": {
         "category": "Kategori",
         "type": "Type",
-        "forecast": "Planlagt",
+        "plan": "Planlagt",
         "actual": "Faktiske",
         "diff": "Forskel",
         "mappingValue": "Mappnings værdi",
@@ -49,8 +49,8 @@
             "categoryTitle": "Transaktion kategorier",
             "categoryMappingTitle": "Kategori mappning"
         },
-        "forecasts": {
-            "title": "Budget opsætning"
+        "plans": {
+            "title": "Budgetering opsætning"
         }
     },
     "apiCalls": {
@@ -82,13 +82,13 @@
             "pending": "⏳Opdater kategorien",
             "success": "✅Kategorien blev opdateret"
         },
-        "createForecast": {
-            "pending": "⏳Tilføjer en planlagt række",
-            "success": "✅Den planlagte række blev tilføjet"
+        "createPlan": {
+            "pending": "⏳Tilføjer en budgetering",
+            "success": "✅Budgeteringen blev tilføjet"
         },
-        "updateForecast": {
-            "pending": "⏳Opdater den planlagt række",
-            "success": "✅Den planlagt række blev opdateret"
+        "updatePlan": {
+            "pending": "⏳Opdater budgeteringen",
+            "success": "✅Budgeteringen blev opdateret"
         }
     }
 }

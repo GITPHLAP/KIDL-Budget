@@ -3,29 +3,29 @@ import { apiSlice } from '../apiSlice'
 const extendedApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         // MUTATIONS
-        createForecast: builder.mutation({
+        createPlan: builder.mutation({
             query: (data) => ({
-                url: `/forecast`,
+                url: `/plan`,
                 method: 'POST',
                 body: data
             }),
-            invalidatesTags: ['ForecastList']
+            invalidatesTags: ['PlanList']
         }),
-        updateForecast: builder.mutation({
+        updatePlan: builder.mutation({
             query: (data) => ({
-                url: 'forecast',
+                url: 'plan',
                 method: 'PATCH',
                 body: data
             }),
-            invalidatesTags: ['ForecastList']
+            invalidatesTags: ['PlanList']
         }),
         // QUERIES
-        getForecasts: builder.query({
+        getPlans: builder.query({
             query: (year) => ({
-                url: `/forecast/${year}`,
+                url: `/plan/${year}`,
                 method: 'GET'
             }),
-            providesTags: ['ForecastList'],
+            providesTags: ['PlanList'],
             transformResponse: (response, meta, arg) => response.data
         }),
 
@@ -35,7 +35,7 @@ const extendedApi = apiSlice.injectEndpoints({
 })
 
 export const {
-    useCreateForecastMutation,
-    useUpdateForecastMutation,
-    useGetForecastsQuery,
+    useCreatePlanMutation,
+    useUpdatePlanMutation,
+    useGetPlansQuery,
 } = extendedApi

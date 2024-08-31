@@ -13,7 +13,7 @@ import "./index.css";
 import Root from "./routes/root";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import ForecastTable from "./containers/forecasts/forecastTable";
+import PlanTable from "./containers/plans/planTable";
 import './i18n';
 import { StyledEngineProvider } from "@mui/material";
 
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
         element: <Administration />,
       },
       {
-        path: "forecasts",
-        element: <ForecastTable />,
+        path: "plans",
+        element: <PlanTable />,
       },
     ],
   },

@@ -20,7 +20,7 @@ export default function Root() {
                     <BottomNavigationAction value={"/overview"} LinkComponent={Link} label={t("pages.overview.title")} icon={<CalendarMonth />} to={"overview"} />
                     <BottomNavigationAction value={"/transactions"} LinkComponent={Link} label={t("pages.transactions.title")} icon={<Receipt />} to={"transactions"} />
                     <BottomNavigationAction value={"/administration"} LinkComponent={Link} label={t("pages.administration.title")} icon={<Tune />} to={"administration"} />
-                    <BottomNavigationAction value={"/forecasts"} LinkComponent={Link} label={t("pages.forecasts.title")} icon={<Difference />} to={"forecasts"} />
+                    <BottomNavigationAction value={"/plans"} LinkComponent={Link} label={t("pages.plans.title")} icon={<Difference />} to={"plans"} />
                 </BottomNavigation>
             </Paper>
         </Box>

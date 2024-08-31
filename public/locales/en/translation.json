@@ -2,7 +2,7 @@
     "general": {
         "category": "Category",
         "type": "Type",
-        "forecast": "Planned",
+        "plan": "Planned",
         "actual": "Actual",
         "diff": "Difference",
         "mappingValue": "Mapping Value",
@@ -48,7 +48,7 @@
             "categoryTitle": "Transaction Categories",
             "categoryMappingTitle": "Category Mapping"
         },
-        "forecasts": {
+        "plans": {
             "title": "Budget Setup"
         }
     },
@@ -81,11 +81,11 @@
             "pending": "⏳Updating the category",
             "success": "✅Category was updated"
         },
-        "createForecast": {
+        "createPlan": {
             "pending": "⏳Adding a planned row",
             "success": "✅The planned row was added"
         },
-        "updateForecast": {
+        "updatePlan": {
             "pending": "⏳Updating the planned row",
             "success": "✅The planned row was updated"
         }
