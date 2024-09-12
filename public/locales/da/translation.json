@@ -33,7 +33,12 @@
         "total": "Total",
         "expenses": "Udgift",
         "inc+exp": "Ind+Ud",
-        "year": "År"
+        "year": "År",
+        "balanceStatus": {
+            "warning": "Balancen er ikke korrekt! - Den beregnet balance stemmer ikke overens med balancen på den seneste transaktion",
+            "error": "Balancen kunne ikke blive hentet Test",
+            "ok": "Det beregnet balance stemmer overens med blanacen på den seneste transaktion"
+        }
 
     }, 
     "pages": {

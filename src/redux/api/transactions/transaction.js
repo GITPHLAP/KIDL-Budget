@@ -11,15 +11,6 @@ const extendedApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['TransactionList']
         }),
-
-        getTransactions: builder.query({
-            query: (year) => ({
-                url: `/transaction/${year}`,
-                method: 'GET'
-            }),
-            providesTags: ['TransactionList'],
-            transformResponse: (response, meta, arg) => response.data
-        }),
         updateTransaction: builder.mutation({
             query: (data) => ({
                 url: '/transaction',
@@ -29,6 +20,22 @@ const extendedApi = apiSlice.injectEndpoints({
             invalidatesTags: ['TransactionList']
         }),
 
+        getTransactions: builder.query({
+            query: (year) => ({
+                url: `/transaction/${year}`,
+                method: 'GET'
+            }),
+            providesTags: ['TransactionList'],
+            transformResponse: (response, meta, arg) => response.data
+        }),
+        getIsBalanceCorrect: builder.query({
+            query: () => ({
+                url: `/transaction/is_balance_correct`,
+                method: 'GET'
+            }),
+            providesTags: ['TransactionList'],
+            transformResponse: (response, meta, arg) => response.data
+        }),
     }),
 
     overrideExisting: false,
@@ -38,4 +45,5 @@ export const {
     useInsertTransactionsMutation,
     useGetTransactionsQuery,
     useUpdateTransactionMutation,
+    useGetIsBalanceCorrectQuery,
 } = extendedApi
