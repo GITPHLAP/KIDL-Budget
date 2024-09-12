@@ -97,9 +97,9 @@ export default function MonthCard(props) {
                     </AccordionSummary>
                     <AccordionDetails sx={{ p: 0 }}>
                         {showForecast ? (
-                            <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
-                        ) : (
                             <ForecastTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#00f0000f"} />
+                        ) : (
+                            <OverviewTransTable monthIdxAndType={"-expenses-month-" + monthIdx} transactionData={monthObj.expenses} headerColor={"#f000000f"} />
                         )}
                     </AccordionDetails>
                 </Accordion>
