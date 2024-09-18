@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { getDiffClassname } from "../../../utils/styleHelper";
-import { calculateForecast } from "../../../utils/forecastHelper";
+import { calculateExpensesForecast, calculateIncomeForecast } from "../../../utils/forecastHelper";
 
 export default function ForecastTable(props) {
     const { t } = useTranslation()
@@ -13,8 +13,8 @@ export default function ForecastTable(props) {
     } = props
 
     const rows = useMemo(() => {
-        const incomeForecastTotal = calculateForecast(income_total.total_actual)
-        const expensesForecastTotal = calculateForecast(expenses_total.total_actual)
+        const incomeForecastTotal = calculateIncomeForecast(income_total.total_actual)
+        const expensesForecastTotal = calculateExpensesForecast(expenses_total.total_actual)
         const plan_calc = income_total.total_plan + expenses_total.total_plan
         const forecast_calc = incomeForecastTotal + expensesForecastTotal
 

@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { getDiffClassname } from "../../../utils/styleHelper";
-import { calculateForecast } from "../../../utils/forecastHelper";
+import { calculateExpensesForecast } from "../../../utils/forecastHelper";
 
 export default function ForecastTransTable(props) {
     const { t } = useTranslation()
@@ -18,7 +18,7 @@ export default function ForecastTransTable(props) {
         // Calculate the forecast
         const dataWithForecast = copyOfData.map((c) => ({
             ...c,
-            "forecastSum": calculateForecast(c.actual_sum)
+            "forecastSum": calculateExpensesForecast(c.actual_sum)
         }))
         console.log('Peek - dataWithForecast on ln: 23 ', dataWithForecast);
         // Need to create a copy because transactionData is immutable
