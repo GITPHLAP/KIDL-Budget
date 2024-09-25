@@ -57,6 +57,9 @@
         },
         "plans": {
             "title": "Budget Setup"
+        },
+        "sheets": {
+            "title": "Google sheets"
         }
     },
     "apiCalls": {

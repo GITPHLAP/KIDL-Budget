@@ -1,4 +1,4 @@
-import { CalendarMonth, Check, Difference, Error, Receipt, Tune, Warning } from "@mui/icons-material";
+import { CalendarMonth, Check, Difference, Error, Receipt, TableView, Tune, Warning } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Box, CircularProgress, Grid, IconButton, Paper, Tooltip } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link, Outlet, useLocation } from "react-router-dom";
@@ -59,6 +59,7 @@ export default function Root() {
                             <BottomNavigationAction value={"/transactions"} LinkComponent={Link} label={t("pages.transactions.title")} icon={<Receipt />} to={"transactions"} />
                             <BottomNavigationAction value={"/administration"} LinkComponent={Link} label={t("pages.administration.title")} icon={<Tune />} to={"administration"} />
                             <BottomNavigationAction value={"/plans"} LinkComponent={Link} label={t("pages.plans.title")} icon={<Difference />} to={"plans"} />
+                            <BottomNavigationAction value={"/sheets"} LinkComponent={Link} label={t("pages.sheets.title")} icon={<TableView />} to={"sheets"} />
                         </BottomNavigation>
                     </Grid>
                     <Grid item xs={1} md={2} alignContent={"center"} textAlign={"right"} p={1}>

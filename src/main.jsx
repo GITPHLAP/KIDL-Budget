@@ -16,6 +16,7 @@ import store from "./redux/store";
 import PlanTable from "./containers/plans/planTable";
 import './i18n';
 import { StyledEngineProvider } from "@mui/material";
+import SheetsViewer from "./containers/sheets/sheetsViewer";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "plans",
         element: <PlanTable />,
+      },
+      {
+        path: "sheets",
+        element: <SheetsViewer />,
       },
     ],
   },
