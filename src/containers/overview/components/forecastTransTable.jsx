@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { getDiffClassname } from "../../../utils/styleHelper";
-import { calculateExpensesForecast } from "../../../utils/forecastHelper";
+import { calculateExpensesForecast, calculateIncomeForecast } from "../../../utils/forecastHelper";
 
 export default function ForecastTransTable(props) {
     const { t } = useTranslation()
@@ -10,6 +10,7 @@ export default function ForecastTransTable(props) {
         transactionData,
         headerColor, // TODO: This should be themed
         monthIdxAndType, // Needed to create unique key values for table
+        isIncome
     } = props
 
     // Sorting rows be category ascending 
@@ -18,9 +19,8 @@ export default function ForecastTransTable(props) {
         // Calculate the forecast
         const dataWithForecast = copyOfData.map((c) => ({
             ...c,
-            "forecastSum": calculateExpensesForecast(c.actual_sum)
+            "forecastSum": isIncome ? calculateIncomeForecast(c.actual_sum): calculateExpensesForecast(c.actual_sum)
         }))
-        console.log('Peek - dataWithForecast on ln: 23 ', dataWithForecast);
         // Need to create a copy because transactionData is immutable
         const sortedData = dataWithForecast?.sort((a, b) => {
             if (a['category'] < b['category']) return -1;
