@@ -13,7 +13,6 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 jobs:
   build:
-    if: github.actor != 'dependabot[bot]'
     name: build docker image and test it
     runs-on: ubuntu-latest
     permissions:
