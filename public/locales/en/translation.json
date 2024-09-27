@@ -54,7 +54,12 @@
             "title": "Administration",
             "importTransactionsTitle": "Import Transactions",
             "categoryTitle": "Transaction Categories",
-            "categoryMappingTitle": "Category Mapping"
+            "categoryMappingTitle": "Category Mapping",
+            "copyPlanTitle": "Copy plans",
+            "planCard": {
+                "fromText": "From:",
+                "toText": "To:"
+            }
         },
         "plans": {
             "title": "Budget Setup"
@@ -70,35 +75,39 @@
         },
         "deleteMapping": {
             "pending": "⏳Deleting the mapping",
-            "success": "✅Mapping was deleted"
+            "success": "✅Mapping is deleted"
         },
         "createMapping": {
             "pending": "⏳Adding the mapping",
-            "success": "✅Mapping was added"
+            "success": "✅Mapping is added"
         },
         "updateMapping": {
             "pending": "⏳Updating the mapping",
-            "success": "✅Mapping was updated"
+            "success": "✅Mapping is updated"
         },
         "deleteCategory": {
             "pending": "⏳Deleting the category",
-            "success": "✅Category was deleted"
+            "success": "✅Category is deleted"
         },
         "createCategory": {
             "pending": "⏳Adding the category",
-            "success": "✅Category was added"
+            "success": "✅Category is added"
         },
         "updateCategory": {
             "pending": "⏳Updating the category",
-            "success": "✅Category was updated"
+            "success": "✅Category is updated"
         },
         "createPlan": {
             "pending": "⏳Adding a planned row",
-            "success": "✅The planned row was added"
+            "success": "✅The planned row is added"
         },
         "updatePlan": {
             "pending": "⏳Updating the planned row",
-            "success": "✅The planned row was updated"
+            "success": "✅The planned row is updated"
+        },
+        "copyPlan": {
+            "pending": "⏳Copying the plan",
+            "success": "✅The plan is copied"
         }
     }
 }

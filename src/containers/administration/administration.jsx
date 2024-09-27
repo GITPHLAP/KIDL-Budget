@@ -1,15 +1,16 @@
 import { Masonry } from "@mui/lab";
 import { Card, CardContent, CircularProgress, Input, Typography } from "@mui/material";
 import papaparse from "papaparse";
-import { useInsertTransactionsMutation } from "../../redux/api/transactions/transaction";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useInsertTransactionsMutation } from "../../redux/api/transactions/transaction";
+import { ViteVersion } from "../../utils/envExtractor";
 import CategoryDataGrid from "./components/categoryDataGrid";
 import CategoryMappingCard from "./components/categoryMappingCard";
-import { useTranslation } from "react-i18next";
-import { ApiBasePort, ApiBaseURL, ViteVersion } from "../../utils/envExtractor";
+import CopyPlanCard from "./components/copyPlanCard";
 
 export default function Administration() {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const [addTransactions, { isLoading }] = useInsertTransactionsMutation()
 
@@ -31,28 +32,33 @@ export default function Administration() {
         });
     }
     return (
-        <Masonry columns={{xs: 1, sm: 2, md: 3}} spacing={2}>
+        <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
             <Card elevation={4}>
                 <CardContent>
                     <Typography variant="h5">{t('pages.administration.importTransactionsTitle')}</Typography>
                     <Input type="file" id="csvFileImporter" accept=".csv" onChange={onFileChangeHandler} inputProps={{ accept: ".csv" }} value={""} />
-                    {isLoading ? <CircularProgress/> : null}
+                    {isLoading ? <CircularProgress /> : null}
                 </CardContent>
             </Card>
 
             <Card elevation={4}>
                 <CardContent>
-                    <CategoryDataGrid/>
+                    <CategoryDataGrid />
                 </CardContent>
             </Card>
             <Card elevation={4}>
                 <CardContent>
-                    <CategoryMappingCard/>
+                    <CategoryMappingCard />
                 </CardContent>
             </Card>
             <Card elevation={4}>
                 <CardContent>
                     <Typography>Vite Version: {ViteVersion}</Typography>
+                </CardContent>
+            </Card>
+            <Card elevation={4}>
+                <CardContent>
+                    <CopyPlanCard />
                 </CardContent>
             </Card>
         </Masonry>

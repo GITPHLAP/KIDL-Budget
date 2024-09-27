@@ -19,6 +19,14 @@ const extendedApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['PlanList']
         }),
+        copyPlan: builder.mutation({
+            query: (data) => ({
+                url: `/plan/copy_plan/${data.fromYear}/${data.toYear}`,
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: ['PlanYearList']
+        }),
         // QUERIES
         getPlans: builder.query({
             query: (year) => ({
@@ -47,4 +55,5 @@ export const {
     useUpdatePlanMutation,
     useGetPlansQuery,
     useGetPlanYearsQuery,
+    useCopyPlanMutation,
 } = extendedApi

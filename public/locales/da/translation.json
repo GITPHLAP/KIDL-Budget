@@ -55,7 +55,12 @@
             "title": "Administration",
             "importTransactionsTitle": "Importer transaktionerne",
             "categoryTitle": "Transaktion kategorier",
-            "categoryMappingTitle": "Kategori mappning"
+            "categoryMappingTitle": "Kategori mappning",
+            "copyPlanTitle": "Kopier budgeteringer",
+            "planCard": {
+                "fromText": "Fra:",
+                "toText": "Til:"
+            }
         },
         "plans": {
             "title": "Budgetering"
@@ -100,6 +105,10 @@
         "updatePlan": {
             "pending": "⏳Opdater budgeteringen",
             "success": "✅Budgeteringen blev opdateret"
+        },
+        "copyPlan": {
+            "pending": "⏳Kopier budgeteringerne",
+            "success": "✅Budgeteringerne blev kopieret"
         }
     }
 }
