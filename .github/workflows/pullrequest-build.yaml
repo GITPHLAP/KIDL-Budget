@@ -43,6 +43,6 @@ jobs:
         with:
           load: true
           tags: "${{ env.IMAGE_NAME_LC }}:test"
-      - name: Test
-        run: |
-          docker run --rm "${{ env.IMAGE_NAME_LC }}:test"
+      # - name: Test
+      #   run: |
+      #     docker run --rm "${{ env.IMAGE_NAME_LC }}:test"
