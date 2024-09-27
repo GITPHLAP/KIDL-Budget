@@ -28,6 +28,14 @@ const extendedApi = apiSlice.injectEndpoints({
             providesTags: ['PlanList'],
             transformResponse: (response, meta, arg) => response.data
         }),
+        getPlanYears: builder.query({
+            query: () => ({
+                url: `/plan`,
+                method: 'GET'
+            }),
+            providesTags: ['PlanYearList'],
+            transformResponse: (response, meta, arg) => response.data
+        }),
 
     }),
 
@@ -38,4 +46,5 @@ export const {
     useCreatePlanMutation,
     useUpdatePlanMutation,
     useGetPlansQuery,
+    useGetPlanYearsQuery,
 } = extendedApi

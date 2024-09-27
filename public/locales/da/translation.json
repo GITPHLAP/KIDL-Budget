@@ -45,7 +45,8 @@
         "overview": {
             "title": "Overblik",
             "noMonthSelectText": "Venligst vælg mindst en række",
-            "showForecastLabel": "Vis prognose"
+            "showForecastLabel": "Vis prognose",
+            "selectYear": "Vælg år"
         },
         "transactions": {
             "title": "Transaktioner"

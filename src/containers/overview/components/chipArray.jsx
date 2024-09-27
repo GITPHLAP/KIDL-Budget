@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMonth } from '../../../redux/reducers/monthSlice';
 import { useTranslation } from 'react-i18next';
+import { Box } from '@mui/material';
 
 const ListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
@@ -21,7 +22,7 @@ export default function ChipArray() {
     };
 
     return (
-        <Paper
+        <Box
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -29,6 +30,7 @@ export default function ChipArray() {
                 listStyle: 'none',
                 p: 0.5,
                 m: 0,
+                border: "none"
             }}
             component="ul"
         >
@@ -51,6 +53,6 @@ export default function ChipArray() {
                     </ListItem>
                 );
             })}
-        </Paper>
+        </Box>
     );
 }

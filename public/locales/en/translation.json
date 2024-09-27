@@ -44,7 +44,8 @@
         "overview": {
             "title": "Overview",
             "noMonthSelectText": "Please select at least one row",
-            "showForecastLabel": "Show forecast"
+            "showForecastLabel": "Show forecast",
+            "selectYear": "Select year"
         },
         "transactions": {
             "title": "Transactions"
