@@ -12,11 +12,12 @@ export default function Overview() {
     const { t } = useTranslation()
     const appBarRef = useRef(null)
     const months = useSelector((state) => state.selectedMonths)
+    const selectedYear = useSelector((state) => state.selectedYear)
 
     const appBarHeight = useMemo(() => appBarRef?.current?.clientHeight, [appBarRef ? appBarRef?.current?.clientHeight : null])
     const selectedMonths = useMemo(() => months.filter(m => m.isSelected).map(m => m.id), [months])
 
-    const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: 2024, months: selectedMonths }, { skip: selectedMonths.length === 0 })
+    const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: selectedYear, months: selectedMonths }, { skip: selectedMonths.length === 0 })
     // Height 56px = bottom navigation, 16px = top and bottom margin for body
 
     // Height on stack take 100% - appbar height - 2x16px padding
