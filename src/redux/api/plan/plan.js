@@ -19,6 +19,14 @@ const extendedApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['PlanList']
         }),
+        copyPlan: builder.mutation({
+            query: (data) => ({
+                url: `/plan/copy_plan/${data.fromYear}/${data.toYear}`,
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: ['PlanYearList']
+        }),
         // QUERIES
         getPlans: builder.query({
             query: (year) => ({
@@ -26,6 +34,14 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['PlanList'],
+            transformResponse: (response, meta, arg) => response.data
+        }),
+        getPlanYears: builder.query({
+            query: () => ({
+                url: `/plan`,
+                method: 'GET'
+            }),
+            providesTags: ['PlanYearList'],
             transformResponse: (response, meta, arg) => response.data
         }),
 
@@ -38,4 +54,6 @@ export const {
     useCreatePlanMutation,
     useUpdatePlanMutation,
     useGetPlansQuery,
+    useGetPlanYearsQuery,
+    useCopyPlanMutation,
 } = extendedApi

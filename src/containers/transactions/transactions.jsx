@@ -5,13 +5,17 @@ import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
+import { useSelector } from "react-redux";
 
 export default function Transactions() {
+    const selectedYear = useSelector((state) => state.selectedYear)
+
     const [updateTransaction, { isLoading }] = useUpdateTransactionMutation()
+
     const {
         data: transactions,
         isFetching: transactionsFetching
-    } = useGetTransactionsQuery(2024) // TODO: use state to save the selected year from overview 
+    } = useGetTransactionsQuery(selectedYear) 
 
     const {
         data: categories,
