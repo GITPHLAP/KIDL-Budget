@@ -21,7 +21,6 @@ export default function BalanceStatus(props) {
     const result = useMemo(() => {
         let title = "general.balanceStatus.ok"
         let StatusIcon = () => <Check color="success" />
-        console.log('Peek - balanceData on ln: 22 ', balanceData);
 
         // Set the icon and the title according to the fetchec
         if (isBalanceCorrectFetching) {
