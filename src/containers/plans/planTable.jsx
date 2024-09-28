@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import { useMemo } from "react";
 import { toast } from "react-toastify";
 import CustomCRUDataGrid from "../../components/customCRUDataGrid/customCRUDataGrid";
@@ -10,7 +10,7 @@ import { monthIdxToName } from "../../utils/monthHelper";
 
 export default function PlanTable() {
 
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const {
         data: categories,
         isFetching: isFetchingCategories
@@ -23,11 +23,11 @@ export default function PlanTable() {
         }))
         , [categories]
     )
-    
-    const typeOptions = useMemo(() => 
+
+    const typeOptions = useMemo(() =>
         [
-            {value: 'expenses', label: t("general.expenses")},
-            {value: 'income', label: t("general.income")},
+            { value: 'expenses', label: t("general.expenses") },
+            { value: 'income', label: t("general.income") },
         ], [])
 
     const [createPlan] = useCreatePlanMutation()
@@ -81,7 +81,7 @@ export default function PlanTable() {
     ], [categoryOptions])
 
     return (
-        <>
+        <Container maxWidth="full">
             {isFetchingCategories || isFetchingPlans ? <CircularProgress /> : (
                 <CustomCRUDataGrid
                     emptyDataRow={{
@@ -95,7 +95,7 @@ export default function PlanTable() {
                     handleUpsertRow={processRowUpdate}
                 />
             )}
-        </>
+        </Container>
     )
 }
 
