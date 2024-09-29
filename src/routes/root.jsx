@@ -16,8 +16,9 @@ export default function Root() {
             <Outlet />
             <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <Grid2 container >
-                    <Grid2  size={{xs: 0, md: 2}} >
+                    <Grid2  size={{xs: 0, md: 2}} alignContent={"center"}>
                         {/* Empty just to center navigation */}
+                        <img src="/ki-d.png" height={"45px"}/>
                     </Grid2>
                     <Grid2 size={{xs: 11, md: 8}} >
                         <BottomNavigation
