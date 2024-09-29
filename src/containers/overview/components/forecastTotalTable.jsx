@@ -20,11 +20,11 @@ export default function ForecastTable(props) {
 
         return [
             { type: t('general.income'), ...income_total, forecastSum: incomeForecastTotal, diff: incomeForecastTotal - income_total.total_plan },
-            { type: t('general.forecast'), ...expenses_total, forecastSum: expensesForecastTotal, diff: expenses_total.total_actual - expenses_total.total_plan },
+            { type: t('general.expenses'), ...expenses_total, forecastSum: expensesForecastTotal, diff: expensesForecastTotal - expenses_total.total_plan },
             {
                 type: t('general.inc+exp'),
                 total_plan: plan_calc,
-                total_actual: forecast_calc,
+                forecastSum: forecast_calc,
                 diff: forecast_calc - plan_calc
             },
         ]
