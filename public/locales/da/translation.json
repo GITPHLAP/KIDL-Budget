@@ -37,7 +37,10 @@
         "balanceStatus": {
             "warning": "Balancen er ikke korrekt! - Den beregnet balance stemmer ikke overens med balancen på den seneste transaktion",
             "error": "Balancen kunne ikke blive hentet Test",
-            "ok": "Det beregnet balance stemmer overens med blanacen på den seneste transaktion"
+            "ok": "Det beregnet balance stemmer overens med blanacen på den seneste transaktion",
+            "dialogTitle": "Balance status",
+            "dialogLatestBalance":      "Balancen på den seneste transaction:   ",
+            "dialogCalculatedBalance":  "Den beregnet balance:                  "
         }
 
     }, 

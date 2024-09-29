@@ -97,8 +97,6 @@ export default function CustomCRUDataGrid(props) {
     };
 
     return (
-        <Box
-            height={500}>
             <DataGrid
                 rows={rows}
                 columns={columns}
@@ -113,6 +111,7 @@ export default function CustomCRUDataGrid(props) {
                 slotProps={{
                     toolbar: { setRows, setRowModesModel, emptyDataRow },
                 }}
+                autoHeight
                 autosizeOnMount
                 autosizeOptions={{
                     includeOutliers: true,
@@ -126,8 +125,6 @@ export default function CustomCRUDataGrid(props) {
                     },
                 }}
             />
-
-        </Box>
     )
 }
 

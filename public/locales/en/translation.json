@@ -37,7 +37,10 @@
         "balanceStatus": {
             "warning": "The balance is not correct! - The calculated balance is not equal to the latest transaction balance",
             "error": "The balance could't be fetched",
-            "ok": "The calculated balance match the latest transaction balance"
+            "ok": "The calculated balance match the latest transaction balance",
+            "dialogTitle": "Balance status",
+            "dialogLatestBalance":      "Balance on the latest transaction: ",
+            "dialogCalculatedBalance":  "Calculated balance:                "
         }
     },
     "pages": {
