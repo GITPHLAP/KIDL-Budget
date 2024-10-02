@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useGetIsBalanceCorrectQuery } from "../../redux/api/transactions/transaction";
 import { useTranslation } from "react-i18next";
 import { CircularProgress, IconButton, Stack, Tooltip, Typography } from "@mui/material";
-import { Error, Warning } from "@mui/icons-material";
+import { Check, Error, Warning } from "@mui/icons-material";
 import SimpleDialog from "../simpleDialog/simpleDialog";
 
 export default function BalanceStatus(props) {
