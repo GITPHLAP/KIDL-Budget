@@ -1,13 +1,13 @@
-import { CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
 import { useCreateTransactionCategoryMutation, useDeleteTransactionCategoryMutation, useGetTransactionCategoriesQuery, useUpdateTransactionCategoryMutation } from "../../../redux/api/transaction_categories/transaction_categories";
-import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
 
 export default function CategoryDataGrid() {
 
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const [createCategory] = useCreateTransactionCategoryMutation()
     const [updateCategory] = useUpdateTransactionCategoryMutation()
     const [deleteCategory] = useDeleteTransactionCategoryMutation()
@@ -54,15 +54,14 @@ export default function CategoryDataGrid() {
     return (
         <>
             <Typography variant="h5">{t('pages.administration.categoryTitle')}</Typography>
-            {isFetchingCategories ? <CircularProgress/> : (
-                <CustomCRUDDataGrid
-                    emptyDataRow={{id: -1, description: ""}}
-                    dataRows={categories}
-                    columns={columns}
-                    handleUpsertRow={processRowUpdate}
-                    handleDeleteRow={handleDeleteCategory}
-                />
-            )}
+            <CustomCRUDDataGrid
+                emptyDataRow={{ id: -1, description: "" }}
+                dataRows={categories}
+                columns={columns}
+                handleUpsertRow={processRowUpdate}
+                handleDeleteRow={handleDeleteCategory}
+                isLoading={isFetchingCategories}
+            />
         </>
     )
 }
