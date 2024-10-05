@@ -15,9 +15,20 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import PlanTable from "./containers/plans/planTable";
 import './i18n';
-import { StyledEngineProvider } from "@mui/material";
+import { createTheme, StyledEngineProvider, ThemeProvider } from "@mui/material";
 import SheetsViewer from "./containers/sheets/sheetsViewer";
+import { daDK } from '@mui/x-data-grid/locales';
+import { daDK as coreDaDK } from '@mui/material/locale';
 
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  daDK, // x-data-grid translations
+  coreDaDK, // core translations
+);
 
 const router = createBrowserRouter([
   {
@@ -54,7 +65,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <StyledEngineProvider injectFirst={true}>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </StyledEngineProvider>
     </Provider>
   </React.StrictMode>
