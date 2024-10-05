@@ -7,8 +7,11 @@ import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_ca
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
 import { useTranslation } from "react-i18next";
 import { monthIdxToName } from "../../utils/monthHelper";
+import { useSelector } from "react-redux";
 
 export default function PlanTable() {
+
+    const selectedYear = useSelector(state => state.selectedYear)
 
     const { t } = useTranslation()
     const {
@@ -36,7 +39,7 @@ export default function PlanTable() {
     const {
         data: plans,
         isFetching: isFetchingPlans
-    } = useGetPlansQuery(2024) // TODO: Use redux store
+    } = useGetPlansQuery(selectedYear)
 
     const processRowUpdate = (row) => {
         if (row?.isNew) {
