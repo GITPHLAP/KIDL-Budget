@@ -1,5 +1,5 @@
 import { AppBar, Box, CircularProgress, Grid2, Paper, Stack, Typography } from "@mui/material";
-import { useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import PlanYearSelect from "../../components/planYearSelect/planYearSelect";
@@ -14,7 +14,12 @@ export default function Overview() {
     const months = useSelector((state) => state.selectedMonths)
     const selectedYear = useSelector((state) => state.selectedYear)
 
-    const appBarHeight = useMemo(() => appBarRef?.current?.clientHeight, [appBarRef ? appBarRef?.current?.clientHeight : null])
+    const [appBarHeight, setAppBarHeight] = useState(48)
+
+    useLayoutEffect(() => {
+        setAppBarHeight(appBarRef?.current?.clientHeight)
+    }, [appBarRef?.current?.clientHeight])
+
     const selectedMonths = useMemo(() => months.filter(m => m.isSelected).map(m => m.id), [months])
 
     const { data: overviews, isFetching: isFetchingOverviews } = useGetOverviewsByMonthsQuery({ year: selectedYear, months: selectedMonths }, { skip: selectedMonths.length === 0 })
