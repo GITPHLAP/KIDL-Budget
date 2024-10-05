@@ -12,6 +12,7 @@ export default function CustomCRUDDataGrid(props) {
         columns: dataColumns,
         handleUpsertRow,
         handleDeleteRow,
+        isLoading,
     } = props
 
     const [rows, setRows] = useState(dataRows);
@@ -36,7 +37,6 @@ export default function CustomCRUDDataGrid(props) {
             headerName: t('general.actions'),
             cellClassName: 'actions',
             getActions: ({ id, row }) => {
-                // console.log('Peek -  on ln: 38 ',  id);
                 const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
                 if (isInEditMode) {
                     return [
@@ -123,19 +123,17 @@ export default function CustomCRUDDataGrid(props) {
                 }}
                 slotProps={{
                     toolbar: { setRows, setRowModesModel, emptyDataRow },
+                    loadingOverlay: {
+                        variant: 'linear-progress',
+                        noRowsVariant: 'skeleton',
+                    },
                 }}
                 autosizeOnMount
                 autosizeOptions={{
                     includeOutliers: true,
                     includeHeaders: true,
                 }}
-                localeText={{
-                    MuiTablePagination: {
-                        labelDisplayedRows: ({ from, to, count }) =>
-                            t('general.mui.labelDisplayedRows', { from, to, count }),
-                        labelRowsPerPage: t('general.mui.labelRowsPerPage'),
-                    },
-                }}
+                loading={isLoading}
             />
 
         </Box>

@@ -1,14 +1,14 @@
-import { CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
 import { useGetTransactionCategoriesQuery } from "../../../redux/api/transaction_categories/transaction_categories";
 import { useCreateCategoryMappingMutation, useDeleteCategoryMappingMutation, useGetCategoryMappingsQuery, useUpdateCategoryMappingMutation } from "../../../redux/api/transaction_categories_mapping/transaction_categories_mapping";
-import { useTranslation } from "react-i18next";
 
 export default function CategoryMappingCard() {
 
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const {
         data: categories,
         isFetching: isFetchingCategories
@@ -62,8 +62,9 @@ export default function CategoryMappingCard() {
     }
 
     const columns = useMemo(() => [
-        { field: 'categoryId', headerName: t('general.category'), editable: true, 
-            type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId 
+        {
+            field: 'categoryId', headerName: t('general.category'), editable: true,
+            type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
         },
         { field: 'mappingValue', headerName: t('general.mappingValue'), editable: true, type: 'string', },
     ], [categoryOptions])
@@ -71,15 +72,14 @@ export default function CategoryMappingCard() {
     return (
         <>
             <Typography variant="h5">{t('pages.administration.categoryMappingTitle')}</Typography>
-            {isFetchingCategories || isFetchingMappings ? <CircularProgress /> : (
-                <CustomCRUDDataGrid
-                    emptyDataRow={{ id: -1, categoryId: null, mappingValue: "" }}
-                    dataRows={mappings}
-                    columns={columns}
-                    handleUpsertRow={processRowUpdate}
-                    handleDeleteRow={handleDeleteCategory}
-                />
-            )}
+            <CustomCRUDDataGrid
+                emptyDataRow={{ id: -1, categoryId: null, mappingValue: "" }}
+                dataRows={mappings}
+                columns={columns}
+                handleUpsertRow={processRowUpdate}
+                handleDeleteRow={handleDeleteCategory}
+                isLoading={isFetchingCategories || isFetchingMappings}
+            />
         </>
     )
 }

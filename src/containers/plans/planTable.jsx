@@ -1,14 +1,17 @@
-import { CircularProgress, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import CustomCRUDataGrid from "../../components/customCRUDataGrid/customCRUDataGrid";
 import { useCreatePlanMutation, useGetPlansQuery, useUpdatePlanMutation } from "../../redux/api/plan/plan";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
-import { useTranslation } from "react-i18next";
 import { monthIdxToName } from "../../utils/monthHelper";
 
 export default function PlanTable() {
+
+    const selectedYear = useSelector(state => state.selectedYear)
 
     const { t } = useTranslation()
     const {
@@ -36,7 +39,7 @@ export default function PlanTable() {
     const {
         data: plans,
         isFetching: isFetchingPlans
-    } = useGetPlansQuery(2024) // TODO: Use redux store
+    } = useGetPlansQuery(selectedYear)
 
     const processRowUpdate = (row) => {
         if (row?.isNew) {
@@ -82,19 +85,18 @@ export default function PlanTable() {
 
     return (
         <Container maxWidth="full">
-            {isFetchingCategories || isFetchingPlans ? <CircularProgress /> : (
-                <CustomCRUDataGrid
-                    emptyDataRow={{
-                        id: -1, categoryId: null, year: 2024, januaryAmount: 0,
-                        februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
-                        juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
-                        octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
-                    }}
-                    dataRows={plans}
-                    columns={columns}
-                    handleUpsertRow={processRowUpdate}
-                />
-            )}
+            <CustomCRUDataGrid
+                emptyDataRow={{
+                    id: -1, categoryId: null, year: 2024, januaryAmount: 0,
+                    februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
+                    juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
+                    octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
+                }}
+                dataRows={plans}
+                columns={columns}
+                handleUpsertRow={processRowUpdate}
+                isLoading={isFetchingCategories || isFetchingPlans}
+            />
         </Container>
     )
 }

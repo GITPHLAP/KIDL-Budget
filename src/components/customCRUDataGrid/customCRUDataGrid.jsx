@@ -1,5 +1,5 @@
 import { Add, Cancel, Edit, Save } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ export default function CustomCRUDataGrid(props) {
         dataRows,
         columns: dataColumns,
         handleUpsertRow,
+        isLoading
     } = props
 
     const [rows, setRows] = useState(dataRows);
@@ -35,7 +36,6 @@ export default function CustomCRUDataGrid(props) {
             headerName: t('general.actions'),
             cellClassName: 'actions',
             getActions: ({ id, row }) => {
-                // console.log('Peek -  on ln: 38 ',  id);
                 const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
                 if (isInEditMode) {
                     return [
@@ -97,34 +97,33 @@ export default function CustomCRUDataGrid(props) {
     };
 
     return (
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                editMode="row"
-                rowModesModel={rowModesModel}
-                onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
-                onRowEditStop={handleRowEditStop}
-                processRowUpdate={processRowUpdate}
-                slots={{
-                    toolbar: EditToolbar,
-                }}
-                slotProps={{
-                    toolbar: { setRows, setRowModesModel, emptyDataRow },
-                }}
-                autoHeight
-                autosizeOnMount
-                autosizeOptions={{
-                    includeOutliers: true,
-                    includeHeaders: true,
-                }}
-                localeText={{
-                    MuiTablePagination: {
-                        labelDisplayedRows: ({ from, to, count }) =>
-                            t('general.mui.labelDisplayedRows', { from, to, count }),
-                        labelRowsPerPage: t('general.mui.labelRowsPerPage'),
-                    },
-                }}
-            />
+        <DataGrid
+            rows={rows}
+            columns={columns}
+            editMode="row"
+            rowModesModel={rowModesModel}
+            onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
+            onRowEditStop={handleRowEditStop}
+            processRowUpdate={processRowUpdate}
+            slots={{
+                toolbar: EditToolbar,
+            }}
+            slotProps={{
+                toolbar: { setRows, setRowModesModel, emptyDataRow },
+                loadingOverlay: {
+                    variant: 'linear-progress',
+                    noRowsVariant: 'skeleton',
+                },
+            }}
+            autoHeight
+            autosizeOnMount
+            autosizeOptions={{
+                includeOutliers: true,
+                includeHeaders: true,
+            }}
+            loading={isLoading}
+
+        />
     )
 }
 
