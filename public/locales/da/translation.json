@@ -45,6 +45,9 @@
 
     }, 
     "pages": {
+        "navigation": {
+            "headerTitle": "Hovedsider"
+        },
         "overview": {
             "title": "Overblik",
             "noMonthSelectText": "Venligst vælg mindst en række",

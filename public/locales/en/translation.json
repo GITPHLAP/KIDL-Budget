@@ -44,6 +44,9 @@
         }
     },
     "pages": {
+        "navigation": {
+            "headerTitle": "Main pages"
+        },
         "overview": {
             "title": "Overview",
             "noMonthSelectText": "Please select at least one row",

@@ -19,6 +19,7 @@
     "@mui/x-data-grid": "^7.21.0",
     "@mui/x-data-grid-generator": "^7.21.0",
     "@reduxjs/toolkit": "^2.3.0",
+    "@toolpad/core": "^0.8.1",
     "formik": "^2.4.6",
     "i18next": "^23.16.0",
     "i18next-browser-languagedetector": "^8.0.0",
