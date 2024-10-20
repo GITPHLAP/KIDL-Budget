@@ -1,18 +1,17 @@
 import { Add, Remove } from '@mui/icons-material';
+import { Box } from '@mui/material';
 import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMonth } from '../../../redux/reducers/monthSlice';
-import { useTranslation } from 'react-i18next';
-import { Box } from '@mui/material';
 
 const ListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
 }));
 
 export default function ChipArray() {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const months = useSelector((state) => state.selectedMonths)
 
     const dispatch = useDispatch()
