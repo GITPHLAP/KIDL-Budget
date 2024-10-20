@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -72,14 +72,16 @@ export default function CategoryMappingCard() {
     return (
         <>
             <Typography variant="h5">{t('pages.administration.categoryMappingTitle')}</Typography>
-            <CustomCRUDDataGrid
-                emptyDataRow={{ id: -1, categoryId: null, mappingValue: "" }}
-                dataRows={mappings}
-                columns={columns}
-                handleUpsertRow={processRowUpdate}
-                handleDeleteRow={handleDeleteCategory}
-                isLoading={isFetchingCategories || isFetchingMappings}
-            />
+            <Box sx={{ display: "flex", height: "500px" }}>
+                <CustomCRUDDataGrid
+                    emptyDataRow={{ id: -1, categoryId: null, mappingValue: "" }}
+                    dataRows={mappings}
+                    columns={columns}
+                    handleUpsertRow={processRowUpdate}
+                    handleDeleteRow={handleDeleteCategory}
+                    isLoading={isFetchingCategories || isFetchingMappings}
+                />
+            </Box>
         </>
     )
 }

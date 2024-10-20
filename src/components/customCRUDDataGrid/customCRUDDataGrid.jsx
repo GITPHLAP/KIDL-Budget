@@ -1,5 +1,5 @@
 import { Add, Cancel, Delete, Edit, Save } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -108,35 +108,32 @@ export default function CustomCRUDDataGrid(props) {
     };
 
     return (
-        <Box
-            height={500}>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                editMode="row"
-                rowModesModel={rowModesModel}
-                onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
-                onRowEditStop={handleRowEditStop}
-                processRowUpdate={processRowUpdate}
-                slots={{
-                    toolbar: EditToolbar,
-                }}
-                slotProps={{
-                    toolbar: { setRows, setRowModesModel, emptyDataRow },
-                    loadingOverlay: {
-                        variant: 'linear-progress',
-                        noRowsVariant: 'skeleton',
-                    },
-                }}
-                autosizeOnMount
-                autosizeOptions={{
-                    includeOutliers: true,
-                    includeHeaders: true,
-                }}
-                loading={isLoading}
-            />
+        <DataGrid
+            rows={rows}
+            columns={columns}
+            editMode="row"
+            rowModesModel={rowModesModel}
+            onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
+            onRowEditStop={handleRowEditStop}
+            processRowUpdate={processRowUpdate}
+            slots={{
+                toolbar: EditToolbar,
+            }}
+            slotProps={{
+                toolbar: { setRows, setRowModesModel, emptyDataRow },
+                loadingOverlay: {
+                    variant: 'linear-progress',
+                    noRowsVariant: 'skeleton',
+                },
+            }}
+            autosizeOnMount
+            autosizeOptions={{
+                includeOutliers: true,
+                includeHeaders: true,
+            }}
+            loading={isLoading}
+        />
 
-        </Box>
     )
 }
 

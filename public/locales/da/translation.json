@@ -26,6 +26,17 @@
             "october": "Oktober",
             "november": "November",
             "december": "December",
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Okt",
+            "nov": "Nov",
+            "dec": "Dec",
             "noMonths": "Ugyldig måned",
             "total": "Total"
         },
@@ -45,6 +56,9 @@
 
     }, 
     "pages": {
+        "navigation": {
+            "headerTitle": "Hovedsider"
+        },
         "overview": {
             "title": "Overblik",
             "noMonthSelectText": "Venligst vælg mindst en række",

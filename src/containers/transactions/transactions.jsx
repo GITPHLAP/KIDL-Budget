@@ -69,29 +69,26 @@ export default function Transactions() {
     };
 
     return (
-        <Container maxWidth="lg">
-            <DataGrid
-                autosizeOnMount
-                autoHeight
-                rows={transactions}
-                columns={columns}
-                disableRowSelectionOnClick
-                editMode="row"
-                processRowUpdate={processRowUpdate}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'accounting', sort: 'desc' }],
-                    },
-                }}
-                loading={isFetchingCategories || transactionsFetching || isLoading}
-                slotProps={{
-                    loadingOverlay: {
-                        variant: 'linear-progress',
-                        noRowsVariant: 'skeleton',
-                    },
-                }}
-            />
-        </Container>
+        <DataGrid
+            autosizeOnMount
+            rows={transactions}
+            columns={columns}
+            disableRowSelectionOnClick
+            editMode="row"
+            processRowUpdate={processRowUpdate}
+            initialState={{
+                sorting: {
+                    sortModel: [{ field: 'accounting', sort: 'desc' }],
+                },
+            }}
+            loading={isFetchingCategories || transactionsFetching || isLoading}
+            slotProps={{
+                loadingOverlay: {
+                    variant: 'linear-progress',
+                    noRowsVariant: 'skeleton',
+                },
+            }}
+        />
     )
 }
 
