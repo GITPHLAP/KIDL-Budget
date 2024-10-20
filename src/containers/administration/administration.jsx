@@ -32,7 +32,7 @@ export default function Administration() {
         });
     }
     return (
-        <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
+        <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={2} sx={{flex: 1}}>
             <Card elevation={4}>
                 <CardContent>
                     <Typography variant="h5">{t('pages.administration.importTransactionsTitle')}</Typography>
