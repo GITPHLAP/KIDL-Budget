@@ -1,4 +1,5 @@
 import { CalendarMonth, Difference, Receipt, TableView, Tune } from "@mui/icons-material";
+import { Box } from "@mui/material";
 import { DashboardLayout } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/react-router-dom";
 import { t } from "i18next";
@@ -46,7 +47,13 @@ export default function App(props) {
     return (
         <AppProvider navigation={NAVIGATION} branding={BRANDING}>
             <DashboardLayout slots={{ toolbarActions: MonthAndYearToolbar }}>
-                <Outlet />
+                {/* Overflow box */}
+                <Box sx={{ overflow: "auto", height: "100%", display: "flex" }}>
+                    {/* Padding box */}
+                    <Box p={2} sx={{ flex: 1, height: "100%", display: "flex" }}> 
+                        <Outlet />
+                    </Box>
+                </Box>
             </DashboardLayout>
         </AppProvider >
     )

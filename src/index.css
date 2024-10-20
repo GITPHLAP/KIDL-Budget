@@ -1,0 +1,4 @@
+/* Fix overflowing for dashboardLayout page box*/
+#root > div > div:has(main) {
+    overflow: hidden;
+}
