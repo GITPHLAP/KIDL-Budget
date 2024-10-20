@@ -115,7 +115,6 @@ export default function CustomCRUDataGrid(props) {
                     noRowsVariant: 'skeleton',
                 },
             }}
-            autoHeight
             autosizeOnMount
             autosizeOptions={{
                 includeOutliers: true,

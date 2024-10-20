@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -84,20 +83,18 @@ export default function PlanTable() {
     ], [categoryOptions])
 
     return (
-        <Container maxWidth="full">
-            <CustomCRUDataGrid
-                emptyDataRow={{
-                    id: -1, categoryId: null, year: 2024, januaryAmount: 0,
-                    februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
-                    juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
-                    octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
-                }}
-                dataRows={plans}
-                columns={columns}
-                handleUpsertRow={processRowUpdate}
-                isLoading={isFetchingCategories || isFetchingPlans}
-            />
-        </Container>
+        <CustomCRUDataGrid
+            emptyDataRow={{
+                id: -1, categoryId: null, year: 2024, januaryAmount: 0,
+                februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
+                juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
+                octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
+            }}
+            dataRows={plans}
+            columns={columns}
+            handleUpsertRow={processRowUpdate}
+            isLoading={isFetchingCategories || isFetchingPlans}
+        />
     )
 }
 
