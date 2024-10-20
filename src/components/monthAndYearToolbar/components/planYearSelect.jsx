@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetPlanYearsQuery } from "../../../redux/api/plan/plan";
 import { selectYear } from "../../../redux/reducers/yearSlice";
 import KIDLSelect from "../../kidlSelect/kidlSelect";
+import { t } from "i18next";
 
 export default function PlanYearSelect(props) {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ export default function PlanYearSelect(props) {
             onChange={(e) => dispatch(selectYear(e?.target?.value))}
             isLoading={isLoading || isFetching}
             options={planYears}
-            name="Year"
+            name={t('general.year')}
         />
     )
 }
