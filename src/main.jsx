@@ -1,7 +1,4 @@
-import { createTheme, StyledEngineProvider, ThemeProvider } from "@mui/material";
-import { daDK as coreDaDK } from '@mui/material/locale';
-import { daDK } from '@mui/x-data-grid/locales';
-import { DialogsProvider, NotificationsProvider } from "@toolpad/core";
+import { StyledEngineProvider } from "@mui/material";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -20,16 +17,6 @@ import ErrorPage from "./error-page";
 import './i18n';
 import "./index.css";
 import store from "./redux/store";
-
-const theme = createTheme(
-  {
-    palette: {
-      primary: { main: '#1976d2' },
-    },
-  },
-  daDK, // x-data-grid translations
-  coreDaDK, // core translations
-);
 
 const router = createBrowserRouter([
   {
@@ -66,13 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <StyledEngineProvider injectFirst={true}>
-        <ThemeProvider theme={theme}>
-          <DialogsProvider>
-            <NotificationsProvider>
-              <RouterProvider router={router} />
-            </NotificationsProvider>
-          </DialogsProvider>
-        </ThemeProvider>
+        <RouterProvider router={router} />
       </StyledEngineProvider>
     </Provider>
   </React.StrictMode>

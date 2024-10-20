@@ -1,10 +1,35 @@
 import { CalendarMonth, Difference, Receipt, TableView, Tune } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { daDK as coreDaDK } from '@mui/material/locale';
+import { daDK } from '@mui/x-data-grid/locales';
 import { DashboardLayout } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/react-router-dom";
 import { t } from "i18next";
-import { Outlet } from "react-router-dom";
+import 'react-toastify/ReactToastify.css';
 import MonthAndYearToolbar from "./components/monthAndYearToolbar/monthAndYearToolbar";
+
+import { createTheme } from '@mui/material/styles';
+import PageContent from "./pageContent";
+
+const theme = createTheme(
+    {
+        cssVariables: {
+            colorSchemeSelector: 'data-toolpad-color-scheme',
+        },
+        colorSchemes: {
+            light: {
+            },
+            dark: {
+            },
+        },
+    },
+    daDK, // x-data-grid translations
+    coreDaDK, // core translations
+);
+
+const BRANDING = {
+    title: 'Viften budget',
+    logo: <img src="/ki-d.png" height={"45px"} />
+};
 
 export default function App(props) {
     const NAVIGATION = [
@@ -39,21 +64,10 @@ export default function App(props) {
         },
     ];
 
-    const BRANDING = {
-        title: 'Viften budget',
-        logo: <img src="/ki-d.png" height={"45px"} />
-    };
-
     return (
-        <AppProvider navigation={NAVIGATION} branding={BRANDING}>
+        <AppProvider navigation={NAVIGATION} branding={BRANDING} theme={theme}>
             <DashboardLayout slots={{ toolbarActions: MonthAndYearToolbar }}>
-                {/* Overflow box */}
-                <Box sx={{ overflow: "auto", height: "100%", display: "flex" }}>
-                    {/* Padding box */}
-                    <Box p={2} sx={{ flex: 1, height: "100%", display: "flex" }}> 
-                        <Outlet />
-                    </Box>
-                </Box>
+                <PageContent />
             </DashboardLayout>
         </AppProvider >
     )
