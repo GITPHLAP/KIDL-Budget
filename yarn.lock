@@ -858,26 +858,26 @@
     prop-types "^15.8.1"
     react-is "^18.3.1"
 
-"@mui/x-data-grid-generator@^7.21.0":
-  version "7.21.0"
-  resolved "https://registry.npmjs.org/@mui/x-data-grid-generator/-/x-data-grid-generator-7.21.0.tgz"
-  integrity sha512-AtxCNMsAWqqL02gWp4XARJaakumNH2CPUI9UBVSxTTNRkTrasC/kAUTqBcOa0FVbQDR0LyUqoGq0rNRlx2sakw==
+"@mui/x-data-grid-generator@^7.22.0":
+  version "7.22.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-7.22.0.tgz#0c05f7afd361ad0dcca070510c24ec20669f5325"
+  integrity sha512-WGI04hvQ79pnCWO91fy+3m8V3NK5z8/z4uxu7w/R/nY/Ouzde1DvcgfdRABr86A3PrpY1LXAyRKv5TddTsqOdw==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/x-data-grid-premium" "7.21.0"
+    "@mui/x-data-grid-premium" "7.22.0"
     chance "^1.1.12"
     clsx "^2.1.1"
     lru-cache "^11.0.1"
 
-"@mui/x-data-grid-premium@7.21.0":
-  version "7.21.0"
-  resolved "https://registry.npmjs.org/@mui/x-data-grid-premium/-/x-data-grid-premium-7.21.0.tgz"
-  integrity sha512-hCe/R3+nvtUhKcXkJa+RGcDCmgr9ZMn6wJpUqrKLsYY/64yQkjau1Tw2P24lW8WQiJgQalWCX+bKd2ggQY7J5w==
+"@mui/x-data-grid-premium@7.22.0":
+  version "7.22.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-7.22.0.tgz#ed56fcd27ab348edafd8200bee3d0f86f7a496aa"
+  integrity sha512-luFoMv9hzFg0hyz3k5AXUb6yJ780eDXHYEk1v+9XGVnnjwFMFTPxcahcfBSa4Ye+QPUfaHEWb0W2uGpiCtBhdQ==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.21.0"
-    "@mui/x-data-grid-pro" "7.21.0"
+    "@mui/x-data-grid" "7.22.0"
+    "@mui/x-data-grid-pro" "7.22.0"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
     "@types/format-util" "^1.0.4"
@@ -886,14 +886,14 @@
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid-pro@7.21.0":
-  version "7.21.0"
-  resolved "https://registry.npmjs.org/@mui/x-data-grid-pro/-/x-data-grid-pro-7.21.0.tgz"
-  integrity sha512-nBLxJQTXxGG7L/uNR22FlbrOtreZmjxRyga4NkI+8/h0DRlZH+YeAl3Y91b6jivbdMaUCcE1Hkm3aXfE9jejRg==
+"@mui/x-data-grid-pro@7.22.0":
+  version "7.22.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-7.22.0.tgz#e0add2d1798652f2c55a223b82611b9f28067c4f"
+  integrity sha512-pOUxnJkQ1Zqs1eO7TTnUHuE8wVKMRchmahZvMaGBandy0+GFgU8YJy8S593yd43vVTA1vtDqfS+z2wG+8z968Q==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.21.0"
+    "@mui/x-data-grid" "7.22.0"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
     "@types/format-util" "^1.0.4"
@@ -901,10 +901,10 @@
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid@7.21.0", "@mui/x-data-grid@^7.21.0":
-  version "7.21.0"
-  resolved "https://registry.npmjs.org/@mui/x-data-grid/-/x-data-grid-7.21.0.tgz"
-  integrity sha512-0JAiwb2yRuVAd4idzfA64Bs1yn6KfC8VPBH7Njba0ySQB0+Ix+hvkzWQySD96hl7tK5heXbvbJ48pYLvhqS4Vw==
+"@mui/x-data-grid@7.22.0", "@mui/x-data-grid@^7.22.0":
+  version "7.22.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.22.0.tgz#ad20ce4daf21b36a5c505847fff3b8ae89e7b160"
+  integrity sha512-gXl7+hG0YRNU3YODlPvz6Q/9+EeUsPAWn/u2YMQmYTgwAxeY5QE3lY224VRnwM5v9SfTFheo1kzAKmXPdjb9tQ==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
@@ -2459,10 +2459,10 @@ i18next-http-backend@^2.6.2:
   dependencies:
     cross-fetch "4.0.0"
 
-i18next@^23.16.3:
-  version "23.16.3"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.16.3.tgz#1b58b2ce2890eed0fb2817c7103182a9cd92a3f1"
-  integrity sha512-e8q9gFyjrou5v/hBXgRwtWVK7Gp5So19Kf42spJlijGDfkin5abYFHlblonmD2GFYcsf9XIT7MpVuveJq/VCcA==
+i18next@^23.16.4:
+  version "23.16.4"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.16.4.tgz#79c07544f6d6fa803fe8427108d547542c1d6cf4"
+  integrity sha512-9NIYBVy9cs4wIqzurf7nLXPyf3R78xYbxExVqHLK9od3038rjpyOEzW+XB130kZ1N4PZ9inTtJ471CRJ4Ituyg==
   dependencies:
     "@babel/runtime" "^7.23.2"
 
@@ -3375,10 +3375,10 @@ react-router@6.27.0:
   dependencies:
     "@remix-run/router" "1.20.0"
 
-react-select@^5.8.1:
-  version "5.8.1"
-  resolved "https://registry.npmjs.org/react-select/-/react-select-5.8.1.tgz"
-  integrity sha512-RT1CJmuc+ejqm5MPgzyZujqDskdvB9a9ZqrdnVLsvAHjJ3Tj0hELnLeVPQlmYdVKCdCpxanepl6z7R5KhXhWzg==
+react-select@^5.8.2:
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.8.2.tgz#0d7ccb1895d61aafcd090fbf65aa9e506225a854"
+  integrity sha512-a/LkOckoI62710gGPQSQqUp7A10fGbH/ya3/IR49qaq3XoBvwymgD5mJgtiHxBDsutyEQfdKNycWVh8Cg8UCjw==
   dependencies:
     "@babel/runtime" "^7.12.0"
     "@emotion/cache" "^11.4.0"
