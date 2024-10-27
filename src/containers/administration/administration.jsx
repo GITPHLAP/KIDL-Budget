@@ -8,10 +8,12 @@ import { ViteVersion } from "../../utils/envExtractor";
 import CategoryDataGrid from "./components/categoryDataGrid";
 import CategoryMappingCard from "./components/categoryMappingCard";
 import CopyPlanCard from "./components/copyPlanCard";
+import { useGetHealthQuery } from "../../redux/api/apiSlice";
 
 export default function Administration() {
     const { t } = useTranslation()
 
+    const {data: apiVersion} = useGetHealthQuery()
     const [addTransactions, { isLoading }] = useInsertTransactionsMutation()
 
     const onFileChangeHandler = (event) => {
@@ -54,6 +56,7 @@ export default function Administration() {
             <Card elevation={4}>
                 <CardContent>
                     <Typography>Vite Version: {ViteVersion}</Typography>
+                    <Typography>API Version: {apiVersion?.version}</Typography>
                 </CardContent>
             </Card>
             <Card elevation={4}>
