@@ -97,32 +97,36 @@ export default function CustomCRUDataGrid(props) {
     };
 
     return (
-        <DataGrid
-            rows={rows}
-            columns={columns}
-            editMode="row"
-            rowModesModel={rowModesModel}
-            onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
-            onRowEditStop={handleRowEditStop}
-            processRowUpdate={processRowUpdate}
-            slots={{
-                toolbar: EditToolbar,
-            }}
-            slotProps={{
-                toolbar: { setRows, setRowModesModel, emptyDataRow },
-                loadingOverlay: {
-                    variant: 'linear-progress',
-                    noRowsVariant: 'skeleton',
-                },
-            }}
-            autosizeOnMount
-            autosizeOptions={{
-                includeOutliers: true,
-                includeHeaders: true,
-            }}
-            loading={isLoading}
+        <>
+            {rows && (
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    editMode="row"
+                    rowModesModel={rowModesModel}
+                    onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
+                    onRowEditStop={handleRowEditStop}
+                    processRowUpdate={processRowUpdate}
+                    slots={{
+                        toolbar: EditToolbar,
+                    }}
+                    slotProps={{
+                        toolbar: { setRows, setRowModesModel, emptyDataRow },
+                        loadingOverlay: {
+                            variant: 'linear-progress',
+                            noRowsVariant: 'skeleton',
+                        },
+                    }}
+                    autosizeOnMount
+                    autosizeOptions={{
+                        includeOutliers: true,
+                        // includeHeaders: true,
+                    }}
+                    loading={isLoading}
 
-        />
+                />
+            )}
+        </>
     )
 }
 
