@@ -21,6 +21,25 @@ const theme = createTheme(
             dark: {
             },
         },
+        components: {
+            MuiInputBase: {
+                styleOverrides: {
+                    input: ({ theme }) =>
+                        theme.unstable_sx({
+                            p: "1px"
+                        })
+                }
+            },
+            MuiDataGrid: {
+                styleOverrides: {
+                    editInputCell: {
+                        '& input': {
+                            padding: "0 2px"
+                        },
+                    },
+                }
+            }
+        }
     },
     daDK, // x-data-grid translations
     coreDaDK, // core translations
