@@ -64,10 +64,11 @@ export default function PlanTable() {
     const columns = useMemo(() => [
         {
             field: 'categoryId', headerName: t("general.category"), editable: true,
-            type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId
+            type: 'singleSelect', valueOptions: categoryOptions, getOptionValue: (value) => value.categoryId,
+            minWidth: 235,
         },
         { field: 'year', headerName: t("general.year"), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-        { field: 'type', headerName: t("general.type"), editable: true, type: 'singleSelect', valueOptions: typeOptions },
+        { field: 'type', headerName: t("general.type"), editable: true, type: 'singleSelect', valueOptions: typeOptions, minWidth: 100 },
         { field: 'januaryAmount', headerName: monthIdxToName('1'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'februaryAmount', headerName: monthIdxToName('2'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'marchAmount', headerName: monthIdxToName('3'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
