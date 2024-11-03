@@ -50,7 +50,7 @@ const BRANDING = {
     logo: <img src="/ki-d.png" height={"45px"} />
 };
 
-export default function App(props) {
+export default function App() {
     const NAVIGATION = [
         {
             kind: 'header',
