@@ -21,6 +21,25 @@ const theme = createTheme(
             dark: {
             },
         },
+        components: {
+            MuiInputBase: {
+                styleOverrides: {
+                    input: ({ theme }) =>
+                        theme.unstable_sx({
+                            p: "1px"
+                        })
+                }
+            },
+            MuiDataGrid: {
+                styleOverrides: {
+                    editInputCell: {
+                        '& input': {
+                            padding: "0 2px"
+                        },
+                    },
+                }
+            }
+        }
     },
     daDK, // x-data-grid translations
     coreDaDK, // core translations
@@ -31,7 +50,7 @@ const BRANDING = {
     logo: <img src="/ki-d.png" height={"45px"} />
 };
 
-export default function App(props) {
+export default function App() {
     const NAVIGATION = [
         {
             kind: 'header',

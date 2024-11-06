@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -69,26 +68,30 @@ export default function Transactions() {
     };
 
     return (
-        <DataGrid
-            autosizeOnMount
-            rows={transactions}
-            columns={columns}
-            disableRowSelectionOnClick
-            editMode="row"
-            processRowUpdate={processRowUpdate}
-            initialState={{
-                sorting: {
-                    sortModel: [{ field: 'accounting', sort: 'desc' }],
-                },
-            }}
-            loading={isFetchingCategories || transactionsFetching || isLoading}
-            slotProps={{
-                loadingOverlay: {
-                    variant: 'linear-progress',
-                    noRowsVariant: 'skeleton',
-                },
-            }}
-        />
+        <>
+            {transactions && (
+                <DataGrid
+                    autosizeOnMount
+                    rows={transactions}
+                    columns={columns}
+                    disableRowSelectionOnClick
+                    editMode="row"
+                    processRowUpdate={processRowUpdate}
+                    initialState={{
+                        sorting: {
+                            sortModel: [{ field: 'accounting', sort: 'desc' }],
+                        },
+                    }}
+                    loading={isFetchingCategories || transactionsFetching || isLoading}
+                    slotProps={{
+                        loadingOverlay: {
+                            variant: 'linear-progress',
+                            noRowsVariant: 'skeleton',
+                        },
+                    }}
+                />
+            )}
+        </>
     )
 }
 

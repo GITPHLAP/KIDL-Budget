@@ -1,8 +1,10 @@
 import { Add, Cancel, Edit, Save } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer, useGridApiRef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useResize } from "../resizeProvider/resizeProvider";
+
 
 export default function CustomCRUDataGrid(props) {
     const { t } = useTranslation()
@@ -17,10 +19,20 @@ export default function CustomCRUDataGrid(props) {
     const [rows, setRows] = useState(dataRows);
     // Used to save if row is in edit mode or not
     const [rowModesModel, setRowModesModel] = useState({});
+    const apiRef = useGridApiRef()
+    const pageContentSize = useResize()
 
     useEffect(() => {
         setRows(dataRows)
     }, [dataRows])
+
+    useEffect(() => {
+        apiRef?.current?.autosizeColumns?.({
+            includeHeaders: true,
+            includeOutliers: true,
+            expand: true,
+        })
+    }, [pageContentSize]);
 
 
     const handleRowEditStop = (params, event) => {
@@ -97,32 +109,38 @@ export default function CustomCRUDataGrid(props) {
     };
 
     return (
-        <DataGrid
-            rows={rows}
-            columns={columns}
-            editMode="row"
-            rowModesModel={rowModesModel}
-            onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
-            onRowEditStop={handleRowEditStop}
-            processRowUpdate={processRowUpdate}
-            slots={{
-                toolbar: EditToolbar,
-            }}
-            slotProps={{
-                toolbar: { setRows, setRowModesModel, emptyDataRow },
-                loadingOverlay: {
-                    variant: 'linear-progress',
-                    noRowsVariant: 'skeleton',
-                },
-            }}
-            autosizeOnMount
-            autosizeOptions={{
-                includeOutliers: true,
-                includeHeaders: true,
-            }}
-            loading={isLoading}
+        <>
+            {rows && (
+                <DataGrid
+                    apiRef={apiRef}
+                    rows={rows}
+                    columns={columns}
+                    editMode="row"
+                    rowModesModel={rowModesModel}
+                    onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
+                    onRowEditStop={handleRowEditStop}
+                    processRowUpdate={processRowUpdate}
+                    slots={{
+                        toolbar: EditToolbar,
+                    }}
+                    slotProps={{
+                        toolbar: { setRows, setRowModesModel, emptyDataRow },
+                        loadingOverlay: {
+                            variant: 'linear-progress',
+                            noRowsVariant: 'skeleton',
+                        },
+                    }}
+                    autosizeOnMount
+                    autosizeOptions={{
+                        includeOutliers: true,
+                        includeHeaders: true,
+                        expand: true,
+                    }}
+                    loading={isLoading}
 
-        />
+                />
+            )}
+        </>
     )
 }
 

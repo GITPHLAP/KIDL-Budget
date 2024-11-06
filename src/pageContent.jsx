@@ -2,6 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import ResizeProvider from "./components/resizeProvider/resizeProvider";
 
 export default function PageContent() {
     const theme = useTheme()
@@ -13,10 +14,9 @@ export default function PageContent() {
             <ToastContainer stacked theme={themeMode} />
             {/* Overflow box */}
             <Box sx={{ overflow: "auto", height: "100%", display: "flex" }}>
-                {/* Padding box */}
-                <Box p={2} sx={{ flex: 1, height: "100%", display: "flex" }}>
+                <ResizeProvider>
                     <Outlet />
-                </Box>
+                </ResizeProvider>
             </Box>
         </>
     )
