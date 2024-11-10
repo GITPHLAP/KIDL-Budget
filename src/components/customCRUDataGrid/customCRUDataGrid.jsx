@@ -32,7 +32,7 @@ export default function CustomCRUDataGrid(props) {
             includeOutliers: true,
             expand: true,
         })
-    }, [pageContentSize]);
+    }, [pageContentSize, apiRef]);
 
 
     const handleRowEditStop = (params, event) => {
@@ -47,7 +47,7 @@ export default function CustomCRUDataGrid(props) {
             type: "actions",
             headerName: t('general.actions'),
             cellClassName: 'actions',
-            getActions: ({ id, row }) => {
+            getActions: ({ id }) => {
                 const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
                 if (isInEditMode) {
                     return [
@@ -58,6 +58,7 @@ export default function CustomCRUDataGrid(props) {
                                 color: 'primary.main',
                             }}
                             onClick={handleSaveClick(id)}
+                            key={`cru-data-grid-save-${id}`}
                         />,
                         <GridActionsCellItem
                             icon={<Cancel />}
@@ -65,6 +66,7 @@ export default function CustomCRUDataGrid(props) {
                             className="textPrimary"
                             onClick={handleCancelClick(id)}
                             color="inherit"
+                            key={`cru-data-grid-cancel-${id}`}
                         />,
                     ]
                 }
@@ -75,6 +77,7 @@ export default function CustomCRUDataGrid(props) {
                         className="textPrimary"
                         onClick={handleEditClick(id)}
                         color="inherit"
+                        key={`cru-data-grid-edit-${id}`}
                     />,
                 ]
             },

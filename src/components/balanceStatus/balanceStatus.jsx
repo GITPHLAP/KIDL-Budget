@@ -5,7 +5,7 @@ import { CircularProgress, IconButton, Stack, Tooltip, Typography } from "@mui/m
 import { Check, Error, Warning } from "@mui/icons-material";
 import SimpleDialog from "../simpleDialog/simpleDialog";
 
-export default function BalanceStatus(props) {
+export default function BalanceStatus() {
     const { t } = useTranslation()
     const {
         data: balanceData,
@@ -15,23 +15,20 @@ export default function BalanceStatus(props) {
 
     const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-    
-    
-
     const result = useMemo(() => {
         let title = "general.balanceStatus.ok"
-        let StatusIcon = () => <Check color="success" />
+        let StatusIcon = <Check color="success" />
 
-        // Set the icon and the title according to the fetchec
+        // Set the icon and the title according to the fetch
         if (isBalanceCorrectFetching) {
             title = ""
-            StatusIcon = () => <CircularProgress />
+            StatusIcon = <CircularProgress />
         } else if (isBalanceCorrectError) {
             title = "general.balanceStatus.error"
-            StatusIcon = () => <Error color="error" />
+            StatusIcon = <Error color="error" />
         } else if (!balanceData?.isEqual) {
             title = "general.balanceStatus.warning"
-            StatusIcon = () => <Warning color="warning" />
+            StatusIcon = <Warning color="warning" />
         }
 
         return {title: title, Icon: StatusIcon}
@@ -43,7 +40,7 @@ export default function BalanceStatus(props) {
         <>
             <Tooltip title={t(result.title)} >
                 <IconButton onClick={() => setIsDialogOpen(true)}>
-                    <result.Icon />
+                    {result.Icon}
                 </IconButton>
             </Tooltip>
             <SimpleDialog 

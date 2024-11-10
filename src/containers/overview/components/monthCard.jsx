@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, Divider, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import { monthIdxToName } from "../../../utils/monthHelper";
 import OverviewTransTable from "./overviewTransTable";
 import TotalTable from "./totalTable";

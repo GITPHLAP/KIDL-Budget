@@ -32,7 +32,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['TransCategoryList'],
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
 
     }),

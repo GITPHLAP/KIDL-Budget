@@ -4,7 +4,7 @@ import { selectYear } from "../../../redux/reducers/yearSlice";
 import KIDLSelect from "../../kidlSelect/kidlSelect";
 import { t } from "i18next";
 
-export default function PlanYearSelect(props) {
+export default function PlanYearSelect() {
     const dispatch = useDispatch()
     const selectedYear = useSelector((state) => state.selectedYear)
 

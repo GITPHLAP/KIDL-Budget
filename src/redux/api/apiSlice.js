@@ -21,7 +21,7 @@ export const apiSlice = createApi({
                 url: '/health_check',
                 method: 'GET',
             }),
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
     }),
 })

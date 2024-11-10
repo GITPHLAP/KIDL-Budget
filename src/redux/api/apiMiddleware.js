@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
  * Show a toast!
  */
 export const rtkQueryErrorLogger =
-    (api) => (next) => (action) => {
+    () => (next) => (action) => {
         // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
         if (isRejectedWithValue(action)) {
             toast.error(
