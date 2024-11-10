@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useCopyPlanMutation } from "../../../redux/api/plan/plan";
 
-export default function CopyPlanCard(props) {
+export default function CopyPlanCard() {
     const { t } = useTranslation()
 
     const selectedYear = useSelector((state) => state.selectedYear)
@@ -19,7 +19,7 @@ export default function CopyPlanCard(props) {
                     fromYear: selectedYear,
                     toYear: selectedYear + 1
                 }}
-                onSubmit={(values, actions) => {
+                onSubmit={(values) => {
                     // Call api
                     toast.promise(
                         copyPlan({ fromYear: values.fromYear, toYear: values.toYear }).unwrap(),
@@ -33,12 +33,12 @@ export default function CopyPlanCard(props) {
                 <Form>
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
                         <Field name="fromYear">
-                            {({ field, form }) => (
+                            {({ field }) => (
                                 <TextField {...field} variant="standard" size="small" label={t('pages.administration.planCard.fromText')} />
                             )}
                         </Field>
                         <Field name="toYear">
-                            {({ field, form }) => (
+                            {({ field }) => (
                                 <TextField {...field} variant="standard" size="small" label={t('pages.administration.planCard.toText')} />
                             )}
                         </Field>

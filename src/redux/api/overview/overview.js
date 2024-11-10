@@ -10,7 +10,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['TransCategoryList'],
-            transformResponse: (response, meta, arg) => {
+            transformResponse: (response) => {
                 const transformedData = {
                     year: response.data[0].year,
                     months: response.data[0].months.reduce((acc, monthObj) => {

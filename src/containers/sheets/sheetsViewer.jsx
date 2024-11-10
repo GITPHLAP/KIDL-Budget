@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-export default function SheetsViewer(props) {
+export default function SheetsViewer() {
     return (
         // height calc = 100vh - topBar (64px) - top+bottom padding (2*16px) 
         <Box sx={{ height: "calc(100vh - 64px - 32px)", display: "flex", flex: 1}}>

@@ -34,7 +34,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['PlanList'],
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
         getPlanYears: builder.query({
             query: () => ({
@@ -42,7 +42,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['PlanYearList'],
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
 
     }),

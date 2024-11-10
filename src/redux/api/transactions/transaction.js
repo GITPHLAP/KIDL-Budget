@@ -26,7 +26,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['TransactionList'],
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
         getIsBalanceCorrect: builder.query({
             query: () => ({
@@ -34,7 +34,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: ['TransactionList'],
-            transformResponse: (response, meta, arg) => response.data
+            transformResponse: (response) => response.data
         }),
     }),
 

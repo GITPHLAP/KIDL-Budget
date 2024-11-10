@@ -3,12 +3,12 @@ import { daDK as coreDaDK } from '@mui/material/locale';
 import { daDK } from '@mui/x-data-grid/locales';
 import { DashboardLayout } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/react-router-dom";
-import { t } from "i18next";
 import 'react-toastify/ReactToastify.css';
 import MonthAndYearToolbar from "./components/monthAndYearToolbar/monthAndYearToolbar";
 
 import { createTheme } from '@mui/material/styles';
 import PageContent from "./pageContent";
+import { useTranslation } from "react-i18next";
 
 const theme = createTheme(
     {
@@ -51,6 +51,7 @@ const BRANDING = {
 };
 
 export default function App() {
+    const { t } = useTranslation();
     const NAVIGATION = [
         {
             kind: 'header',

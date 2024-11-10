@@ -36,7 +36,7 @@ export default function CustomCRUDDataGrid(props) {
             type: "actions",
             headerName: t('general.actions'),
             cellClassName: 'actions',
-            getActions: ({ id, row }) => {
+            getActions: ({ id }) => {
                 const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
                 if (isInEditMode) {
                     return [
@@ -47,6 +47,7 @@ export default function CustomCRUDDataGrid(props) {
                                 color: 'primary.main',
                             }}
                             onClick={handleSaveClick(id)}
+                            key={`crud-data-grid-save-${id}`}
                         />,
                         <GridActionsCellItem
                             icon={<Cancel />}
@@ -54,6 +55,7 @@ export default function CustomCRUDDataGrid(props) {
                             className="textPrimary"
                             onClick={handleCancelClick(id)}
                             color="inherit"
+                            key={`crud-data-grid-cancel-${id}`}
                         />,
                     ]
                 }
@@ -64,12 +66,14 @@ export default function CustomCRUDDataGrid(props) {
                         className="textPrimary"
                         onClick={handleEditClick(id)}
                         color="inherit"
+                        key={`crud-data-grid-edit-${id}`}
                     />,
                     <GridActionsCellItem
                         icon={<Delete />}
                         label="Delete"
                         onClick={handleDeleteClick(id)}
                         color="inherit"
+                        key={`crud-data-grid-delete-${id}`}
                     />,
                 ]
             },
