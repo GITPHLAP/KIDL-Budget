@@ -38,7 +38,7 @@ export default function BalanceStatus() {
 
     return (
         <>
-            <Tooltip title={t(result.title)} >
+            <Tooltip title={result.title ? t(result.title): "Loading..."} >
                 <IconButton onClick={() => setIsDialogOpen(true)}>
                     {result.Icon}
                 </IconButton>
