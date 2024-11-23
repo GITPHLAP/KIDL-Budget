@@ -9,11 +9,17 @@ export default function ResizeProvider({ children }) {
     const ref = useRef()
 
     useEffect(() => {
+        if (!ref.current) return;
+        
+        let resizeTimeout = null;
         const observer = new ResizeObserver((entries) => {
             const entry = entries[0];
             if (entry) {
-                const { width, height } = entry.contentRect;
-                setSize({ width, height });
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const { width, height } = entry.contentRect;
+                    setSize({ width, height });
+                }, 100)
             }
         });
 
@@ -29,8 +35,12 @@ export default function ResizeProvider({ children }) {
     return (
         <ResizeContext.Provider value={size}>
             {/* Padding box */}
-            <Box ref={ref} p={2} sx={{ flex: 1, height: "100%", display: "flex" }}>
-                {children}
+            <Box id="padding-box" ref={ref} p={2} sx={{ flex: 1, display: "flex" }}>
+                <Box id="invisible-box" sx={{ overflow: "visible", height: "0px", width: "0px" }}>
+                    <Box id="size-box" height={size.height} width={size.width} maxHeight={size.height} >
+                        {children}
+                    </Box>
+                </Box>
             </Box>
         </ResizeContext.Provider>
     );

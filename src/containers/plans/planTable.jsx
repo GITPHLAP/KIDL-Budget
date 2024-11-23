@@ -81,21 +81,21 @@ export default function PlanTable() {
         { field: 'octoberAmount', headerName: monthIdxToName('10'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'novemberAmount', headerName: monthIdxToName('11'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
         { field: 'decemberAmount', headerName: monthIdxToName('12'), editable: true, type: 'number', valueFormatter: (params) => removeThousandSeperator(params), },
-    ], [categoryOptions])
+    ], [categoryOptions, typeOptions])
 
     return (
-        <CustomCRUDataGrid
-            emptyDataRow={{
-                id: -1, categoryId: null, year: 2024, januaryAmount: 0,
-                februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
-                juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
-                octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
-            }}
-            dataRows={plans}
-            columns={columns}
-            handleUpsertRow={processRowUpdate}
-            isLoading={isFetchingCategories || isFetchingPlans}
-        />
+            <CustomCRUDataGrid
+                emptyDataRow={{
+                    id: -1, categoryId: null, year: 2024, januaryAmount: 0,
+                    februaryAmount: 0, marchAmount: 0, aprilAmount: 0, mayAmount: 0,
+                    juneAmount: 0, julyAmount: 0, augustAmount: 0, septemberAmount: 0,
+                    octoberAmount: 0, novemberAmount: 0, decemberAmount: 0,
+                }}
+                dataRows={plans}
+                columns={columns}
+                handleUpsertRow={processRowUpdate}
+                isLoading={isFetchingCategories || isFetchingPlans}
+            />
     )
 }
 
