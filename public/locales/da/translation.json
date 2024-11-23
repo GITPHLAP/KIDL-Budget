@@ -1,131 +1,130 @@
 {
     "general": {
-        "category": "Kategori",
-        "type": "Type",
-        "plan": "Planlagt",
-        "actual": "Faktiske",
-        "forecast": "Prognose",
-        "diff": "Forskel",
-        "mappingValue": "Mappnings værdi",
-        "actions": "Funktioner",
-        "mui": {
-            "labelDisplayedRows": "{{from}} - {{to}} af {{count}}",
-            "labelRowsPerPage": "Rækker per side",
-            "addButton": "Tilføj"
-        },
-        "months": {
-            "january": "Januar",
-            "february": "Februar",
-            "march": "Marts",
-            "april": "April",
-            "may": "Maj",
-            "june": "Juni",
-            "july": "Juli",
-            "august": "August",
-            "september": "September",
-            "october": "Oktober",
-            "november": "November",
-            "december": "December",
-            "jan": "Jan",
-            "feb": "Feb",
-            "mar": "Mar",
-            "apr": "Apr",
-            "jun": "Jun",
-            "jul": "Jul",
-            "aug": "Aug",
-            "sep": "Sep",
-            "oct": "Okt",
-            "nov": "Nov",
-            "dec": "Dec",
-            "noMonths": "Ugyldig måned",
-            "total": "Total"
-        },
-        "income": "Indtægt",
-        "total": "Total",
-        "expenses": "Udgift",
-        "inc+exp": "Ind+Ud",
-        "year": "År",
-        "balanceStatus": {
-            "warning": "Balancen er ikke korrekt! - Den beregnet balance stemmer ikke overens med balancen på den seneste transaktion",
-            "error": "Balancen kunne ikke blive hentet Test",
-            "ok": "Det beregnet balance stemmer overens med blanacen på den seneste transaktion",
-            "dialogTitle": "Balance status",
-            "dialogLatestBalance":      "Balancen på den seneste transaction:   ",
-            "dialogCalculatedBalance":  "Den beregnet balance:                  "
-        }
-
-    }, 
+      "category": "Kategori",
+      "type": "Type",
+      "plan": "Planlagt",
+      "actual": "Faktiske",
+      "forecast": "Prognose",
+      "diff": "Forskel",
+      "mappingValue": "Mappnings værdi",
+      "actions": "Funktioner",
+      "mui": {
+        "labelDisplayedRows": "{{from}} - {{to}} af {{count}}",
+        "labelRowsPerPage": "Rækker per side",
+        "addButton": "Tilføj"
+      },
+      "months": {
+        "january": "Januar",
+        "february": "Februar",
+        "march": "Marts",
+        "april": "April",
+        "may": "Maj",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "August",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "December",
+        "jan": "Jan",
+        "feb": "Feb",
+        "mar": "Mar",
+        "apr": "Apr",
+        "jun": "Jun",
+        "jul": "Jul",
+        "aug": "Aug",
+        "sep": "Sep",
+        "oct": "Okt",
+        "nov": "Nov",
+        "dec": "Dec",
+        "noMonths": "Ugyldig måned",
+        "total": "Total"
+      },
+      "income": "Indtægt",
+      "total": "Total",
+      "expenses": "Udgift",
+      "inc+exp": "Ind+Ud",
+      "year": "År",
+      "balanceStatus": {
+        "warning": "Balancen er ikke korrekt! - Den beregnet balance stemmer ikke overens med balancen på den seneste transaktion",
+        "error": "Balancen kunne ikke blive hentet Test",
+        "ok": "Det beregnet balance stemmer overens med blanacen på den seneste transaktion",
+        "dialogTitle": "Balance status",
+        "dialogLatestBalance": "Balancen på den seneste transaction:   ",
+        "dialogCalculatedBalance": "Den beregnet balance:                  "
+      }
+    },
     "pages": {
-        "navigation": {
-            "headerTitle": "Hovedsider"
-        },
-        "overview": {
-            "title": "Overblik",
-            "noMonthSelectText": "Venligst vælg mindst en række",
-            "showForecastLabel": "Vis prognose",
-            "selectYear": "Vælg år"
-        },
-        "transactions": {
-            "title": "Transaktioner"
-        },
-        "administration": {
-            "title": "Administration",
-            "importTransactionsTitle": "Importer transaktionerne",
-            "categoryTitle": "Transaktion kategorier",
-            "categoryMappingTitle": "Kategori mappning",
-            "copyPlanTitle": "Kopier budgeteringer",
-            "planCard": {
-                "fromText": "Fra:",
-                "toText": "Til:"
-            }
-        },
-        "plans": {
-            "title": "Budgetering"
-        },
-        "sheets": {
-            "title": "Google sheets"
+      "navigation": {
+        "headerTitle": "Hovedsider"
+      },
+      "overview": {
+        "title": "Overblik",
+        "noMonthSelectText": "Venligst vælg mindst en række",
+        "showForecastLabel": "Vis prognose",
+        "selectYear": "Vælg år"
+      },
+      "transactions": {
+        "title": "Transaktioner"
+      },
+      "administration": {
+        "title": "Administration",
+        "importTransactionsTitle": "Importer transaktionerne",
+        "categoryTitle": "Transaktion kategorier",
+        "categoryMappingTitle": "Kategori mappning",
+        "copyPlanTitle": "Kopier budgeteringer",
+        "planCard": {
+          "fromText": "Fra:",
+          "toText": "Til:"
         }
+      },
+      "plans": {
+        "title": "Budgetering"
+      },
+      "sheets": {
+        "title": "Google sheets"
+      }
     },
     "apiCalls": {
-        "addTransactions": {
-            "pending": "⏳Tilføjer transaktionerne",
-            "success": "✅Transaktionerne blev tilføjet"
-        },
-        "deleteMapping": {
-            "pending": "⏳Sletter mappningen",
-            "success": "✅Slettede mappningen"
-        },
-        "createMapping": {
-            "pending": "⏳Tilføjer mappningen",
-            "success": "✅Mappningen blev tilføjet"
-        },
-        "updateMapping": {
-            "pending": "⏳Opdater mappningen",
-            "success": "✅Mappningen blev opdateret"
-        },
-        "deleteCategory": {
-            "pending": "⏳Sletter kategori",
-            "success": "✅Slettede kategorien"
-        },
-        "createCategory": {
-            "pending": "⏳Tilføjer kategorien",
-            "success": "✅Kategorien blev tilføjet"
-        },
-        "updateCategory": {
-            "pending": "⏳Opdater kategorien",
-            "success": "✅Kategorien blev opdateret"
-        },
-        "createPlan": {
-            "pending": "⏳Tilføjer en budgetering",
-            "success": "✅Budgeteringen blev tilføjet"
-        },
-        "updatePlan": {
-            "pending": "⏳Opdater budgeteringen",
-            "success": "✅Budgeteringen blev opdateret"
-        },
-        "copyPlan": {
-            "pending": "⏳Kopier budgeteringerne",
-            "success": "✅Budgeteringerne blev kopieret"
-        }
+      "addTransactions": {
+        "pending": "⏳Tilføjer transaktionerne",
+        "success": "✅Transaktionerne blev tilføjet"
+      },
+      "deleteMapping": {
+        "pending": "⏳Sletter mappningen",
+        "success": "✅Slettede mappningen"
+      },
+      "createMapping": {
+        "pending": "⏳Tilføjer mappningen",
+        "success": "✅Mappningen blev tilføjet"
+      },
+      "updateMapping": {
+        "pending": "⏳Opdater mappningen",
+        "success": "✅Mappningen blev opdateret"
+      },
+      "deleteCategory": {
+        "pending": "⏳Sletter kategori",
+        "success": "✅Slettede kategorien"
+      },
+      "createCategory": {
+        "pending": "⏳Tilføjer kategorien",
+        "success": "✅Kategorien blev tilføjet"
+      },
+      "updateCategory": {
+        "pending": "⏳Opdater kategorien",
+        "success": "✅Kategorien blev opdateret"
+      },
+      "createPlan": {
+        "pending": "⏳Tilføjer en budgetering",
+        "success": "✅Budgeteringen blev tilføjet"
+      },
+      "updatePlan": {
+        "pending": "⏳Opdater budgeteringen",
+        "success": "✅Budgeteringen blev opdateret"
+      },
+      "copyPlan": {
+        "pending": "⏳Kopier budgeteringerne",
+        "success": "✅Budgeteringerne blev kopieret"
+      }
     }
-}
+  }
