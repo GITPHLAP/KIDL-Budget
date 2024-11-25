@@ -1,5 +1,5 @@
 # Build steps
-FROM oven/bun:1.1.34-alpine AS build
+FROM oven/bun:1.1.36-alpine AS build
 ARG VERSION
 WORKDIR /app
 COPY package*.json ./
