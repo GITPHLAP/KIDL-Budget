@@ -76,7 +76,8 @@
         "planCard": {
           "fromText": "From:",
           "toText": "To:"
-        }
+        },
+        "nordeaDownloader": "Download template from Nordea"
       },
       "plans": {
         "title": "Budget Setup"

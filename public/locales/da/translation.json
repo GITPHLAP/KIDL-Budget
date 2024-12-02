@@ -76,7 +76,8 @@
         "planCard": {
           "fromText": "Fra:",
           "toText": "Til:"
-        }
+        },
+        "nordeaDownloader": "Download skabelon fra Nordea"
       },
       "plans": {
         "title": "Budgetering"

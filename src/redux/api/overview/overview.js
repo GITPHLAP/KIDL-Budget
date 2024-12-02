@@ -25,6 +25,13 @@ const extendedApi = apiSlice.injectEndpoints({
                 return transformedData
             }
         }),
+        getYearOverviewByYearAndType: builder.query({
+            query: (params) => ({
+                url: `/overview/template/${params.year}/${params.type}`,
+                method: 'GET'
+            }),
+            transformResponse: (response) => response.data
+        }),
 
     }),
 
@@ -32,5 +39,6 @@ const extendedApi = apiSlice.injectEndpoints({
 })
 
 export const {
-    useGetOverviewsByMonthsQuery
+    useGetOverviewsByMonthsQuery,
+    useLazyGetYearOverviewByYearAndTypeQuery,
 } = extendedApi
