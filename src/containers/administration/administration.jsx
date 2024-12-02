@@ -9,6 +9,7 @@ import CategoryDataGrid from "./components/categoryDataGrid";
 import CategoryMappingCard from "./components/categoryMappingCard";
 import CopyPlanCard from "./components/copyPlanCard";
 import { useGetHealthQuery } from "../../redux/api/apiSlice";
+import NordeaTemplateDownloader from "../../components/nordeaTemplateDownloader/nordeaTemplateDownloader";
 
 export default function Administration() {
     const { t } = useTranslation()
@@ -62,6 +63,11 @@ export default function Administration() {
             <Card elevation={4}>
                 <CardContent>
                     <CopyPlanCard />
+                </CardContent>
+            </Card>
+            <Card elevation={4}>
+                <CardContent>
+                    <NordeaTemplateDownloader />
                 </CardContent>
             </Card>
         </Masonry>

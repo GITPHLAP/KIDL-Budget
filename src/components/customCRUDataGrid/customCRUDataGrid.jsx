@@ -1,9 +1,8 @@
-import { Add, Cancel, Edit, Save } from "@mui/icons-material";
+import { Add, Cancel, Edit, Save, VerticalAlignCenter } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer, useGridApiRef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useResize } from "../resizeProvider/resizeProvider";
 
 
 export default function CustomCRUDataGrid(props) {
@@ -20,19 +19,11 @@ export default function CustomCRUDataGrid(props) {
     // Used to save if row is in edit mode or not
     const [rowModesModel, setRowModesModel] = useState({});
     const apiRef = useGridApiRef()
-    const pageContentSize = useResize()
 
     useEffect(() => {
         setRows(dataRows)
     }, [dataRows])
 
-    useEffect(() => {
-        apiRef?.current?.autosizeColumns?.({
-            includeHeaders: true,
-            includeOutliers: true,
-            expand: true,
-        })
-    }, [pageContentSize, apiRef]);
 
 
     const handleRowEditStop = (params, event) => {
@@ -113,43 +104,35 @@ export default function CustomCRUDataGrid(props) {
 
     return (
         <>
-            {rows && (
-                <DataGrid
-                    apiRef={apiRef}
-                    rows={rows}
-                    columns={columns}
-                    editMode="row"
-                    rowModesModel={rowModesModel}
-                    onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
-                    onRowEditStop={handleRowEditStop}
-                    processRowUpdate={processRowUpdate}
-                    slots={{
-                        toolbar: EditToolbar,
-                    }}
-                    slotProps={{
-                        toolbar: { setRows, setRowModesModel, emptyDataRow },
-                        loadingOverlay: {
-                            variant: 'linear-progress',
-                            noRowsVariant: 'skeleton',
-                        },
-                    }}
-                    autosizeOnMount
-                    autosizeOptions={{
-                        includeOutliers: true,
-                        includeHeaders: true,
-                        expand: true,
-                    }}
-                    loading={isLoading}
+            <DataGrid
+                apiRef={apiRef}
+                rows={rows ?? []}
+                columns={columns}
+                editMode="row"
+                rowModesModel={rowModesModel}
+                onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
+                onRowEditStop={handleRowEditStop}
+                processRowUpdate={processRowUpdate}
+                slots={{
+                    toolbar: EditToolbar,
+                }}
+                slotProps={{
+                    toolbar: { setRows, setRowModesModel, emptyDataRow, apiRef },
+                    loadingOverlay: {
+                        variant: 'linear-progress',
+                        noRowsVariant: 'skeleton',
+                    },
+                }}
+                loading={isLoading}
 
-                />
-            )}
+            />
         </>
     )
 }
 
 
 function EditToolbar(props) {
-    const { setRows, setRowModesModel, emptyDataRow } = props;
+    const { setRows, setRowModesModel, emptyDataRow, apiRef } = props;
     const { t } = useTranslation()
 
     const handleClick = () => {
@@ -161,11 +144,20 @@ function EditToolbar(props) {
         }));
     };
 
+    const handleResizeColumn = () => {
+        apiRef?.current?.autosizeColumns?.({
+            includeHeaders: true,
+            includeOutliers: true,
+            expand: true,
+        })
+    }
+
     return (
         <GridToolbarContainer>
             <Button color="primary" startIcon={<Add />} onClick={handleClick}>
                 {t('general.mui.addButton')}
             </Button>
+            <Button color="primary" startIcon={<VerticalAlignCenter />} onClick={handleResizeColumn}></Button>
         </GridToolbarContainer>
     );
 }
