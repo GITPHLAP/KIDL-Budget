@@ -1,6 +1,6 @@
 import { StyledEngineProvider } from "@mui/material";
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
+import { lazy, StrictMode, Suspense } from "react";
+import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
 import {
   createBrowserRouter,
@@ -8,15 +8,18 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./appLayout";
-import Administration from "./containers/administration/administration";
 import Overview from "./containers/overview/overview";
-import PlanTable from "./containers/plans/planTable";
-import SheetsViewer from "./containers/sheets/sheetsViewer";
-import Transactions from "./containers/transactions/transactions";
 import ErrorPage from "./error-page";
 import './i18n';
 import "./index.css";
 import store from "./redux/store";
+
+// Lazy load pages
+const Transactions = lazy(() => import('./containers/transactions/transactions'));
+const PlanTable = lazy(() => import('./containers/plans/planTable'));
+const SheetsViewer = lazy(() => import('./containers/sheets/sheetsViewer'));
+const Administration = lazy(() => import('./containers/administration/administration'));
+
 
 const router = createBrowserRouter([
   {
@@ -31,30 +34,30 @@ const router = createBrowserRouter([
       },
       {
         path: "transactions",
-        element: <Transactions />,
+        element: <Suspense fallback={<div>Loading...</div>}><Transactions /></Suspense>,
       },
       {
         path: "administration",
-        element: <Administration />,
+        element: <Suspense fallback={<div>Loading...</div>}><Administration /></Suspense>,
       },
       {
         path: "plans",
-        element: <PlanTable />,
+        element: <Suspense fallback={<div>Loading...</div>}><PlanTable /></Suspense>,
       },
       {
         path: "sheets",
-        element: <SheetsViewer />,
+        element: <Suspense fallback={<div>Loading...</div>}> <SheetsViewer /> </Suspense>,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <Provider store={store}>
       <StyledEngineProvider injectFirst={true}>
         <RouterProvider router={router} />
       </StyledEngineProvider>
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 );
