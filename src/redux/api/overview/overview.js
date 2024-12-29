@@ -9,7 +9,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 url: `/overview/${data.year}?` + queryString.stringify({months: data.months}, {arrayFormat: 'none'}),
                 method: 'GET'
             }),
-            providesTags: ['TransCategoryList'],
+            providesTags: ['TransCategoryList', 'TransactionList', 'TransCateMappingList', 'PlanList'],
             transformResponse: (response) => {
                 const transformedData = {
                     year: response.data[0].year,
