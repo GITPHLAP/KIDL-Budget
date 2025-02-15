@@ -1,14 +1,13 @@
 import { CalendarMonth, Difference, Receipt, TableView, Tune } from "@mui/icons-material";
 import { daDK as coreDaDK } from '@mui/material/locale';
+import { createTheme } from '@mui/material/styles';
 import { daDK } from '@mui/x-data-grid/locales';
 import { DashboardLayout } from "@toolpad/core";
-import { AppProvider } from "@toolpad/core/react-router-dom";
+import { ReactRouterAppProvider } from '@toolpad/core/react-router';
+import { useTranslation } from "react-i18next";
 import 'react-toastify/ReactToastify.css';
 import MonthAndYearToolbar from "./components/monthAndYearToolbar/monthAndYearToolbar";
-
-import { createTheme } from '@mui/material/styles';
 import PageContent from "./pageContent";
-import { useTranslation } from "react-i18next";
 
 const theme = createTheme(
     {
@@ -85,10 +84,10 @@ export default function App() {
     ];
 
     return (
-        <AppProvider navigation={NAVIGATION} branding={BRANDING} theme={theme}>
+        <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING} theme={theme}>
             <DashboardLayout slots={{ toolbarActions: MonthAndYearToolbar }}>
                 <PageContent />
             </DashboardLayout>
-        </AppProvider >
+        </ReactRouterAppProvider  >
     )
 }
