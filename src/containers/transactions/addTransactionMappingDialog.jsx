@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { useCreateCategoryMappingMutation } from "../../redux/api/transaction_categories_mapping/transaction_categories_mapping";
 import { useTranslation } from "react-i18next";
-// import FormikSelect from "../../components/customFormik/formikSelect/formikSelect";
+import FormikSelect from "../../components/customFormik/formikSelect/formikSelect";
 
 export default function AddTransactionMappingDialog({ isOpen, onClose, description }) {
     const { t } = useTranslation()
@@ -33,7 +33,6 @@ export default function AddTransactionMappingDialog({ isOpen, onClose, descripti
     }, [description])
 
     const handleOnSubmit = (values) => {
-        console.log('Peek - values on ln: 36 ', values );
         toast.promise(
             createMapping(values).unwrap(),
             {
@@ -41,6 +40,7 @@ export default function AddTransactionMappingDialog({ isOpen, onClose, descripti
                 success: t('apiCalls.createMapping.success'),
             }
         )
+        onClose()
     }
 
     return (
@@ -59,7 +59,7 @@ export default function AddTransactionMappingDialog({ isOpen, onClose, descripti
                                     <TextField {...field} variant="standard" fullWidth label={t('general.category')} />
                                 )}
                             </Field>
-                            {/* <FormikSelect name="categoryId" options={categoryOptions} isLoading={isFetchingCategories} /> */}
+                            <FormikSelect name="categoryId" options={categoryOptions} isLoading={isFetchingCategories} label={t('general.mappingValue')} />
                         </Stack>
 
                     </DialogContent>

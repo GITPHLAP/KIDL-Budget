@@ -9,7 +9,7 @@ const extendedApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: data
             }),
-            invalidatesTags: ['TransCateMappingList']
+            invalidatesTags: ['TransCateMappingList', 'TransactionList']
         }),
         updateCategoryMapping: builder.mutation({
             query: (data) => ({
