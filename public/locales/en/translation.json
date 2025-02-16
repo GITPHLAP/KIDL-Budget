@@ -10,8 +10,7 @@
       "actions": "Functions",
       "mui": {
         "labelDisplayedRows": "{{from}} - {{to}} of {{count}}",
-        "labelRowsPerPage": "Rows per page",
-        "addButton": "Add"
+        "labelRowsPerPage": "Rows per page"
       },
       "months": {
         "january": "January",
@@ -52,7 +51,9 @@
         "dialogTitle": "Balance status",
         "dialogLatestBalance": "Balance on the latest transaction: ",
         "dialogCalculatedBalance": "Calculated balance:                "
-      }
+      },
+      "add": "Add",
+      "cancel": "Cancel"
     },
     "pages": {
       "navigation": {
@@ -65,7 +66,8 @@
         "selectYear": "Select year"
       },
       "transactions": {
-        "title": "Transactions"
+        "title": "Transactions",
+        "addCategoryMapping": "Add transaction mapping"
       },
       "administration": {
         "title": "Administration",

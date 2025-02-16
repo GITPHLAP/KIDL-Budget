@@ -162,7 +162,7 @@ function EditToolbar(props) {
     return (
         <GridToolbarContainer>
             <Button color="primary" startIcon={<Add />} onClick={handleClick}>
-                {t('general.mui.addButton')}
+                {t('general.add')}
             </Button>
         </GridToolbarContainer>
     );
