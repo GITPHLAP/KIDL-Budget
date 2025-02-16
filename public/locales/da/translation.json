@@ -10,8 +10,7 @@
       "actions": "Funktioner",
       "mui": {
         "labelDisplayedRows": "{{from}} - {{to}} af {{count}}",
-        "labelRowsPerPage": "Rækker per side",
-        "addButton": "Tilføj"
+        "labelRowsPerPage": "Rækker per side"
       },
       "months": {
         "january": "Januar",
@@ -52,7 +51,9 @@
         "dialogTitle": "Balance status",
         "dialogLatestBalance": "Balancen på den seneste transaction:   ",
         "dialogCalculatedBalance": "Den beregnet balance:                  "
-      }
+      },
+      "add": "Tilføj",
+      "cancel": "Annuller"
     },
     "pages": {
       "navigation": {
@@ -65,7 +66,8 @@
         "selectYear": "Vælg år"
       },
       "transactions": {
-        "title": "Transaktioner"
+        "title": "Transaktioner",
+        "addCategoryMapping": "Tilføj Kategori mappning"
       },
       "administration": {
         "title": "Administration",
