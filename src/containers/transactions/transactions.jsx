@@ -1,13 +1,20 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useMemo } from "react";
+import { isDeepEqual } from "@mui/x-data-grid/internals";
+import { useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
 import { useGetTransactionsQuery, useUpdateTransactionMutation } from "../../redux/api/transactions/transaction";
 import { removeThousandSeperator } from "../../utils/dataGridHelper";
+import useDisclosure from "../../utils/hooks/useDisclosure";
+import AddTransactionMappingDialog from "./addTransactionMappingDialog";
 
 export default function Transactions() {
     const selectedYear = useSelector((state) => state.selectedYear)
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const descriptionRef = useRef("")
 
     const [updateTransaction, { isLoading }] = useUpdateTransactionMutation()
 
@@ -56,7 +63,10 @@ export default function Transactions() {
     )
 
 
-    const processRowUpdate = (newRow) => {
+    const processRowUpdate = (newRow, oldRow) => {
+        // If no changes then just return oldRow
+        if (isDeepEqual(newRow, oldRow)) return oldRow
+
         toast.promise(
             updateTransaction(newRow).unwrap(),
             {
@@ -66,6 +76,17 @@ export default function Transactions() {
         )
         return newRow;
     };
+
+
+    const handleCellDoubleClick = (params) => {
+        // Only do something if field is description
+        if (params?.field !== "description") return
+
+        // Set description
+        descriptionRef.current = params?.formattedValue
+
+        onOpen()
+    }
 
     return (
         <>
@@ -89,8 +110,14 @@ export default function Transactions() {
                             noRowsVariant: 'skeleton',
                         },
                     }}
+                    onCellDoubleClick={handleCellDoubleClick}
                 />
             )}
+            <AddTransactionMappingDialog
+                isOpen={isOpen}
+                onClose={onClose}
+                description={descriptionRef?.current}
+            />
         </>
     )
 }
