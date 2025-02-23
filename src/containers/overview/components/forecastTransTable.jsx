@@ -8,7 +8,7 @@ export default function ForecastTransTable(props) {
     const { t } = useTranslation()
     const {
         transactionData,
-        headerColor, // TODO: This should be themed
+        headerColor, 
         monthIdxAndType, // Needed to create unique key values for table
         isIncome
     } = props
