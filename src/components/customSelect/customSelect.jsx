@@ -1,4 +1,4 @@
-import { Input, MenuItem, useTheme } from "@mui/material";
+import { MenuItem, TextField, useTheme } from "@mui/material";
 import React from "react";
 import Select, { components } from 'react-select';
 
@@ -60,7 +60,6 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
 
     const customStyles = {
         control: () => ({
-            // width: "fit-content",
             display: "flex",
             alignItems: "center",
             border: 0,
@@ -78,7 +77,6 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
         menuPortal: (base) => ({ ...base, zIndex: 9999 })
     };
 
-    const { onChange, ...rest } = other; // Remove onChange from other
     return (
         <Select
             components={{
@@ -88,24 +86,33 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
             isClearable={true}
             menuPortalTarget={document.body}
             theme={customSelectTheme(theme)}
-            {...rest}
+            {...other}
             ref={ref}
+            isDisabled={other.isLoading}
         />
     );
 })
 
-export default function CustomSelect({ value, onChange, options }) {
+export default function CustomSelect({ value, onChange, options, label, isLoading }) {
     return (
-        <Input
-            fullWidth={true}
-            inputComponent={SelectWrapped}
+        <TextField
+            variant="standard"
+            fullWidth
+            label={label}
             value={value}
             onChange={onChange}
             placeholder=""
             id="react-select-single"
-            inputProps={{
-                options: options
+            slotProps={{
+                input: {
+                    inputComponent: SelectWrapped,
+                    inputProps: {
+                        options: options,
+                        isLoading: isLoading,
+                    },
+                },
+                ...(value?.length > 0 && { inputLabel: { shrink: value?.length > 0 } })
             }}
         />
-    )
+    );
 }
