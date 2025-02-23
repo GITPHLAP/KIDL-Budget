@@ -7,12 +7,13 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import App from "./appLayout";
+
 import Overview from "./containers/overview/overview";
 import ErrorPage from "./error-page";
 import './i18n';
 import "./index.css";
 import store from "./redux/store";
+import { App } from "./appLayout";
 
 // Lazy load pages
 const Transactions = lazy(() => import('./containers/transactions/transactions'));
@@ -24,7 +25,7 @@ const Administration = lazy(() => import('./containers/administration/administra
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App/>,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Navigate to="/overview" /> },

@@ -1,12 +1,13 @@
-import { Input, MenuItem, useTheme } from "@mui/material";
-import Select from 'react-select'
+import { MenuItem, TextField, useTheme } from "@mui/material";
+import React from "react";
+import Select, { components } from 'react-select';
 
 function CustomOption(props) {
-    const { children, isFocused, isSelected, onFocus, selectOption, data } = props
+    const { isFocused, isSelected, onFocus, selectOption, data } = props
     const handleClick = (event) => {
         selectOption(data, event);
     };
-    
+
     return (
         <MenuItem
             onFocus={onFocus}
@@ -16,13 +17,13 @@ function CustomOption(props) {
                 fontWeight: isSelected ? 500 : 400
             }}
         >
-            {children}
+            <components.Option {...props} />
         </MenuItem>
     );
 
 }
 
-function SelectWrapped(props) {
+const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
     const { ...other } = props;
 
     const theme = useTheme()
@@ -59,7 +60,6 @@ function SelectWrapped(props) {
 
     const customStyles = {
         control: () => ({
-            // width: "fit-content",
             display: "flex",
             alignItems: "center",
             border: 0,
@@ -87,22 +87,32 @@ function SelectWrapped(props) {
             menuPortalTarget={document.body}
             theme={customSelectTheme(theme)}
             {...other}
+            ref={ref}
+            isDisabled={other.isLoading}
         />
     );
-}
+})
 
-export default function CustomSelect({value, onChange, options}) {
+export default function CustomSelect({ value, onChange, options, label, isLoading }) {
     return (
-        <Input
-            fullWidth={true}
-            inputComponent={SelectWrapped}
+        <TextField
+            variant="standard"
+            fullWidth
+            label={label}
             value={value}
             onChange={onChange}
             placeholder=""
             id="react-select-single"
-            inputProps={{
-                options: options
+            slotProps={{
+                input: {
+                    inputComponent: SelectWrapped,
+                    inputProps: {
+                        options: options,
+                        isLoading: isLoading,
+                    },
+                },
+                ...(value?.length > 0 && { inputLabel: { shrink: value?.length > 0 } })
             }}
         />
-    )
+    );
 }
