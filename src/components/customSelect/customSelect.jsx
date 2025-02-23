@@ -1,12 +1,13 @@
 import { Input, MenuItem, useTheme } from "@mui/material";
-import Select from 'react-select'
+import React from "react";
+import Select, { components } from 'react-select';
 
 function CustomOption(props) {
-    const { children, isFocused, isSelected, onFocus, selectOption, data } = props
+    const { isFocused, isSelected, onFocus, selectOption, data } = props
     const handleClick = (event) => {
         selectOption(data, event);
     };
-    
+
     return (
         <MenuItem
             onFocus={onFocus}
@@ -16,13 +17,13 @@ function CustomOption(props) {
                 fontWeight: isSelected ? 500 : 400
             }}
         >
-            {children}
+            <components.Option {...props} />
         </MenuItem>
     );
 
 }
 
-function SelectWrapped(props) {
+const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
     const { ...other } = props;
 
     const theme = useTheme()
@@ -77,6 +78,7 @@ function SelectWrapped(props) {
         menuPortal: (base) => ({ ...base, zIndex: 9999 })
     };
 
+    const { onChange, ...rest } = other; // Remove onChange from other
     return (
         <Select
             components={{
@@ -86,12 +88,13 @@ function SelectWrapped(props) {
             isClearable={true}
             menuPortalTarget={document.body}
             theme={customSelectTheme(theme)}
-            {...other}
+            {...rest}
+            ref={ref}
         />
     );
-}
+})
 
-export default function CustomSelect({value, onChange, options}) {
+export default function CustomSelect({ value, onChange, options }) {
     return (
         <Input
             fullWidth={true}

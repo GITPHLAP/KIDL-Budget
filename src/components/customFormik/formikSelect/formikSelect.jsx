@@ -12,6 +12,7 @@ export default function FormikSelect({ name, options, isLoading, label }) {
         <CustomSelect
             value={getValue(options, field.value)}
             onChange={(obj) => helpers.setValue(obj?.value)}
+            isClearable
             options={options}
             isLoading={isLoading}
         />
