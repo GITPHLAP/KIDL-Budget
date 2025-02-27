@@ -7,13 +7,13 @@ export default function FormikSelect({ name, options, isLoading, label }) {
 
     const [field, meta, helpers] = useField(name)
 
-    // TODO: Add FormControl
     return (
         <CustomSelect
-            value={getValue(options, field.value)}
+            value={getValue(field.value, options)}
             onChange={(obj) => helpers.setValue(obj?.value)}
             options={options}
             isLoading={isLoading}
+            label={label ?? "Missing label"}
         />
     )
 }

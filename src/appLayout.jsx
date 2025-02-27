@@ -2,7 +2,7 @@ import { CalendarMonth, Difference, Receipt, TableView, Tune } from "@mui/icons-
 import { daDK as coreDaDK } from '@mui/material/locale';
 import { createTheme } from '@mui/material/styles';
 import { daDK } from '@mui/x-data-grid/locales';
-import { DashboardLayout } from "@toolpad/core";
+import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { useTranslation } from "react-i18next";
 import 'react-toastify/ReactToastify.css';
@@ -49,7 +49,7 @@ const BRANDING = {
     logo: <img src="/ki-d.png" height={"45px"} />
 };
 
-export default function App() {
+export function App() {
     const { t } = useTranslation();
     const NAVIGATION = [
         {
