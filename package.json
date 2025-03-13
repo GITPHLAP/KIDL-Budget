@@ -17,7 +17,7 @@
     "@mui/material": "^6.4.7",
     "@mui/x-data-grid": "^7.27.3",
     "@reduxjs/toolkit": "^2.6.1",
-    "@toolpad/core": "^0.12.1",
+    "@toolpad/core": "^0.13.0",
     "file-saver": "^2.0.5",
     "formik": "^2.4.6",
     "i18next": "^24.2.2",
