@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
+  - package-ecosystem: "bun"
     # Files stored in `app` directory
     directory: "/"
     schedule:
