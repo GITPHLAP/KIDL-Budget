@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { isDeepEqual } from "@mui/x-data-grid/internals";
 import { useMemo, useRef } from "react";
+import isEqual from "react-fast-compare";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useGetTransactionCategoriesQuery } from "../../redux/api/transaction_categories/transaction_categories";
@@ -65,7 +65,7 @@ export default function Transactions() {
 
     const processRowUpdate = (newRow, oldRow) => {
         // If no changes then just return oldRow
-        if (isDeepEqual(newRow, oldRow)) return oldRow
+        if (isEqual(newRow, oldRow)) return oldRow
 
         toast.promise(
             updateTransaction(newRow).unwrap(),
