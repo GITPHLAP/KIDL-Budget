@@ -2,11 +2,6 @@ import { StyledEngineProvider } from "@mui/material";
 import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
 
 import Overview from "./containers/overview/overview";
 import ErrorPage from "./error-page";
@@ -14,6 +9,7 @@ import './i18n';
 import "./index.css";
 import store from "./redux/store";
 import { App } from "./appLayout";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 
 // Lazy load pages
 const Transactions = lazy(() => import('./containers/transactions/transactions'));
