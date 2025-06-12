@@ -37,7 +37,7 @@
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {
-    "@types/react": "^19.1.7",
+    "@types/react": "^19.1.8",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "eslint": "^9.28.0",
     "eslint-plugin-react": "^7.37.5",
