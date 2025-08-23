@@ -153,11 +153,11 @@ function EditToolbar(props) {
     }
 
     return (
-        <GridToolbarContainer>
-            <Button color="primary" startIcon={<Add />} onClick={handleClick}>
+        <Toolbar>
+            <ToolbarButton color="primary" startIcon={<Add />} onClick={handleClick}>
                 {t('general.add')}
-            </Button>
-            <Button color="primary" startIcon={<VerticalAlignCenter />} onClick={handleResizeColumn}></Button>
-        </GridToolbarContainer>
+            </ToolbarButton>
+            <ToolbarButton color="primary" startIcon={<VerticalAlignCenter />} onClick={handleResizeColumn}></ToolbarButton>
+        </Toolbar>
     );
 }
