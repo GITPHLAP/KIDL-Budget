@@ -19,3 +19,19 @@ export const monthIdxToName = (idx) => {
     }
 }
 
+export const monthOptions = () => {
+    return [
+        { value: 1, label: t("general.months.jan") },
+        { value: 2, label: t("general.months.feb") },
+        { value: 3, label: t("general.months.mar") },
+        { value: 4, label: t("general.months.apr") },
+        { value: 5, label: t("general.months.may") },
+        { value: 6, label: t("general.months.jun") },
+        { value: 7, label: t("general.months.jul") },
+        { value: 8, label: t("general.months.aug") },
+        { value: 9, label: t("general.months.sep") },
+        { value: 10, label: t("general.months.oct") },
+        { value: 11, label: t("general.months.nov") },
+        { value: 12, label: t("general.months.dec") },
+    ]
+}

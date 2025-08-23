@@ -1,8 +1,11 @@
 import { Add, Cancel, Edit, Save, VerticalAlignCenter } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer, useGridApiRef } from "@mui/x-data-grid";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, Stack } from "@mui/material";
+import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, Toolbar, ToolbarButton, useGridApiRef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import CustomSelect from "../customSelect/customSelect";
+import { monthOptions } from "../../utils/monthHelper";
+import { getValue } from "../../utils/selectHelper";
 
 
 export default function CustomCRUDataGrid(props) {
@@ -15,6 +18,7 @@ export default function CustomCRUDataGrid(props) {
         isLoading
     } = props
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [rows, setRows] = useState(dataRows);
     // Used to save if row is in edit mode or not
     const [rowModesModel, setRowModesModel] = useState({});
@@ -98,6 +102,7 @@ export default function CustomCRUDataGrid(props) {
 
     // Update row
     const processRowUpdate = (newRow) => {
+        console.log('Peek -  on ln: 101 ',);
         handleUpsertRow(newRow)
         return newRow;
     };
@@ -110,6 +115,10 @@ export default function CustomCRUDataGrid(props) {
                 columns={columns}
                 editMode="row"
                 rowModesModel={rowModesModel}
+                onCellKeyDown={(params, event, details) => {
+                    console.log('Peek -  on ln: 119 ', params, event, details);
+                    setIsDialogOpen(true)
+                }}
                 onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
                 onRowEditStop={handleRowEditStop}
                 processRowUpdate={processRowUpdate}
@@ -126,6 +135,7 @@ export default function CustomCRUDataGrid(props) {
                 loading={isLoading}
 
             />
+            <BulkEditCellDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
         </>
     )
 }
@@ -160,4 +170,34 @@ function EditToolbar(props) {
             <ToolbarButton color="primary" startIcon={<VerticalAlignCenter />} onClick={handleResizeColumn}></ToolbarButton>
         </Toolbar>
     );
+}
+
+function BulkEditCellDialog({ isOpen, onClose, }) {
+    const { t } = useTranslation()
+
+    const [selectedMonths, setSelectedMonths] = useState([])
+
+    return (
+        <Dialog open={isOpen} onClose={onClose} maxWidth={"md"} fullWidth>
+            <DialogTitle>{t("pages.transactions.addCategoryMapping")}</DialogTitle>
+            <DialogContent>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width={"100%"}>
+                    <CustomSelect
+                        label={"Select affected months"}
+                        options={monthOptions()}
+                        value={getValue(selectedMonths)}
+                        onChange={(obj) => setSelectedMonths(obj?.value)}
+                        isMulti
+                    />
+
+                    <Input type="number" />
+                </Stack>
+
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={onClose}>{t("general.cancel")}</Button>
+                <Button type="submit">{t("general.add")}</Button>
+            </DialogActions>
+        </Dialog>
+    )
 }

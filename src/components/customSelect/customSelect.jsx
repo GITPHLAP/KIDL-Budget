@@ -93,7 +93,7 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
     );
 })
 
-export default function CustomSelect({ value, onChange, options, label, isLoading }) {
+export default function CustomSelect({ value, onChange, options, label, isLoading, ...props }) {
     return (
         <TextField
             variant="standard"
@@ -109,6 +109,7 @@ export default function CustomSelect({ value, onChange, options, label, isLoadin
                     inputProps: {
                         options: options,
                         isLoading: isLoading,
+                        ...props,
                     },
                 },
                 ...(value?.length > 0 && { inputLabel: { shrink: value?.length > 0 } })
