@@ -35,3 +35,20 @@ export const monthOptions = () => {
         { value: 12, label: t("general.months.dec") },
     ]
 }
+
+export const monthIdxToPlanColumnName = (idx) => {
+    switch (idx) {
+        case '1': return 'januaryAmount';
+        case '2': return 'februaryAmount';
+        case '3': return 'marchAmount';
+        case '4': return 'aprilAmount';
+        case '5': return 'mayAmount';
+        case '6': return 'juneAmount';
+        case '7': return 'julyAmount';
+        case '8': return 'augustAmount';
+        case '9': return 'septemberAmount';
+        case '10': return 'octoberAmount';
+        case '11': return 'novemberAmount';
+        case '12': return 'decemberAmount';
+    }
+}

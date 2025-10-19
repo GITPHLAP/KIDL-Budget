@@ -1,11 +1,10 @@
-import { Add, Cancel, Edit, Save, VerticalAlignCenter } from "@mui/icons-material";
+import { Add, Cancel, Edit, EditNoteTwoTone, Save, VerticalAlignCenter } from "@mui/icons-material";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, Stack } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, Toolbar, ToolbarButton, useGridApiRef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { monthIdxToPlanColumnName, monthOptions } from "../../utils/monthHelper";
 import CustomSelect from "../customSelect/customSelect";
-import { monthOptions } from "../../utils/monthHelper";
-import { getValue } from "../../utils/selectHelper";
 
 
 export default function CustomCRUDataGrid(props) {
@@ -22,6 +21,7 @@ export default function CustomCRUDataGrid(props) {
     const [rows, setRows] = useState(dataRows);
     // Used to save if row is in edit mode or not
     const [rowModesModel, setRowModesModel] = useState({});
+    const [currentRow, setCurrentRow] = useState({})
     const apiRef = useGridApiRef()
 
     useEffect(() => {
@@ -42,8 +42,8 @@ export default function CustomCRUDataGrid(props) {
             type: "actions",
             headerName: t('general.actions'),
             cellClassName: 'actions',
-            getActions: ({ id }) => {
-                const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+            getActions: (params) => {
+                const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
                 if (isInEditMode) {
                     return [
                         <GridActionsCellItem
@@ -52,16 +52,16 @@ export default function CustomCRUDataGrid(props) {
                             sx={{
                                 color: 'primary.main',
                             }}
-                            onClick={handleSaveClick(id)}
-                            key={`cru-data-grid-save-${id}`}
+                            onClick={handleSaveClick(params.id)}
+                            key={`cru-data-grid-save-${params.id}`}
                         />,
                         <GridActionsCellItem
                             icon={<Cancel />}
                             label="Cancel"
                             className="textPrimary"
-                            onClick={handleCancelClick(id)}
+                            onClick={handleCancelClick(params.id)}
                             color="inherit"
-                            key={`cru-data-grid-cancel-${id}`}
+                            key={`cru-data-grid-cancel-${params.id}`}
                         />,
                     ]
                 }
@@ -70,9 +70,21 @@ export default function CustomCRUDataGrid(props) {
                         icon={<Edit />}
                         label="Edit"
                         className="textPrimary"
-                        onClick={handleEditClick(id)}
+                        onClick={handleEditClick(params.id)}
                         color="inherit"
-                        key={`cru-data-grid-edit-${id}`}
+                        key={`cru-data-grid-edit-${params.id}`}
+                    />,
+                    <GridActionsCellItem
+                        icon={<EditNoteTwoTone />}
+                        label="Edit"
+                        className="textPrimary"
+                        onClick={() => {
+                            handleEditClick(params.id)
+                            setIsDialogOpen(true)
+                            setCurrentRow(params.row)
+                        }}
+                        color="inherit"
+                        key={`cru-data-grid-bulk-edit-${params.id}`}
                     />,
                 ]
             },
@@ -102,8 +114,8 @@ export default function CustomCRUDataGrid(props) {
 
     // Update row
     const processRowUpdate = (newRow) => {
-        console.log('Peek -  on ln: 101 ',);
         handleUpsertRow(newRow)
+        setCurrentRow({})
         return newRow;
     };
 
@@ -115,10 +127,6 @@ export default function CustomCRUDataGrid(props) {
                 columns={columns}
                 editMode="row"
                 rowModesModel={rowModesModel}
-                onCellKeyDown={(params, event, details) => {
-                    console.log('Peek -  on ln: 119 ', params, event, details);
-                    setIsDialogOpen(true)
-                }}
                 onRowModesModelChange={(newMode) => setRowModesModel(newMode)}
                 onRowEditStop={handleRowEditStop}
                 processRowUpdate={processRowUpdate}
@@ -132,10 +140,13 @@ export default function CustomCRUDataGrid(props) {
                         noRowsVariant: 'skeleton',
                     },
                 }}
+                showToolbar
                 loading={isLoading}
 
             />
-            <BulkEditCellDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+            {isDialogOpen && <BulkEditCellDialog isOpen={isDialogOpen} onClose={() => {setIsDialogOpen(false)
+                handleSaveClick(currentRow.id)
+            }} processRowUpdate={processRowUpdate} currentRow={currentRow} handleSaveClick={handleSaveClick} />}
         </>
     )
 }
@@ -143,7 +154,6 @@ export default function CustomCRUDataGrid(props) {
 
 function EditToolbar(props) {
     const { setRows, setRowModesModel, emptyDataRow, apiRef } = props;
-    const { t } = useTranslation()
 
     const handleClick = () => {
         const id = -1; // Use minus one for new rows
@@ -164,39 +174,56 @@ function EditToolbar(props) {
 
     return (
         <Toolbar>
-            <ToolbarButton color="primary" startIcon={<Add />} onClick={handleClick}>
-                {t('general.add')}
+            <ToolbarButton color="primary" onClick={handleClick}>
+                <Add />
             </ToolbarButton>
-            <ToolbarButton color="primary" startIcon={<VerticalAlignCenter />} onClick={handleResizeColumn}></ToolbarButton>
+            <ToolbarButton color="primary" onClick={handleResizeColumn}>
+                <VerticalAlignCenter />
+            </ToolbarButton>
         </Toolbar>
     );
 }
 
-function BulkEditCellDialog({ isOpen, onClose, }) {
+function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow, handleSaveClick }) {
     const { t } = useTranslation()
 
     const [selectedMonths, setSelectedMonths] = useState([])
+    const [inputValue, setInputValue] = useState("")
+
+    const handleSubmit = () => {
+        let newRow = { ...currentRow }
+
+        // Loop through selected months and set the monthAmount to inputValue
+        selectedMonths.forEach((monthIdx) => {
+            const monthField = monthIdxToPlanColumnName(`${monthIdx}`)
+            newRow[monthField] = parseFloat(inputValue)
+        })
+
+        processRowUpdate(newRow)
+        handleSaveClick(currentRow.id)
+        onClose()
+    }
 
     return (
         <Dialog open={isOpen} onClose={onClose} maxWidth={"md"} fullWidth>
             <DialogTitle>{t("pages.transactions.addCategoryMapping")}</DialogTitle>
-            <DialogContent>
+            <DialogContent >
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width={"100%"}>
                     <CustomSelect
                         label={"Select affected months"}
                         options={monthOptions()}
-                        value={getValue(selectedMonths)}
-                        onChange={(obj) => setSelectedMonths(obj?.value)}
+                        value={selectedMonths}
+                        onValueChange={(values) => setSelectedMonths(values ?? [])}
                         isMulti
                     />
 
-                    <Input type="number" />
+                    <Input type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
                 </Stack>
 
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>{t("general.cancel")}</Button>
-                <Button type="submit">{t("general.add")}</Button>
+                <Button type="submit" onClick={handleSubmit}>{t("general.add")}</Button>
             </DialogActions>
         </Dialog>
     )
