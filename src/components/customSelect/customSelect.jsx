@@ -105,7 +105,6 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
             },
             valueContainer: (provided) => ({
                 ...provided,
-                // padding: "4px 0 6px",
                 gap: theme.spacing(0.5),
                 flexWrap: "wrap",
             }),
@@ -165,7 +164,6 @@ const SelectWrapped = React.forwardRef(function SelectWrapped(props, ref) {
                 ...provided,
                 margin: 0,
                 padding: 0,
-                display: "content",
             }),
             menuPortal: (base) => ({ ...base, zIndex: theme.zIndex.modal }),
         }),

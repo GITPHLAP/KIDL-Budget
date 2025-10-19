@@ -112,6 +112,11 @@ export default function CustomCRUDataGrid(props) {
         }
     };
 
+    const handleDialogClose = () => {
+        setIsDialogOpen(false);
+        handleSaveClick(currentRow.id);
+    };
+
     // Update row
     const processRowUpdate = (newRow) => {
         handleUpsertRow(newRow)
@@ -144,9 +149,8 @@ export default function CustomCRUDataGrid(props) {
                 loading={isLoading}
 
             />
-            {isDialogOpen && <BulkEditCellDialog isOpen={isDialogOpen} onClose={() => {setIsDialogOpen(false)
-                handleSaveClick(currentRow.id)
-            }} processRowUpdate={processRowUpdate} currentRow={currentRow} handleSaveClick={handleSaveClick} />}
+
+            {isDialogOpen && <BulkEditCellDialog isOpen={isDialogOpen} onClose={handleDialogClose} processRowUpdate={processRowUpdate} currentRow={currentRow} />}
         </>
     )
 }
@@ -184,7 +188,7 @@ function EditToolbar(props) {
     );
 }
 
-function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow, handleSaveClick }) {
+function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow }) {
     const { t } = useTranslation()
 
     const [selectedMonths, setSelectedMonths] = useState([])
@@ -196,11 +200,11 @@ function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow, han
         // Loop through selected months and set the monthAmount to inputValue
         selectedMonths.forEach((monthIdx) => {
             const monthField = monthIdxToPlanColumnName(`${monthIdx}`)
-            newRow[monthField] = parseFloat(inputValue)
+            const parsedValue = parseFloat(inputValue)
+            newRow[monthField] = isNaN(parsedValue) ? 0 : parsedValue
         })
 
         processRowUpdate(newRow)
-        handleSaveClick(currentRow.id)
         onClose()
     }
 
