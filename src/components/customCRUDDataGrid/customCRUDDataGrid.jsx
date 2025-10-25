@@ -1,6 +1,5 @@
 import { Add, Cancel, Delete, Edit, Save } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, Toolbar, ToolbarButton } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -125,6 +124,7 @@ export default function CustomCRUDDataGrid(props) {
                     slots={{
                         toolbar: EditToolbar,
                     }}
+                    showToolbar
                     slotProps={{
                         toolbar: { setRows, setRowModesModel, emptyDataRow },
                         loadingOverlay: {
@@ -148,7 +148,6 @@ export default function CustomCRUDDataGrid(props) {
 
 function EditToolbar(props) {
     const { setRows, setRowModesModel, emptyDataRow } = props;
-    const { t } = useTranslation()
 
     const handleClick = () => {
         const id = -1; // Use minus one for new rows
@@ -160,10 +159,10 @@ function EditToolbar(props) {
     };
 
     return (
-        <GridToolbarContainer>
-            <Button color="primary" startIcon={<Add />} onClick={handleClick}>
-                {t('general.add')}
-            </Button>
-        </GridToolbarContainer>
+        <Toolbar>
+            <ToolbarButton color="primary" onClick={handleClick}>
+                <Add />
+            </ToolbarButton>
+        </Toolbar>
     );
 }
