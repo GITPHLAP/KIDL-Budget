@@ -1,5 +1,5 @@
 import { Add, Cancel, Edit, EditNoteTwoTone, Save, VerticalAlignCenter } from "@mui/icons-material";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, Stack } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Input, InputLabel, Stack } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridRowEditStopReasons, GridRowModes, Toolbar, ToolbarButton, useGridApiRef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -188,6 +188,7 @@ function EditToolbar(props) {
     );
 }
 
+// TODO: This is not generic, move to plan specific component
 function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow }) {
     const { t } = useTranslation()
 
@@ -210,18 +211,21 @@ function BulkEditCellDialog({ isOpen, onClose, processRowUpdate, currentRow }) {
 
     return (
         <Dialog open={isOpen} onClose={onClose} maxWidth={"md"} fullWidth>
-            <DialogTitle>{t("pages.transactions.addCategoryMapping")}</DialogTitle>
+            <DialogTitle>{t("pages.plans.bulkEditPlanTitle")}</DialogTitle>
             <DialogContent >
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width={"100%"}>
                     <CustomSelect
-                        label={"Select affected months"}
+                        label={t("pages.plans.months")}
                         options={monthOptions()}
                         value={selectedMonths}
                         onValueChange={(values) => setSelectedMonths(values ?? [])}
                         isMulti
                     />
 
-                    <Input type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                    <FormControl variant="standard" sx={{height: "100%"}}>
+                        <InputLabel id="test">{t("general.plan")}</InputLabel>
+                        <Input labelId={"test"} type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                    </FormControl>
                 </Stack>
 
             </DialogContent>
