@@ -4,9 +4,10 @@ const extendedApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         // MUTATIONS
         createTransactionCategory: builder.mutation({
-            query: (category) => ({
-                url: `/transaction_categories/${category}`,
+            query: (data) => ({
+                url: `/transaction_categories`,
                 method: 'POST',
+                body: data,
             }),
             invalidatesTags: ['TransCategoryList']
         }),

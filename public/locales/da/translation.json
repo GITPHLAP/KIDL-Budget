@@ -1,6 +1,7 @@
 {
     "general": {
       "category": "Kategori",
+      "comment": "Kommentar",
       "type": "Type",
       "plan": "Planlagt",
       "actual": "Faktiske",

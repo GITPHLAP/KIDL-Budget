@@ -1,6 +1,7 @@
 {
     "general": {
       "category": "Category",
+      "comment": "Comment",
       "type": "Type",
       "plan": "Planned",
       "actual": "Actual",
