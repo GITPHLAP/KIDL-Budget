@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import CustomCRUDDataGrid from "../../../components/customCRUDDataGrid/customCRUDDataGrid";
+import MultilineGridCell from "../../../components/multilineGridCell/multilineGridCell";
 import { useCreateTransactionCategoryMutation, useDeleteTransactionCategoryMutation, useGetTransactionCategoriesQuery, useUpdateTransactionCategoryMutation } from "../../../redux/api/transaction_categories/transaction_categories";
 
 export default function CategoryDataGrid() {
@@ -29,7 +29,7 @@ export default function CategoryDataGrid() {
     const processRowUpdate = (row) => {
         if (row?.isNew) {
             toast.promise(
-                createCategory(row?.description).unwrap(),
+                createCategory(row).unwrap(),
                 {
                     pending: t('apiCalls.createCategory.pending'),
                     success: t('apiCalls.createCategory.success'),
@@ -47,16 +47,17 @@ export default function CategoryDataGrid() {
         return
     }
 
-    const columns = useMemo(() => [
-        { field: 'description', headerName: t('general.category'), editable: true, type: 'string', },
-    ], [])
+    const columns = [
+        { field: 'description', headerName: t('general.category'), editable: true, type: 'string' },
+        { field: 'comment', headerName: t('general.comment'), editable: true, ...multilineColumn, },
+    ]
 
     return (
         <>
             <Typography variant="h5">{t('pages.administration.categoryTitle')}</Typography>
             <Box sx={{ display: "flex", height: "500px" }}>
                 <CustomCRUDDataGrid
-                    emptyDataRow={{ id: -1, description: "" }}
+                    emptyDataRow={{ id: -1, description: "", comment: "" }}
                     dataRows={categories}
                     columns={columns}
                     handleUpsertRow={processRowUpdate}
@@ -68,3 +69,7 @@ export default function CategoryDataGrid() {
     )
 }
 
+const multilineColumn = {
+    type: 'string',
+    renderEditCell: (params) => <MultilineGridCell {...params} />,
+};

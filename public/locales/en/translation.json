@@ -1,6 +1,7 @@
 {
     "general": {
       "category": "Category",
+      "comment": "Comment",
       "type": "Type",
       "plan": "Planned",
       "actual": "Actual",
@@ -82,7 +83,9 @@
         "nordeaDownloader": "Download template from Nordea"
       },
       "plans": {
-        "title": "Budget Setup"
+        "title": "Budget Setup",
+        "bulkEditPlanTitle": "Update budget for the following months",
+        "months": "Months"
       },
       "sheets": {
         "title": "Google sheets"

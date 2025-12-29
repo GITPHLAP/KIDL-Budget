@@ -1,5 +1,5 @@
 # Build steps
-FROM oven/bun:1.3.3-alpine AS build
+FROM oven/bun:1.3.5-alpine AS build
 ARG VERSION
 WORKDIR /app
 COPY package*.json ./
@@ -12,7 +12,7 @@ RUN echo "VITE_VERSION=${VERSION}" > .env
 RUN bun run build
 
 # Run steps
-FROM nginx:1.29.3-alpine
+FROM nginx:1.29.4-alpine
 ARG VERSION
 ENV VERSION=${VERSION:-develop}
 RUN echo ${VERSION} > version
