@@ -1,6 +1,7 @@
 {
     "general": {
       "category": "Kategori",
+      "comment": "Kommentar",
       "type": "Type",
       "plan": "Planlagt",
       "actual": "Faktiske",
@@ -82,7 +83,9 @@
         "nordeaDownloader": "Download skabelon fra Nordea"
       },
       "plans": {
-        "title": "Budgetering"
+        "title": "Budgetering",
+        "bulkEditPlanTitle": "Opdater budgetering for følgende måneder",
+        "months": "Måneder"
       },
       "sheets": {
         "title": "Google sheets"

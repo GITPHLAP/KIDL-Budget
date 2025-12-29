@@ -24,7 +24,11 @@ export default function CustomCRUDDataGrid(props) {
 
 
     const handleRowEditStop = (params, event) => {
-        if (params.reason === GridRowEditStopReasons.rowFocusOut) {
+        if (params.reason !== GridRowEditStopReasons.enterKeyDown) {
+            return;
+        }
+
+        if ((isKeyboardEvent(event) && !event.ctrlKey && !event.metaKey) || params.reason === GridRowEditStopReasons.rowFocusOut) {
             event.defaultMuiPrevented = true;
         }
     };
@@ -165,4 +169,7 @@ function EditToolbar(props) {
             </ToolbarButton>
         </Toolbar>
     );
+}
+function isKeyboardEvent(event) {
+    return !!event.key;
 }
